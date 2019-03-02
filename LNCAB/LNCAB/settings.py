@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5zn2o^&d3c5dww%4kzilm7(j+*s(lal!3fm$ng7y8n^n%*($sy'
+SECRET_KEY = 'poj%cl&wwsm&7!yjh0*s&5$6xjb*3@x$611ika556-%pfcji#k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Users.apps.UsersConfig',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +77,8 @@ WSGI_APPLICATION = 'LNCAB.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lncab',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
