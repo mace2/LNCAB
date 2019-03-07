@@ -20,6 +20,9 @@ class Team(models.Model):
     cede = models.CharField("Cede",max_length=200)
 
 
+class Game(models.Model):
+    
+
 
 
     def __str__(self):
