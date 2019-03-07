@@ -21,6 +21,7 @@ class Team(models.Model):
 
 
 class Game(models.Model):
+    nombre_Team1=models.ForeignKey(Team,on_delete=models.CASCADE)
     
 
 
