@@ -19,11 +19,6 @@ class Team(models.Model):
     city=models.CharField("Ciudad",default="Temp",max_length=50)
     cede = models.CharField("Cede",max_length=200)
 
-    class Algo(models.Model):
-        name = models.CharField("Nombre de Equipo", max_length=50)
-        nombre_Coach = models.OneToOneField(Coach, on_delete=models.CASCADE)
-        city = models.CharField("Ciudad", default="Temp", max_length=50)
-        cede = models.CharField("Cede", max_length=200)
 
 
 
