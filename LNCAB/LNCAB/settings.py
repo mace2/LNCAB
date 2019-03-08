@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'teams.apps.TeamsConfig',
+    'tournaments.apps.TournamentsConfig',
     'materializecssform',
 ]
 
@@ -82,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'lncab',
         'USER': 'postgres',
-        'PASSWORD': 'quirotagoras1595',
+        'PASSWORD': 'postgres',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
