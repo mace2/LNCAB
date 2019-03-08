@@ -5,7 +5,7 @@ from .models import Team
 
 
 def index(request):
-    template = loader.get_template('teams/base.html')
+    template = loader.get_template('../templates/header.html')
     teams = Team.objects.all()
     context={"teams":teams,
     }
