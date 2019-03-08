@@ -23,3 +23,5 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
+class Scorekeeper (models.Model):
+  nombre_Scorekeeper = models.CharField("Nombre del Anotador",max_length=50)
