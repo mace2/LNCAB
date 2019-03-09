@@ -13,3 +13,10 @@ class Coach(models.Model):
 
     def __str__(self):
         return self.name+" "+self.last_names
+
+class ScoreKeeper(models.Model):
+    scoreKeeper_id = models.ForeignKey('users.ScoreKeeper', on_delete=models.CASCADE)
+    name = models.CharField("name", max_length=50)
+
+    def __str__(self):
+        return self.name
