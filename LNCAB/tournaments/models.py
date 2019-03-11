@@ -18,4 +18,7 @@ class Game(models.Model):
     teamLocal=models.ForeignKey('teams.Team', on_delete=models.CASCADE,related_name='LocalTeam')
     teamVisitante = models.ForeignKey('teams.Team', on_delete=models.CASCADE, related_name='VisitanteTeam')
 
+    def __str__(self):
+        return self.name
+
 

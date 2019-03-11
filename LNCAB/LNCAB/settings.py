@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'teams.apps.TeamsConfig',
     'tournaments.apps.TournamentsConfig',
+    'teams.apps.TeamsConfig',
     'materializecssform',
 ]
 
