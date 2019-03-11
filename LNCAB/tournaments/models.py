@@ -15,5 +15,7 @@ class Tournament(models.Model):
 class Game(models.Model):
     date = models.DateTimeField("date")
     tournament_id = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    teamLocal=models.ForeignKey('teams.Team', on_delete=models.CASCADE,related_name='LocalTeam')
+    teamVisitante = models.ForeignKey('teams.Team', on_delete=models.CASCADE, related_name='VisitanteTeam')
 
 
