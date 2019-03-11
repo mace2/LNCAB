@@ -13,13 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LNCAB/tournaments/models.py">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
             <state relative-caret-position="150">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
-=======
-            <state relative-caret-position="360">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
->>>>>>> AndresQuiroz
             </state>
           </provider>
         </entry>
@@ -51,13 +46,6 @@
         <option value="$PROJECT_DIR$/LNCAB/LNCAB/settings.py" />
         <option value="$PROJECT_DIR$/LNCAB/teams/templates/teams/base.html" />
         <option value="$PROJECT_DIR$/LNCAB/teams/views.py" />
-<<<<<<< HEAD
-=======
-        <option value="$PROJECT_DIR$/LNCAB/tournaments/migrations/0001_initial.py" />
-        <option value="$PROJECT_DIR$/LNCAB/LNCAB/settings.py" />
-        <option value="$PROJECT_DIR$/LNCAB/templates/header.html" />
-        <option value="$PROJECT_DIR$/LNCAB/tournaments/models.py" />
->>>>>>> AndresQuiroz
       </list>
     </option>
   </component>
@@ -88,15 +76,12 @@
               <item name="LNCAB" type="b2602c69:ProjectViewProjectNode" />
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
               <item name="teams" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LNCAB" type="b2602c69:ProjectViewProjectNode" />
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
-=======
->>>>>>> AndresQuiroz
               <item name="teams" type="462c0819:PsiDirectoryNode" />
               <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -133,15 +118,15 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/LNCAB/teams" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/LNCAB/users" />
       <recent name="$PROJECT_DIR$/LNCAB/templates" />
       <recent name="$PROJECT_DIR$/LNCAB" />
       <recent name="$PROJECT_DIR$/LNCAB/static/teams" />
       <recent name="$PROJECT_DIR$/LNCAB/static" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/LNCAB/teams" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -206,20 +191,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
     <option name="totallyTimeSpent" value="21215000" />
-=======
-    <option name="totallyTimeSpent" value="22497000" />
->>>>>>> AndresQuiroz
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1007326" />
-=======
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1007326" />
->>>>>>> AndresQuiroz
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -339,27 +316,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LNCAB/LNCAB/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="545">
           <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
-=======
-        <state relative-caret-position="324">
-          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LNCAB/tournaments/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/LNCAB/templates/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
->>>>>>> AndresQuiroz
         </state>
       </provider>
     </entry>

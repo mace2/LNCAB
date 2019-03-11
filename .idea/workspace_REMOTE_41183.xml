@@ -13,13 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/LNCAB/tournaments/models.py">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-=======
             <state relative-caret-position="360">
               <caret line="24" selection-start-line="24" selection-end-line="24" />
->>>>>>> AndresQuiroz
             </state>
           </provider>
         </entry>
@@ -48,16 +43,12 @@
         <option value="$PROJECT_DIR$/LNCAB/templates/base.html" />
         <option value="$PROJECT_DIR$/LNCAB/teams/urls.py" />
         <option value="$PROJECT_DIR$/LNCAB/LNCAB/urls.py" />
-        <option value="$PROJECT_DIR$/LNCAB/LNCAB/settings.py" />
         <option value="$PROJECT_DIR$/LNCAB/teams/templates/teams/base.html" />
         <option value="$PROJECT_DIR$/LNCAB/teams/views.py" />
-<<<<<<< HEAD
-=======
         <option value="$PROJECT_DIR$/LNCAB/tournaments/migrations/0001_initial.py" />
         <option value="$PROJECT_DIR$/LNCAB/LNCAB/settings.py" />
         <option value="$PROJECT_DIR$/LNCAB/templates/header.html" />
         <option value="$PROJECT_DIR$/LNCAB/tournaments/models.py" />
->>>>>>> AndresQuiroz
       </list>
     </option>
   </component>
@@ -88,17 +79,7 @@
               <item name="LNCAB" type="b2602c69:ProjectViewProjectNode" />
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
               <item name="teams" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LNCAB" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
-              <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
-=======
->>>>>>> AndresQuiroz
-              <item name="teams" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LNCAB" type="b2602c69:ProjectViewProjectNode" />
@@ -111,13 +92,6 @@
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
               <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LNCAB" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
-              <item name="LNCAB" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -134,11 +108,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/LNCAB/users" />
       <recent name="$PROJECT_DIR$/LNCAB/templates" />
       <recent name="$PROJECT_DIR$/LNCAB" />
       <recent name="$PROJECT_DIR$/LNCAB/static/teams" />
       <recent name="$PROJECT_DIR$/LNCAB/static" />
+      <recent name="$PROJECT_DIR$/LNCAB/LNCAB" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/LNCAB/teams" />
@@ -206,24 +180,16 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="21215000" />
-=======
     <option name="totallyTimeSpent" value="22497000" />
->>>>>>> AndresQuiroz
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <layout>
-<<<<<<< HEAD
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1007326" />
-=======
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1007326" />
->>>>>>> AndresQuiroz
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32959184" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -233,7 +199,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.2887755" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2887755" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -296,24 +262,17 @@
     <entry file="file://$PROJECT_DIR$/LNCAB/teams/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LNCAB/templates/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LNCAB/teams/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -323,12 +282,12 @@
     <entry file="file://$PROJECT_DIR$/LNCAB/LNCAB/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="17" column="67" selection-start-line="17" selection-start-column="67" selection-end-line="17" selection-end-column="67" />
-          <folding>
-            <element signature="e#629#661#0" expanded="true" />
-          </folding>
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LNCAB/static/teams/logo.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/LNCAB/teams/models.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -337,12 +296,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/LNCAB/tournaments/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LNCAB/LNCAB/settings 2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1405" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/LNCAB/LNCAB/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="545">
-          <caret line="130" column="18" selection-start-line="130" selection-start-column="18" selection-end-line="130" selection-end-column="18" />
-=======
         <state relative-caret-position="324">
           <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
         </state>
@@ -359,7 +326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="620">
           <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
->>>>>>> AndresQuiroz
         </state>
       </provider>
     </entry>
