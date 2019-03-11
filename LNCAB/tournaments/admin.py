@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Game, Tournament
+from .models import Game
 # Register your models here.
 
 
@@ -8,12 +8,3 @@ class GameAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Game, GameAdmin)
-
-
-class TournamentAdmin(admin.ModelAdmin):
-    pass
-
-
-admin.site.register(Tournament, TournamentAdmin)
-
-

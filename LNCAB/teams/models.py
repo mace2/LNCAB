@@ -19,6 +19,7 @@ class Region(models.Model):
         return self.name
 
 
+
 class Team(models.Model):
     coach_id = models.ForeignKey('users.Coach', on_delete=models.CASCADE)
     state_id = models.ForeignKey(State, on_delete=models.CASCADE)
