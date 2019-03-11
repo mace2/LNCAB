@@ -20,9 +20,8 @@ class Region(models.Model):
 
 
 class Team(models.Model):
-    coach_id = models.ForeignKey('users.Coach', on_delete=models.CASCADE)
-    state_id = models.ForeignKey(State, on_delete=models.CASCADE)
-    city = models.CharField("city", default="", max_length=50)
+    coach = models.OneToOneField('users.Coach', on_delete=models.CASCADE)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
     address = models.CharField("address", max_length=200)
     name = models.CharField("name", max_length=50)
 
