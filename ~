@@ -1,0 +1,112 @@
+Merge branch 'AndresQuiroz' into develop
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch develop
+# Your branch is up to date with 'origin/develop'.
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .idea/workspace.xml
+#	modified:   LNCAB/LNCAB/__pycache__/__init__.cpython-37.pyc
+#	modified:   LNCAB/LNCAB/__pycache__/settings.cpython-37.pyc
+#	modified:   LNCAB/LNCAB/__pycache__/urls.cpython-37.pyc
+#	modified:   LNCAB/LNCAB/__pycache__/wsgi.cpython-37.pyc
+#	modified:   LNCAB/teams/__pycache__/__init__.cpython-37.pyc
+#	modified:   LNCAB/teams/__pycache__/admin.cpython-37.pyc
+#	modified:   LNCAB/teams/__pycache__/apps.cpython-37.pyc
+#	modified:   LNCAB/teams/__pycache__/models.cpython-37.pyc
+#	modified:   LNCAB/teams/__pycache__/urls.cpython-37.pyc
+#	modified:   LNCAB/teams/__pycache__/views.cpython-37.pyc
+#	new file:   LNCAB/teams/migrations/0002_auto_20190311_2147.py
+#	new file:   LNCAB/teams/migrations/0003_auto_20190311_2149.py
+#	new file:   LNCAB/teams/migrations/0004_auto_20190311_2151.py
+#	new file:   LNCAB/teams/migrations/0005_auto_20190311_2153.py
+#	new file:   LNCAB/teams/migrations/0006_auto_20190311_2157.py
+#	new file:   LNCAB/teams/migrations/0007_auto_20190311_2201.py
+#	modified:   LNCAB/teams/migrations/__pycache__/0001_initial.cpython-37.pyc
+#	new file:   LNCAB/teams/migrations/__pycache__/0002_auto_20190311_2147.cpython-37.pyc
+#	new file:   LNCAB/teams/migrations/__pycache__/0003_auto_20190311_2149.cpython-37.pyc
+#	new file:   LNCAB/teams/migrations/__pycache__/0004_auto_20190311_2151.cpython-37.pyc
+#	new file:   LNCAB/teams/migrations/__pycache__/0005_auto_20190311_2153.cpython-37.pyc
+#	new file:   LNCAB/teams/migrations/__pycache__/0006_auto_20190311_2157.cpython-37.pyc
+#	new file:   LNCAB/teams/migrations/__pycache__/0007_auto_20190311_2201.cpython-37.pyc
+#	modified:   LNCAB/teams/migrations/__pycache__/__init__.cpython-37.pyc
+#	modified:   LNCAB/teams/models.py
+#	modified:   LNCAB/tournaments/__pycache__/__init__.cpython-37.pyc
+#	modified:   LNCAB/tournaments/__pycache__/admin.cpython-37.pyc
+#	modified:   LNCAB/tournaments/__pycache__/apps.cpython-37.pyc
+#	modified:   LNCAB/tournaments/__pycache__/models.cpython-37.pyc
+#	modified:   LNCAB/tournaments/admin.py
+#	new file:   LNCAB/tournaments/migrations/0004_auto_20190311_2132.py
+#	new file:   LNCAB/tournaments/migrations/0005_auto_20190311_2157.py
+#	new file:   LNCAB/tournaments/migrations/0006_auto_20190311_2201.py
+#	new file:   LNCAB/tournaments/migrations/0007_jornada.py
+#	new file:   LNCAB/tournaments/migrations/0008_game_jornada.py
+#	new file:   LNCAB/tournaments/migrations/0009_auto_20190311_2212.py
+#	new file:   LNCAB/tournaments/migrations/0010_auto_20190311_2215.py
+#	new file:   LNCAB/tournaments/migrations/0011_jornada_torneo.py
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0001_initial.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0002_auto_20190308_1727.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0003_auto_20190311_1553.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0004_auto_20190311_2132.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0005_auto_20190311_2157.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0006_auto_20190311_2201.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0007_jornada.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0008_game_jornada.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0009_auto_20190311_2212.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0010_auto_20190311_2215.cpython-37.pyc
+#	new file:   LNCAB/tournaments/migrations/__pycache__/0011_jornada_torneo.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/__init__.cpython-37.pyc
+#	modified:   LNCAB/tournaments/models.py
+#	modified:   LNCAB/users/__pycache__/__init__.cpython-37.pyc
+#	modified:   LNCAB/users/__pycache__/admin.cpython-37.pyc
+#	modified:   LNCAB/users/__pycache__/apps.cpython-37.pyc
+#	modified:   LNCAB/users/__pycache__/models.cpython-37.pyc
+#	modified:   LNCAB/users/__pycache__/urls.cpython-37.pyc
+#	modified:   LNCAB/users/__pycache__/views.cpython-37.pyc
+#	new file:   LNCAB/users/migrations/0008_delete_coach.py
+#	new file:   LNCAB/users/migrations/0009_coach.py
+#	modified:   LNCAB/users/migrations/__pycache__/0001_initial.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0002_auto_20190307_1719.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0003_auto_20190307_1727.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0004_auto_20190308_0926.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0005_auto_20190308_1120.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0006_coach_email_address.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0007_auto_20190308_1719.cpython-37.pyc
+#	new file:   LNCAB/users/migrations/__pycache__/0008_delete_coach.cpython-37.pyc
+#	new file:   LNCAB/users/migrations/__pycache__/0009_coach.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/__init__.cpython-37.pyc
+#
+# Changes not staged for commit:
+#	modified:   .idea/workspace.xml
+#	modified:   LNCAB/LNCAB/__pycache__/settings.cpython-37.pyc
+#	modified:   LNCAB/LNCAB/settings.py
+#	modified:   LNCAB/teams/__pycache__/models.cpython-37.pyc
+#	modified:   LNCAB/teams/migrations/__pycache__/0002_auto_20190311_2147.cpython-37.pyc
+#	modified:   LNCAB/teams/migrations/__pycache__/0003_auto_20190311_2149.cpython-37.pyc
+#	modified:   LNCAB/teams/migrations/__pycache__/0004_auto_20190311_2151.cpython-37.pyc
+#	modified:   LNCAB/teams/migrations/__pycache__/0005_auto_20190311_2153.cpython-37.pyc
+#	modified:   LNCAB/teams/migrations/__pycache__/0006_auto_20190311_2157.cpython-37.pyc
+#	modified:   LNCAB/teams/migrations/__pycache__/0007_auto_20190311_2201.cpython-37.pyc
+#	modified:   LNCAB/tournaments/__pycache__/admin.cpython-37.pyc
+#	modified:   LNCAB/tournaments/__pycache__/models.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0004_auto_20190311_2132.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0005_auto_20190311_2157.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0006_auto_20190311_2201.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0007_jornada.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0008_game_jornada.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0009_auto_20190311_2212.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0010_auto_20190311_2215.cpython-37.pyc
+#	modified:   LNCAB/tournaments/migrations/__pycache__/0011_jornada_torneo.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0008_delete_coach.cpython-37.pyc
+#	modified:   LNCAB/users/migrations/__pycache__/0009_coach.cpython-37.pyc
+#

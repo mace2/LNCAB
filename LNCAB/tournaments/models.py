@@ -12,7 +12,17 @@ class Tournament(models.Model):
         return self.name
 
 class Jornada(models.Model):
+    opciones_jornada=(
+        ('1','1'),
+        ('2','2'),
+        ('3','3'),
+        ('4','4'),
+        ('5','5'),
+        ('1000','1000'),
+    )
+    jornada=models.CharField(max_length=4,choices=opciones_jornada)
     torneo=models.ForeignKey(Tournament,on_delete=models.CASCADE)
+
     opciones=(
         ('IZ','InterZona'),
         ('Z','Zona'),
@@ -24,7 +34,7 @@ class Jornada(models.Model):
 
     def __str__(self):
 
-        return self.torneo.name+" Jornada "+str(self.pk)+" ("+self.tipo +")"
+        return self.torneo.name+" Jornada "+str(self.jornada)+" ("+self.tipo +")"
 
 
 
