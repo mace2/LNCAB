@@ -51,6 +51,7 @@ class Cede(models.Model):
 
 class Game(models.Model):
     date = models.DateTimeField("date")
+    hora=models.TimeField("Hora")
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     teamLocal=models.ForeignKey('teams.Team', on_delete=models.CASCADE,related_name='LocalTeam')
     teamVisitante = models.ForeignKey('teams.Team', on_delete=models.CASCADE, related_name='VisitanteTeam')
@@ -81,6 +82,22 @@ class Game(models.Model):
     juego=models.CharField(max_length=2,choices=juego_opciones)
     jornada=models.ForeignKey(Jornada,on_delete=models.CASCADE)
     cede=models.ForeignKey(Cede,on_delete=models.CASCADE)
+    cancha_opciones=(
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+        ('12', '12'),
+        ('13', '13'),
+    )
+    canchas=models.CharField(max_length=2,choices=cancha_opciones)
 
 
 
