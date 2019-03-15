@@ -6,12 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3622e1c8-58eb-4c8e-ab17-64390777f64c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LNCAB/settings 2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LNCAB/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/LNCAB/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tournaments/templates/tournaments/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="69" column="35" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+            <state relative-caret-position="99">
+              <caret line="63" column="10" lean-forward="true" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -225,12 +220,12 @@
       <workItem from="1552518943963" duration="698000" />
       <workItem from="1552526169241" duration="6095000" />
       <workItem from="1552658360239" duration="12894000" />
-      <workItem from="1552682655693" duration="4607000" />
+      <workItem from="1552682655693" duration="5704000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38618000" />
+    <option name="totallyTimeSpent" value="39715000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -245,13 +240,13 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.42021278" visible="true" weight="0.15033557" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.42021278" visible="true" weight="0.15033557" />
       <window_info id="Structure" order="1" sideWeight="0.57978725" side_tool="true" weight="0.1442953" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="manage.py@LNCAB" order="0" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.3937677" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.3937677" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -479,8 +474,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tournaments/templates/tournaments/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="69" column="35" selection-start-line="69" selection-start-column="35" selection-end-line="69" selection-end-column="35" />
+        <state relative-caret-position="99">
+          <caret line="63" column="10" lean-forward="true" selection-start-line="63" selection-start-column="10" selection-end-line="63" selection-end-column="10" />
         </state>
       </provider>
     </entry>
