@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8f153f11-539c-4563-b628-b6284fd1dbcf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LNCAB/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/LNCAB/users/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,7 +27,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+              <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -190,12 +191,12 @@
       <workItem from="1552679783438" duration="1044000" />
       <workItem from="1552680898216" duration="737000" />
       <workItem from="1552682388252" duration="581000" />
-      <workItem from="1552688513121" duration="4436000" />
+      <workItem from="1552688513121" duration="5074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40159000" />
+    <option name="totallyTimeSpent" value="40797000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -370,7 +371,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="19" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+          <caret line="1" column="5" lean-forward="true" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
       </provider>
     </entry>

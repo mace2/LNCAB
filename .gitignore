@@ -1,2 +1,2 @@
 LNCAB/**/migrations
-LNCAB/**/__pycache__
+*.pyc
