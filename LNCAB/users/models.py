@@ -27,6 +27,7 @@ class Team(models.Model):
         return self.name
 
 class Scorekeeper (models.Model):
+<<<<<<< .merge_file_a01120
 <<<<<<< .merge_file_a12744
 <<<<<<< .merge_file_a10704
   nombre_Scorekeeper = models.CharField("Nombre del Anotador",max_length=50)
@@ -37,3 +38,6 @@ class Scorekeeper (models.Model):
 =======
   nombre_Scorekeeper = models.CharField("Nombre del Anotador",max_length=50)
 >>>>>>> .merge_file_a09144
+=======
+  nombre_Scorekeeper = models.CharField("Nombre del Anotador",max_length=50)
+>>>>>>> .merge_file_a13468
