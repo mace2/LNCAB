@@ -1,0 +1,10 @@
+
+{% if latest_question_list %}
+    <ul>
+    {% for game in game_list %}
+        <li>{{ game }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No games are available.</p>
+{% endif %}

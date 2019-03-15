@@ -1,17 +1,21 @@
 from django.contrib import admin
-from .models import Game, Tournament,Jornada,Cede
+from .models import Game, Tournament,Day,Venue
 # Register your models here.
-class CedeAdmin(admin.ModelAdmin):
+
+
+class VenueAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Cede, CedeAdmin)
+admin.site.register(Venue, VenueAdmin)
 
-class JornadaAdmin(admin.ModelAdmin):
+
+class DayAdmin(admin.ModelAdmin):
     pass
 
 
-admin.site.register(Jornada, JornadaAdmin)
+admin.site.register(Day, DayAdmin)
+
 
 class GameAdmin(admin.ModelAdmin):
     pass

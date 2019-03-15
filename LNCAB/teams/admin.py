@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Region
+from .models import Team, Region, State
 # Register your models here.
 
 
@@ -15,3 +15,10 @@ class RegionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Region, RegionAdmin)
+
+
+class StateAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(State, StateAdmin)
