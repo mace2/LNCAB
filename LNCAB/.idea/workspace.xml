@@ -4,14 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/teams/models.py" line="27" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3622e1c8-58eb-4c8e-ab17-64390777f64c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/INFO/testscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/INFO/testscript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/teams/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
-    </list>
+    <list default="true" id="3622e1c8-58eb-4c8e-ab17-64390777f64c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/teams/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+            <state relative-caret-position="22">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -306,12 +299,12 @@
       <workItem from="1552013908663" duration="5887000" />
       <workItem from="1552518943963" duration="698000" />
       <workItem from="1552526169241" duration="6095000" />
-      <workItem from="1552658360239" duration="7064000" />
+      <workItem from="1552658360239" duration="7136000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28181000" />
+    <option name="totallyTimeSpent" value="28253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,13 +319,13 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.42021278" visible="true" weight="0.14832215" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.42021278" visible="true" weight="0.14832215" />
       <window_info id="Structure" order="1" sideWeight="0.57978725" side_tool="true" weight="0.1442953" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="manage.py@LNCAB" order="0" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.3937677" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.3937677" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -341,7 +334,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="12" weight="0.4674221" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.4674221" />
       <window_info anchor="bottom" id="Python Console" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -542,8 +535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/teams/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+        <state relative-caret-position="22">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
