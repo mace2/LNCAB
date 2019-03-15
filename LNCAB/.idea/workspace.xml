@@ -1,36 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/teams/models.py" line="27" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="3622e1c8-58eb-4c8e-ab17-64390777f64c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LNCAB/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/LNCAB/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/teams/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/0002_auto_20190311_2147.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/0003_auto_20190311_2149.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/0004_auto_20190311_2151.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/0005_auto_20190311_2153.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/0006_auto_20190311_2157.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/0007_auto_20190311_2201.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/models 2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/INFO/testscript.py" beforeDir="false" afterPath="$PROJECT_DIR$/INFO/testscript.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teams/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/teams/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournaments/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tournaments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournaments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tournaments/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0002_auto_20190307_1719.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0003_auto_20190307_1727.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0004_auto_20190308_0926.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0005_auto_20190308_1120.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0006_coach_email_address.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0007_auto_20190308_1719.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0008_delete_coach.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0009_coach.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models 2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,8 +26,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/teams/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+            <state relative-caret-position="272">
+              <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/users/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -55,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/INFO/testscript.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+            <state relative-caret-position="153">
+              <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
               </folding>
@@ -67,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournaments/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="90">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -79,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/teams/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+            <state relative-caret-position="85">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -89,19 +81,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tournaments/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
-              <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournaments/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <caret line="9" column="44" lean-forward="true" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -112,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tournaments/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -122,22 +105,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LNCAB/urls.py">
+        <entry file="file://$PROJECT_DIR$/tournaments/templates/tournaments/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-              <folding>
-                <element signature="e#629#661#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tournaments/templates/tournaments/index.html">
+        <entry file="file://$PROJECT_DIR$/templates/header.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/teams/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="170">
+              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -157,9 +145,12 @@
       <find>materia</find>
       <find>,</find>
       <find>),</find>
+      <find>null=True</find>
+      <find>null</find>
     </findStrings>
     <replaceStrings>
       <replace>),</replace>
+      <replace>null=True, blank=True</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -174,15 +165,15 @@
         <option value="$PROJECT_DIR$/LNCAB/settings.py" />
         <option value="$PROJECT_DIR$/INFO/migrationconflicts.txt" />
         <option value="$PROJECT_DIR$/users/tests.py" />
-        <option value="$PROJECT_DIR$/users/models.py" />
-        <option value="$PROJECT_DIR$/tournaments/views.py" />
         <option value="$PROJECT_DIR$/tournaments/urls.py" />
         <option value="$PROJECT_DIR$/LNCAB/urls.py" />
-        <option value="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" />
-        <option value="$PROJECT_DIR$/tournaments/admin.py" />
-        <option value="$PROJECT_DIR$/tournaments/models.py" />
         <option value="$PROJECT_DIR$/teams/admin.py" />
         <option value="$PROJECT_DIR$/INFO/testscript.py" />
+        <option value="$PROJECT_DIR$/tournaments/admin.py" />
+        <option value="$PROJECT_DIR$/tournaments/models.py" />
+        <option value="$PROJECT_DIR$/users/models.py" />
+        <option value="$PROJECT_DIR$/tournaments/views.py" />
+        <option value="$PROJECT_DIR$/tournaments/templates/tournaments/index.html" />
         <option value="$PROJECT_DIR$/teams/models.py" />
       </list>
     </option>
@@ -315,32 +306,42 @@
       <workItem from="1552013908663" duration="5887000" />
       <workItem from="1552518943963" duration="698000" />
       <workItem from="1552526169241" duration="6095000" />
-      <workItem from="1552658360239" duration="3916000" />
+      <workItem from="1552658360239" duration="7064000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25033000" />
+    <option name="totallyTimeSpent" value="28181000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.42021278" visible="true" weight="0.14832215" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.42021278" visible="true" weight="0.14832215" />
       <window_info id="Structure" order="1" sideWeight="0.57978725" side_tool="true" weight="0.1442953" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="manage.py@LNCAB" order="0" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.3937677" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.3937677" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.4674221" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.4674221" />
       <window_info anchor="bottom" id="Python Console" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -400,11 +401,6 @@
     <entry file="file://$PROJECT_DIR$/users/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-612" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LNCAB/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -450,26 +446,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/teams/models 2.py" />
-    <entry file="file://$PROJECT_DIR$/tournaments/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LNCAB/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -480,61 +456,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/templates/tournaments/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/users/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tournaments/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="9" column="48" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tournaments/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teams/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="140">
+          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/INFO/testscript.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        <state relative-caret-position="153">
+          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teams/models.py">
+    <entry file="file://$PROJECT_DIR$/tournaments/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="50" lean-forward="true" selection-start-line="5" selection-start-column="50" selection-end-line="5" selection-end-column="50" />
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="44" lean-forward="true" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tournaments/templates/tournaments/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teams/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="28" column="4" selection-start-line="28" selection-start-column="4" selection-end-line="28" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

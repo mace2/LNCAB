@@ -10,5 +10,5 @@ class GamesView(generic.ListView):
     template_name = 'tournaments/index.html'
 
     def get_queryset(self):
-        return Game.objects
+        return Game.objects.all()
 

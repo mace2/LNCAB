@@ -4,10 +4,10 @@ from tournaments.models import Tournament, Day, Game, Venue
 from django.utils import timezone
 
 
-# s = State("Prueba", "PRB")
-# s.save()
+s = State("Prueba", "PRB")
+s.save()
 
-s = State.objects.get(code="PRB")
+# s = State.objects.get(code="PRB")
 c1 = Coach("Pruebencio", "Pruebez Prueba", "1234567890", "prueba@prueba.com", timezone.now())
 c1.save()
 c2 = Coach("Pruebencio2", "Pruebez2 Prueba2", "1234567892", "prueba2@prueba2.com", timezone.now())

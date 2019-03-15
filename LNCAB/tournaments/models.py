@@ -17,7 +17,7 @@ class Day(models.Model):
     number=models.IntegerField()
     isInterZone=models.BooleanField()
     start_dateTime = models.DateTimeField("Start DateTime")
-    end_dateTime = models.DateTimeField("End DateTime", null=True)
+    end_dateTime = models.DateTimeField("End DateTime", null=True, blank=True)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
 
     def __str__(self):

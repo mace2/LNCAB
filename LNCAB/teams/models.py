@@ -1,4 +1,5 @@
 from django.db import models
+import random
 # Create your models here.
 
 
@@ -24,6 +25,7 @@ class Team(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     address = models.CharField("address", max_length=200)
     name = models.CharField("name", max_length=50)
+    code = models.IntegerField(default=random.randint(1000, 9999))
 
     def __str__(self):
         return self.name
