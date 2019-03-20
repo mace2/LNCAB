@@ -48,9 +48,10 @@ class Game(models.Model):
     def __str__(self):
         return "Juego "+str(self.number)+ " de "+str(self.day)+" "+self.teamLocal.name+" vs "+self.teamVisitor.name
 
+
 class Point(models.Model):
     dateTime = models.DateTimeField("dateTime")
-    player = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    player = models.ForeignKey(Tournament, related_name="tournamentp", on_delete=models.CASCADE)
     game = models.ForeignKey(Tournament, on_delete=models.CASCADE)
 
 
