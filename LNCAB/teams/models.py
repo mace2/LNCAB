@@ -1,6 +1,5 @@
 from django.db import models
 import random
-from users.models import Coach
 # Create your models here.
 
 

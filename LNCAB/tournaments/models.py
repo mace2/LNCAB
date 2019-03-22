@@ -1,5 +1,6 @@
 from django.db import models
-from users.models import Scorekeeper
+from users.models import Scorekeeper, Player
+from teams.models import Team
 from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
@@ -51,8 +52,8 @@ class Game(models.Model):
 
 
 class Point(models.Model):
-    player = models.ForeignKey(Tournament, related_name="tournamentp", on_delete=models.CASCADE)
-    game = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
     value = models.IntegerField(validators=[
         MaxValueValidator(3),
         MinValueValidator(1)
@@ -63,14 +64,15 @@ class Point(models.Model):
 
 
 class Foul(models.Model):
-    player = models.ForeignKey(Tournament, related_name="tournamentp", on_delete=models.CASCADE)
-    game = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
     type = models.CharField(
         choices=(
             ('1', '1'),
             ('2', '2'),
             ('3', '3')
-        )
+        ),
+        max_length=20
     )
 
 
