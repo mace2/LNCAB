@@ -22,3 +22,6 @@ class GamesView(generic.ListView):
         context["day"] = self.day
         return context
 
+
+
+

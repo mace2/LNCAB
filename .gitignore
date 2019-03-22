@@ -1,2 +1,6 @@
 LNCAB/**/migrations
 *.pyc
+venv/**
+.idea
+
+
