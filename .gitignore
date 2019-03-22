@@ -1,5 +1,4 @@
 LNCAB/**/migrations
 *.pyc
-venv
 .idea
 LNCAB/**/__pycache__
