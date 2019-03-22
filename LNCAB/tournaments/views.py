@@ -9,19 +9,19 @@ from .models import Game, Tournament, Day
 
 class GamesView(generic.ListView):
     template_name = 'tournaments/index.html'
+    context_object_name = 'game_list'
 
     def get_queryset(self):
         try:
             self.day = Day.objects.get(number=self.kwargs['day'])
         except Day.DoesNotExist:
             raise Http404()
-        return Game.objects.filter(day=self.day)
+        return self.day.game_set
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["day"] = self.day
+        context["prev_day"] = self.day.number - 1
+        context["next_day"] = self.day.number + 1
         return context
-
-
 
 
