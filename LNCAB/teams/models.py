@@ -1,5 +1,6 @@
 from django.db import models
 import random
+from users.models import Coach
 # Create your models here.
 
 
@@ -20,8 +21,16 @@ class Region(models.Model):
         return self.name
 
 
+class Zone(models.Model):
+    name = models.CharField("name", max_length=50)
+    code = models.CharField("code", max_length=5)
+    region_set = models.ManyToManyField(State)
+
+    def __str__(self):
+        return self.name
+
+
 class Team(models.Model):
-    coach = models.ForeignKey('users.Coach', on_delete=models.CASCADE)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     address = models.CharField("address", max_length=200)
     name = models.CharField("name", max_length=50)
