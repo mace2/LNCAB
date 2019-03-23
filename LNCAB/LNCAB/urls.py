@@ -25,5 +25,6 @@ urlpatterns = [
     path('teams/', include('teams.urls')),
     path('tournaments/', include('tournaments.urls')),
     path('tournaments/games/<day>/', GamesView.as_view()),
+
 ]
 urlpatterns+=staticfiles_urlpatterns()
