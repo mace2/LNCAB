@@ -77,14 +77,18 @@
                 {% for game in game_list %}
                     <div class="row card-panel hoverable">
                         <div class="col s4 center-align">
-                            <a class="team-link" href="index.html">{{ game.teamLocal }}</a>
+                            <a class="team-link" href="index.html">{{ game.team_local.name }}</a>
                         </div>
                         <div class="col s4 center-align">
-                            <div class="row"> {{ game.dateTime }} </div>
-                            <div class="row">0 - 0</div>
+                            <div class="row"> {{ game.date_time }} </div>
+                            {% if game.is_finished %}
+                                <div class="row"> {{ game.get_local_points }} - {{ game.get_visitor_points }}</div>
+                            {% else %}
+                                <div class="row"> Not played yet </div>
+                            {% endif %}
                         </div>
                         <div class="col s4 center-align">
-                            <a class="team-link" href="index.html">{{ game.teamVisitor }}</a>
+                            <a class="team-link" href="index.html">{{ game.team_visitor.name }}</a>
                         </div>
                     </div>
                 {% endfor %}
