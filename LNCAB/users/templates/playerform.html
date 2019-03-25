@@ -57,7 +57,7 @@
 
     <a href="{% url 'registerPlayer' %}"><span ></span></a>
     {% block content %}
-    <h1>New player</h1>
+    <h1>Register player</h1>
     <form method="POST" >
         {% csrf_token %}
         {{ player_form.as_p }}

@@ -2,13 +2,27 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
 from django.urls import reverse_lazy
 from django.views.generic.edit import  CreateView
 from .forms import PlayerForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from .models import Player
 
 from .forms import PlayerForm
+
+
+
+def index(request):
+    template = loader.get_template('../templates/header.html')
+    players = Player.objects.all()
+    context={"players":players,
+    }
+
+    return HttpResponse(template.render(context,request))
 
 
 def registerPlayer(request):
@@ -28,8 +42,5 @@ def registerPlayer(request):
 
 
 
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the users index.")
 
 
