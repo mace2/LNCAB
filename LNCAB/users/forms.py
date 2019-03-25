@@ -10,7 +10,11 @@ class PlayerForm(forms.ModelForm):
 
     class Meta:
         model = Player
-        fields = ('name','last_names','date_of_birth','telephone','email_address','code')
+        fields = ('name','last_names','date_of_birth','telephone','email_address','code','sex')
+        widgets={'date_of_birth': forms.DateInput(attrs={'class': 'datepicker',
+                                                         'placeholder':'format: mm/dd/yyyy'})
+
+        }
 
     def clean_password2(self):
         cd = self.cleaned_data

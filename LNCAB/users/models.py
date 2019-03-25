@@ -35,6 +35,12 @@ class Player(models.Model):
     telephone = models.CharField("Telefono",max_length=100)
     email_address = models.CharField("Direecion de correo",max_length=100, null=True, blank=True)
     code = models.CharField("Codigo de Equipo",max_length=200)
+    sex = models.CharField(max_length=100,
+                           choices=(
+                               ('M', 'Masculino'),
+                               ('F', 'Femenino')
+
+                           ))
 
 
     def __str__(self):
