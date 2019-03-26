@@ -64,13 +64,20 @@
     </div>
   </nav>
 
-    <a href="{% url 'registerPlayer' %}"><span ></span></a>
+    <a href="{% url 'registerUser' %}"><span ></span></a>
     {% block content %}
-    <h3>Register User</h3>
+         <h5 class="right">1/2 steps to complete</h5>
+
+
+  <div class="progress">
+      <div class="determinate right" style="width: 50%"></div>
+  </div>
+
+
     <form method="POST" >
         {% csrf_token %}
         {{ user_form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+    <button type="submit" class="save btn btn-default">Continue</button>
     </form>
 `{% endblock %}
 

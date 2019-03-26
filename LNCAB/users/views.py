@@ -2,15 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.http import HttpResponse
 from django.template import loader
-from django.urls import reverse_lazy
-from django.views.generic.edit import  CreateView
-from .forms import PlayerForm
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .models import Player
+from django.shortcuts import redirect
 
 from .forms import PlayerForm,UserForm
 
@@ -26,15 +21,13 @@ def index(request):
 
 
 
-def reigsterUser(request):
+def registerUser(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-
+            user_form.save()
             # new_player.set_password(player_form.cleaned_data['password'])
-            new_user.save()
-            return render(request, '../templates/playerform.html', {'new_user': new_user})
+            return redirect('/users/playerform.html')
     else:
         user_form = UserForm()
     return render(request, '../templates/userform.html', {'user_form': user_form})
@@ -47,7 +40,6 @@ def registerPlayer(request):
         player_form = PlayerForm(request.POST)
         if player_form.is_valid():
             new_player=player_form.save(commit=False)
-
             #new_player.set_password(player_form.cleaned_data['password'])
             new_player.save()
             return render(request,'../templates/playerform_done.html',{'new_player':new_player})
