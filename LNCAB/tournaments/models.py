@@ -43,7 +43,7 @@ class Game(models.Model):
     team_visitor = models.ForeignKey('teams.Team',  on_delete=models.CASCADE,  related_name='VisitanteTeam')
     number = models.IntegerField()
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
-    venue = models.OneToOneField(Venue, on_delete=models.CASCADE)
+    venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
     court = models.IntegerField()
     scorekeeper = models.ForeignKey(Scorekeeper, on_delete=models.CASCADE)
 
