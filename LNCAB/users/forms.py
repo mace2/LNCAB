@@ -17,7 +17,7 @@ class UserForm(forms.ModelForm):
         cd = self.cleaned_data
         if cd['password'] !=  cd ['password2']:
             raise forms.ValidationError('Passwords do not match')
-        return cd ['passwordConfirmation']
+        return cd ['password2']
 
 
 
@@ -31,9 +31,13 @@ class PlayerForm(forms.ModelForm):
 
 
 
-                  #  'id_User' : forms.CharField(attrs={'placeholder':'Username'})
+
         }
 
+
+class LoginForm(forms.Form):
+    username= forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
 
 
 
