@@ -72,6 +72,13 @@ def user_login(request):
     return render(request,'../templates/login.html',{'login_form':login_form})
 
 
+def dashboard(request):
+    return render(request,'../templates/dashboard.html',
+                  {'section':'dashboard'})
+
+
+def logout(request):
+    return redirect('/users/')
 
 
 

@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
     {% endblock css %}
-        <title>Base</title>
+        <title>Account Dashboard</title>
 
     </head>
     <body>
@@ -47,14 +47,10 @@
           <li><a href="collapsible.html">Sobre nosotros</a></li>
 
       </ul>
-
-         <ul  class="user right  hide-on-med-and-down">
-             {% if request.user.is_authenticated %}
-            Hello {{ request.user.first_name }} {{ request.user.last_name }}  <a href="{% url 'logout' %}">Logout</a>
-             {% else %}
-            <li><a href="userform.html">Create Account</a></li>
+         <ul  class="right  hide-on-med-and-down">
+            <li><a href="userform.html">Cuenta</a></li>
              <li><a href="login.html">Login</a></li>
-             {% endif %}
+
 
       </ul>
     </div>
