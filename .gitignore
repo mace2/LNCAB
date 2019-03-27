@@ -2,3 +2,7 @@ LNCAB/**/migrations
 *.pyc
 .idea
 LNCAB/**/__pycache__
+LNCAB/users/__pycache__
+LNCAB/tournaments/__pycache__
+LNCAB/teams/__pycache__
+LNCAB/LNCAB/__pycache__

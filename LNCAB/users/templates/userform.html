@@ -28,8 +28,16 @@
         });
 
         </script>
+    <script>
+    $(document).ready(function(){
+    $('.datepicker').datepicker({format: 'mm/dd/yyyy',
+                                changeMonth: true,
+                                 changeYear: true,
+                                yearRange: [1900,2019]});
+  });
 
-    {% endblock javascript %}
+      </script>
+        {% endblock javascript %}
 
 
     <nav>
@@ -48,15 +56,23 @@
 
       </ul>
          <ul  class="right  hide-on-med-and-down">
-        <li><a href="sass.html">Cuenta</a></li>
+             <li><a href="sass.html">Cuenta</a></li>
+             <li><a href="playerform.html">Login</a></li>
 
 
       </ul>
     </div>
   </nav>
+
+    <a href="{% url 'registerPlayer' %}"><span ></span></a>
     {% block content %}
-    <h1>Welcome {{new_player.name}} , you are now registered!</h1>
-    {% endblock %}
+    <h3>Register User</h3>
+    <form method="POST" >
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+`{% endblock %}
 
 
 

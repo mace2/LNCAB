@@ -22,7 +22,7 @@ from tournaments.views import GamesView, DetailView
 urlpatterns = [
     path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
-    path('teams/', include('teams.urls')),
+   # path('teams/', include('teams.urls')),
     path('tournaments/', include('tournaments.urls')),
     path('tournaments/day/<day>/', GamesView.as_view()),
     path('tournaments/games/<game>/', DetailView.as_view()),

@@ -34,7 +34,13 @@ class Player(models.Model):
     date_of_birth = models.DateField("Birth date")
     telephone = models.CharField("Telephone", max_length=100)
     email_address = models.CharField("Email", max_length=100, null=True, blank=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    code = models.CharField("Team code",max_length=200)
+    sex = models.CharField(max_length=100,
+                           choices=(
+                               ('M', 'Masculine'),
+                               ('F', 'Feminine')
+
+                           ))
 
     def __str__(self):
         return self.name+" "+self.last_names

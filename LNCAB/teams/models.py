@@ -1,5 +1,7 @@
 from django.db import models
+
 import random
+
 # Create your models here.
 
 
@@ -34,7 +36,22 @@ class Team(models.Model):
     address = models.CharField("address", max_length=200)
     name = models.CharField("name", max_length=50)
     code = models.IntegerField(default=random.randint(1000, 9999))
+    category = models.CharField(max_length=100,
+    choices=(
+        ('U-15','U-15'),
+        ('U-16', 'U-16'),
+        ('U-17', 'U-17')
+        )
+    )
+
+    sex = models.CharField(max_length=100,
+                           choices=(
+                               ('M', 'Masculino'),
+                               ('F', 'Femenino')
+
+                           ))
+
 
     def __str__(self):
-        return self.name
+        return self.name + self.category+'-'+self.sex
 
