@@ -1,5 +1,6 @@
 from django.db import models
 from teams.models import Team, State
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -43,4 +44,4 @@ class Player(models.Model):
                            ))
 
     def __str__(self):
-        return self.name+" "+self.last_names
+        return str(self.id_User)

@@ -48,20 +48,26 @@
 
       </ul>
          <ul  class="right  hide-on-med-and-down">
-             {% if request.user.is_authenticated %}
-             Hello {{ request.user.username }}
-             <a href="{% url 'logout' %}">Logout</a>
-             {% else %}
-
-            <li><a href="userform.html">Create Account</a></li>
-             <li><a href="login.html">Login</a></li>
-
-             {% endif %}
+            <li><a href="userform.html">Cuenta</a></li>
+             <li><a href="playerform.html">Login</a></li>
 
 
       </ul>
     </div>
   </nav>
+
+
+    {% block content %}
+  
+        <h1>Log-in</h1>
+        <form action="." method="post">
+            {{ login_form.as_p }}
+            {% csrf_token %}
+            <input type ='hidden' name="next" value="{{ next }}"/>
+            <button type="submit"  class="save btn btn-default">Log in </button>
+        </form>
+    {% endblock %}
+
 
 
 

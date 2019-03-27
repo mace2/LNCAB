@@ -28,6 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+LOGOUT_URL='logout'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -129,3 +132,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),
                   )
+
+
