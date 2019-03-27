@@ -30,11 +30,11 @@ class Scorekeeper(models.Model):
 
 
 class Player(models.Model):
-    name = models.CharField("Name", max_length=200)
-    last_names = models.CharField("Last names", max_length=200)
+    id_User=models.ForeignKey(User,on_delete=models.CASCADE)
+   # last_names = models.CharField("Last names", max_length=200)
     date_of_birth = models.DateField("Birth date")
     telephone = models.CharField("Telephone", max_length=100)
-    email_address = models.CharField("Email", max_length=100, null=True, blank=True)
+   # email_address = models.CharField("Email", max_length=100, null=True, blank=True)
     code = models.CharField("Team code",max_length=200)
     sex = models.CharField(max_length=100,
                            choices=(
