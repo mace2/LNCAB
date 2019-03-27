@@ -40,18 +40,7 @@ class Venue(models.Model):
         return self.name+" ,  "+ str(self.state)
 
 
-class Game(models.Model):
-    date_time = models.DateTimeField("dateTime")
-    team_local = models.ForeignKey('teams.Team',  on_delete=models.CASCADE, related_name='LocalTeam')
-    team_visitor = models.ForeignKey('teams.Team',  on_delete=models.CASCADE,  related_name='VisitanteTeam')
-    number = models.IntegerField()
-    day = models.ForeignKey(Day, on_delete=models.CASCADE)
-    venue = models.ForeignKey(Venue, on_delete=models.CASCADE)
-    court = models.IntegerField()
-    scorekeeper = models.ForeignKey(Scorekeeper, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return "Juego "+str(self.number)+ " de "+str(self.day)+" "+self.team_local.name+" vs "+self.team_visitor.name
 
 
 class Point(models.Model):
