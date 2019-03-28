@@ -2,7 +2,7 @@ from teams.models import Team, State
 from users.models import Coach, Player
 from tournaments.models import Tournament, Day, Game, Venue, Point, Foul
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 State.objects.all().delete()
 Team.objects.all().delete()
 Coach.objects.all().delete()
@@ -13,6 +13,10 @@ Game.objects.all().delete()
 
 s = State(1, "Prueba", "PRB")
 s.save()
+User.objects.create_user('p1', 'p1@mail', 'p1pass')
+User.objects.create_user('p2', 'p2@mail', 'p2pass')
+User.objects.create_user('c1', 'p2@mail', 'p2pass')
+User.objects.create_user('c2', 'p2@mail', 'p2pass')
 
 t1 = Team(1, state=s, address="addprueba1", name="teamprueba1")
 t1.save()

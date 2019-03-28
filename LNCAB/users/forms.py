@@ -19,11 +19,12 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError('Passwords do not match')
         return cd ['password2']
 
+
 class PlayerForm(forms.ModelForm):
     class Meta:
         model = Player
         default= User.objects.filter().order_by('-id')[:1]
-        fields = ('id_User','date_of_birth','telephone','code','sex')#checar code
+        fields = ('date_of_birth','telephone','code','sex')#checar code
         widgets={'date_of_birth': forms.DateInput(attrs={'class': 'datepicker',
                                                          'placeholder':'format: mm/dd/yyyy'}),}
 
