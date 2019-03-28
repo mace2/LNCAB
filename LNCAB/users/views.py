@@ -3,12 +3,14 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.template import loader
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
+from django.contrib.auth.models import User
 from .models import Player
 from django.shortcuts import redirect
 
 from .forms import PlayerForm,UserForm,LoginForm
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -19,6 +21,12 @@ def index(request):
     }
 
     return HttpResponse(template.render(context,request))
+
+
+@login_required
+def logged_user(request,pk):
+    user = get_object_or_404(User,pk=pk)
+    return render(request,'logged_index.html',{'user':user})
 
 
 
@@ -57,11 +65,12 @@ def user_login(request):
             cd = login_form.cleaned_data
             user = authenticate(request,username=cd['username'],
                                 password=cd['password'])
+            pk=user.pk
 
             if user is not None:
                 if user.is_active:
                     login(request,user)
-                    return HttpResponse('Authenticated succesfully')
+                    return redirect('/users/'+str(pk))
                 else:
                     return HttpResponse('Disabled account')
 
@@ -72,9 +81,6 @@ def user_login(request):
     return render(request,'../templates/login.html',{'login_form':login_form})
 
 
-def dashboard(request):
-    return render(request,'../templates/dashboard.html',
-                  {'section':'dashboard'})
 
 
 def logout(request):
