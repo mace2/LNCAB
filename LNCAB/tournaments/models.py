@@ -40,9 +40,6 @@ class Venue(models.Model):
         return self.name+" ,  "+ str(self.state)
 
 
-
-
-
 class Point(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     game = models.ForeignKey('Game', on_delete=models.CASCADE)
