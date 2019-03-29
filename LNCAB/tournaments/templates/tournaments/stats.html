@@ -88,12 +88,14 @@
         <table>
             <thead>
                 <tr>
+                    <td>Place</td>
                    <td>Team</td>
                    <td>Points</td>
                 </tr>
             </thead>
         {% for entry in point_leaders %}
            <tr>
+               <td> {{ forloop.counter }} </td>
                <td><a href="{{ entry.player__team__name }}">{{ entry.player__team__name }}</a></td>
                <td>{{ entry.points }}</td>
            </tr>
@@ -106,12 +108,14 @@
         <table>
             <thead>
                 <tr>
+                    <td>Place</td>
                    <td>Team</td>
                    <td>Fouls</td>
                 </tr>
             </thead>
         {% for entry in foul_leaders %}
            <tr>
+               <td> {{ forloop.counter }} </td>
                <td><a href="{{ entry.player__team__name }}">{{ entry.player__team__name }}</a></td>
                <td>{{ entry.fouls }}</td>
            </tr>
