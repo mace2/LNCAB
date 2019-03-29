@@ -56,51 +56,71 @@
     </div>
   </nav>
 <div class="row">
-    <div class="col s4">
-        <ul>
-            <li>a</li>
-            <li>a</li>
-        </ul>
-    </div>
-    <div class="col s7 pull-s1">
-        <div class="row"></div>
-        <div class="row">
-            <div class="col s4 center-align">
-                <a class="waves-effect waves-light btn" href="/tournaments/day/{{ prev_day }}">Previous day</a>
-            </div>
-            <div class="col s4 push-s4 center-align">
-                <a class="waves-effect waves-light btn" href="/tournaments/day/{{ next_day }}">Next day</a>
-            </div>
-        </div>
-        <div class="row">
-            {% if game_list %}
-                {% for game in game_list %}
-                    <div class="row card-panel hoverable">
-                        <div class="col s4 center-align">
-                            <a class="team-link" href="index.html">{{ game.team_local.name }}</a>
-                        </div>
-                        <div class="col s4 center-align">
-                            <div class="row"> {{ game.date_time }} </div>
-                            {% if game.is_finished %}
-                                <div class="row"> {{ game.get_local_points }} - {{ game.get_visitor_points }}</div>
-                                <a class="waves-effect waves-light btn" href="/tournaments/games/{{ game.id }}">View details</a>
-                            {% else %}
-                                <div class="row"> Not played yet </div>
-                            {% endif %}
-                        </div>
-                        <div class="col s4 center-align">
-                            <a class="team-link" href="index.html">{{ game.team_visitor.name }}</a>
-                        </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>No games are available.</p>
-            {% endif %}
-        </div>
-
-    </div>
-
+<div class="col s4">
+    <ul>
+        <li>a</li>
+        <li>a</li>
+    </ul>
 </div>
+<div class="col s7 pull-s1">
+    <div class="row">
+        <h4>Standings</h4>
+        <table>
+            <thead>
+                <tr>
+                   <td>Place</td>
+                   <td>Team</td>
+                   <td>Wins</td>
+                </tr>
+            </thead>
+        {% for entry in standings %}
+           <tr>
+               <td> {{ forloop.counter }} </td>
+               <td><a href="{{ entry.team__name }}">{{ entry.team__name }}</a></td>
+               <td>{{ entry.wins }}</td>
+           </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+        <h4>Point leaders</h4>
+        <table>
+            <thead>
+                <tr>
+                   <td>Team</td>
+                   <td>Points</td>
+                </tr>
+            </thead>
+        {% for entry in point_leaders %}
+           <tr>
+               <td><a href="{{ entry.player__team__name }}">{{ entry.player__team__name }}</a></td>
+               <td>{{ entry.points }}</td>
+           </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+        <h4>Foul leaders</h4>
+        <table>
+            <thead>
+                <tr>
+                   <td>Team</td>
+                   <td>Fouls</td>
+                </tr>
+            </thead>
+        {% for entry in foul_leaders %}
+           <tr>
+               <td><a href="{{ entry.player__team__name }}">{{ entry.player__team__name }}</a></td>
+               <td>{{ entry.fouls }}</td>
+           </tr>
+        {% endfor %}
+        </table>
+    </div>
+</div>
+</div>
+
 
 
     </body>

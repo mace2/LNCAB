@@ -92,12 +92,6 @@ class Game(models.Model):
         return Foul.objects.filter(game=self, player__team=self.team_visitor).count()
 
 
-
-
-
-
-
-
-
-
-
+class Win(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)

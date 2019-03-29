@@ -4,9 +4,11 @@ from django.http import Http404
 # Create your views here.
 
 from django.views import generic
-from .models import Game, Tournament, Day, Point, Foul
+from .models import Game, Tournament, Day, Point, Foul, Win
 from users.models import Player
 from teams.models import Team
+from django.template import loader
+from django.db.models import Count, Sum
 
 
 class GamesView(generic.ListView):
@@ -54,3 +56,19 @@ class DetailView(generic.DetailView):
         return context
 
 
+class BracketView(generic.TemplateView):
+    template_name = "tournaments/bracket.html"
+
+
+class StatisticsView(generic.TemplateView):
+    template_name = "tournaments/stats.html"
+
+    def get_context_data(self, **kwargs):
+        tournament = Tournament.objects.get(id=self.kwargs['tournament'])
+        context = super().get_context_data(**kwargs)
+        context["standings"] = Win.objects.filter(tournament=tournament).values('team__name').annotate(wins=Count('team'))
+        context["point_leaders"] = Point.objects.filter(game__day__tournament=tournament)\
+            .values('player__team__name').annotate(points=Sum('value'))
+        context["foul_leaders"] = Foul.objects.filter(game__day__tournament=tournament)\
+            .values('player__team__name').annotate(fouls=Count('game'))
+        return context
