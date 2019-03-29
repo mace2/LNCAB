@@ -67,9 +67,9 @@ class StatisticsView(generic.TemplateView):
         tournament = Tournament.objects.get(id=self.kwargs['tournament'])
         context = super().get_context_data(**kwargs)
         context["standings"] = Win.objects.filter(tournament=tournament)\
-            .values('team__name').annotate(wins=Count('team')).order_by('-wins')
+            .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
         context["point_leaders"] = Point.objects.filter(game__day__tournament=tournament)\
-            .values('player__team__name').annotate(points=Sum('value')).order_by('-points')
+            .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
         context["foul_leaders"] = Foul.objects.filter(game__day__tournament=tournament)\
-            .values('player__team__name').annotate(fouls=Count('game')).order_by('-fouls')
+            .values('player__team__name').annotate(fouls=Count('game')).order_by('-fouls')[:10]
         return context
