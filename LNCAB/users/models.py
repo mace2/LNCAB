@@ -6,34 +6,31 @@ from django.contrib.auth.models import User
 
 
 class Coach(models.Model):
-    name = models.CharField("name", max_length=200)
-    last_names = models.CharField(max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     telephone = models.CharField(max_length=100)
-    email_address = models.CharField(max_length=100, null=True, blank=True)
     start_date = models.DateField("start_date")
     end_date = models.DateField("end_date", null=True, blank=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name+" "+self.last_names
+        return self.user.first_name+" "+self.user.last_name
 
 
 class Scorekeeper(models.Model):
-    name = models.CharField("name", max_length=200)
-    last_names = models.CharField(max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     telephone = models.CharField(max_length=100)
-    email_address = models.CharField(max_length=100, null=True, blank=True)
     state = models.ForeignKey(State, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.user.first_name+" "+self.user.last_name
 
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
+    code = models.CharField(max_length=100, null=True)
     date_of_birth = models.DateField("Birth date")
     telephone = models.CharField("Telephone", max_length=100)
-    code = models.CharField("Team code",max_length=200)
     sex = models.CharField(max_length=100,
                            choices=(
                                ('M', 'Masculine'),

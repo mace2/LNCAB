@@ -25,6 +25,6 @@ urlpatterns = [
    # path('teams/', include('teams.urls')),
     path('tournaments/', include('tournaments.urls')),
     path('tournaments/day/<day>/', GamesView.as_view()),
-    path('tournaments/games/<game>/', DetailView.as_view()),
+    path('tournaments/games/<pk>/', DetailView.as_view()),
 ]
 urlpatterns+=staticfiles_urlpatterns()
