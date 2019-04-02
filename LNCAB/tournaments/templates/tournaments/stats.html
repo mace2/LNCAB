@@ -63,6 +63,7 @@
     </ul>
 </div>
 <div class="col s7 pull-s1">
+    {% if standings %}
     <div class="row">
         <h4>Standings</h4>
         <table>
@@ -75,60 +76,65 @@
             </thead>
         {% for entry in standings %}
            <tr>
-               <td> {{ forloop.counter }} </td>
-               <td><a href="{{ entry.team__name }}">{{ entry.team__name }}</a></td>
-               <td>{{ entry.wins }}</td>
+               <td> {{ entry.place }} </td>
+               <td><a href="{{ entry.team }}">{{ entry.team }}</a></td>
+               <td>{{ entry.value }}</td>
            </tr>
         {% endfor %}
         </table>
     </div>
-    <div class="row"></div>
+        <div class="row"></div>
     <div class="row">
-        <h4>Point leaders</h4>
+        <h4>Points</h4>
         <table>
             <thead>
                 <tr>
-                    <td>Place</td>
+                   <td>Place</td>
                    <td>Team</td>
                    <td>Points</td>
                 </tr>
             </thead>
         {% for entry in point_leaders %}
            <tr>
-               <td> {{ forloop.counter }} </td>
-               <td><a href="{{ entry.player__team__name }}">{{ entry.player__team__name }}</a></td>
-               <td>{{ entry.points }}</td>
+               <td> {{ entry.place }} </td>
+               <td><a href="{{ entry.team }}">{{ entry.team }}</a></td>
+               <td>{{ entry.value }}</td>
            </tr>
         {% endfor %}
         </table>
     </div>
-    <div class="row"></div>
-    <div class="row">
-        <h4>Foul leaders</h4>
+        <div class="row"></div>
+
+        <div class="row">
+        <h4>Fouls</h4>
         <table>
             <thead>
                 <tr>
-                    <td>Place</td>
+                   <td>Place</td>
                    <td>Team</td>
                    <td>Fouls</td>
                 </tr>
             </thead>
         {% for entry in foul_leaders %}
            <tr>
-               <td> {{ forloop.counter }} </td>
-               <td><a href="{{ entry.player__team__name }}">{{ entry.player__team__name }}</a></td>
-               <td>{{ entry.fouls }}</td>
+               <td> {{ entry.place }} </td>
+               <td><a href="{{ entry.team }}">{{ entry.team }}</a></td>
+               <td>{{ entry.value }}</td>
            </tr>
         {% endfor %}
         </table>
     </div>
+    {% else %}
+        <br>
+        This tournament has no played games.
+    {% endif %}
 </div>
 </div>
 
 
 
     </body>
-    <footer class="page-footer red darken-4">
+    <footer class="page-footer rSed darken-4">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">

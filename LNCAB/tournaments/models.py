@@ -12,7 +12,7 @@ class Tournament(models.Model):
     name = models.CharField(max_length=50)
     start_date = models.DateField("start_date")
     end_date = models.DateField("start_date", null=True, blank=True)
-    teams = models.ManyToManyField('teams.Team')
+    team_set = models.ManyToManyField('teams.Team')
 
     def __str__(self):
         return self.name

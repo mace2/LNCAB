@@ -63,13 +63,96 @@ class BracketView(generic.TemplateView):
 class StatisticsView(generic.TemplateView):
     template_name = "tournaments/stats.html"
 
+    class StandingsEntry:
+        def __init__(self, place, team, value):
+            self.place = place
+            self.team = team
+            self.value = value
+
     def get_context_data(self, **kwargs):
-        tournament = Tournament.objects.get(id=self.kwargs['tournament'])
+
+        try:
+            tournament = Tournament.objects.get(id=self.kwargs['tournament'])
+        except Tournament.DoesNotExist:
+            raise Http404()
+
         context = super().get_context_data(**kwargs)
-        context["standings"] = Win.objects.filter(tournament=tournament)\
+        curr = 0
+        # last = -1
+
+        standings = []
+        point_leaders = []
+        foul_leaders = []
+
+        wins = Win.objects.filter(tournament=tournament)\
             .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
-        context["point_leaders"] = Point.objects.filter(game__day__tournament=tournament)\
+
+        no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id"))
+
+        for entry in wins:
+            # if last != entry["wins"]:
+            #     curr = curr + 1
+            #     last = entry["wins"]
+            curr += 1
+            standings.append(
+                self.StandingsEntry(place=curr, team=entry["team__name"], value=entry["wins"])
+            )
+        for entry in no_wins:
+            curr += 1
+            standings.append(self.StandingsEntry(place=curr, team=entry, value=0))
+
+        context["standings"] = standings
+
+        # points
+
+        points = Point.objects.filter(game__day__tournament=tournament)\
             .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
-        context["foul_leaders"] = Foul.objects.filter(game__day__tournament=tournament)\
+
+        no_points = tournament.team_set.exclude(
+            id__in=Point.objects.filter(game__day__tournament=tournament)
+        )
+
+        # last = -1
+        curr = 0
+
+        for entry in points:
+            # if last != entry["points"]:
+            #     curr = curr + 1
+            #     last = entry["points"]
+            curr += 1
+            point_leaders.append(
+                self.StandingsEntry(place=curr, team=entry["player__team__name"], value=entry["points"])
+            )
+        for entry in no_points:
+            curr += 1
+            point_leaders.append(self.StandingsEntry(place=curr, team=entry, value=0))
+
+        context["point_leaders"] = point_leaders
+
+        # fouls
+
+        fouls = Foul.objects.filter(game__day__tournament=tournament)\
             .values('player__team__name').annotate(fouls=Count('game')).order_by('-fouls')[:10]
+
+        no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
+            id__in=Foul.objects.filter(game__day__tournament=tournament)
+        )
+
+        # last = -1
+        curr = 0
+
+        for entry in fouls:
+            # if last != entry["fouls"]:
+            #     curr = curr + 1
+            #     last = entry["fouls"]
+            curr += 1
+            foul_leaders.append(
+                self.StandingsEntry(place=++curr, team=entry["player__team__name"], value=entry["fouls"])
+            )
+        for entry in no_fouls:
+            curr += 1
+            foul_leaders.append(self.StandingsEntry(place=curr, team=entry, value=0))
+
+        context["foul_leaders"] = foul_leaders
+
         return context

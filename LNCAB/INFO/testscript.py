@@ -1,6 +1,6 @@
 from teams.models import Team, State
 from users.models import Coach, Player
-from tournaments.models import Tournament, Day, Game, Venue, Point, Foul
+from tournaments.models import Tournament, Day, Game, Venue, Point, Foul, Win
 from django.utils import timezone
 from django.contrib.auth.models import User
 State.objects.all().delete()
@@ -11,6 +11,8 @@ Venue.objects.all().delete()
 Tournament.objects.all().delete()
 Game.objects.all().delete()
 User.objects.exclude(username="admin").delete()
+Win.objects.all().delete()
+
 
 s = State(1, "Prueba", "PRB")
 s.save()
@@ -43,8 +45,12 @@ g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2,
 g1.save()
 g2 = Game(2, number=2, date_time=timezone.now()+timezone.timedelta(hours=2), team_local=t1, team_visitor=t2, court=2, day=day, venue=place)
 g2.save()
+g1.is_finished = True
+g1.save()
 (Point(1, game=g1, player=p1, value=1)).save()
 (Point(2, game=g1, player=p2, value=2)).save()
 (Foul(1, game=g1, player=p1, type='1')).save()
 (Foul(2, game=g1, player=p2, type='1')).save()
-
+(Win(1, team=t1, tournament=tour)).save()
+(Win(2, team=t2, tournament=tour)).save()
+(Win(3, team=t2, tournament=tour)).save()
