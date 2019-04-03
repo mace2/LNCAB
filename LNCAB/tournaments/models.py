@@ -15,7 +15,7 @@ class Tournament(models.Model):
     team_set = models.ManyToManyField('teams.Team')
 
     def __str__(self):
-        return self.name
+        return self.name + " (" + str(self.start_date) + ((" - " + str(self.end_date)) if self.end_date else "") + ")"
 
 
 class Day(models.Model):
@@ -26,8 +26,8 @@ class Day(models.Model):
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.tournament.name+" Day "+str(self.number) + \
-               " (" + "InterZone" if self.is_inter_zone else "Zone" + ")"
+        return self.tournament.name+" Day " + str(self.number) + \
+               ", " + str(self.start_date) + " (" + ("inter-zone" if self.is_inter_zone else "not inter-zone") + ")"
 
 
 class Venue(models.Model):
@@ -37,7 +37,7 @@ class Venue(models.Model):
     state = models.ForeignKey('teams.State', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name+" ,  "+ str(self.state)
+        return self.name + ", " + str(self.state)
 
 
 class Point(models.Model):
@@ -49,7 +49,7 @@ class Point(models.Model):
     ])
 
     def __str__(self):
-        return str(self.value)
+        return ""
 
 
 class Foul(models.Model):
@@ -64,6 +64,9 @@ class Foul(models.Model):
         max_length=20
     )
 
+    def __str__(self):
+        return ""
+
 
 class Game(models.Model):
     date_time = models.DateTimeField("dateTime")
@@ -77,7 +80,9 @@ class Game(models.Model):
     is_finished = models.BooleanField(default=False)
 
     def __str__(self):
-        return "Juego "+str(self.number)+ " de "+str(self.day)+" "+self.team_local.name+" vs "+self.team_visitor.name
+        return "Game " + str(self.number) + " day " + str(self.day.number) + " of " + self.day.tournament.name \
+               + ": " + self.team_local.name + " vs " + self.team_visitor.name \
+               + (" (finished)" if self.is_finished else " (not played yet)")
 
     def get_local_points(self):
         return Point.objects.filter(game=self, player__team=self.team_local).aggregate(Sum('value'))['value__sum']
@@ -95,3 +100,6 @@ class Game(models.Model):
 class Win(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.team.name + " won a match in " + self.tournament.name

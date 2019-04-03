@@ -134,4 +134,16 @@ class GameModelTests(TestCase):
         g = Game.objects.get(id=1)
         self.assertEqual(g.get_visitor_fouls(), 1)
 
-
+    def test_str(self):
+        create_test_db()
+        day = Day.objects.get(id=1)
+        t1 = Team.objects.get(id=1)
+        t2 = Team.objects.get(id=2)
+        venue = Venue.objects.get(id=1)
+        num = 3
+        (Game(3, number=num, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=venue))\
+            .save()
+        g = Game.objects.get(id=3)
+        self.assertEqual(str(g),
+                         "Game " + str(num) + " day " + str(day.number) + " of " + day.tournament.name + ": " + t1.name
+                         + " vs " + t2.name + " (not played yet)")
