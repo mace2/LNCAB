@@ -49,7 +49,6 @@ def registerUser(request):
 def registerPlayer(request):
     if request.method == 'POST':
         player_form = PlayerForm(request.POST)
-        print(request.POST)
         if player_form.is_valid() and request.user.is_authenticated:
             code = player_form.cleaned_data.get("code")
             new_player = Player(
