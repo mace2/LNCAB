@@ -12,6 +12,7 @@ from .forms import PlayerForm,UserForm,LoginForm
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 
+from tournaments.models import Team
 
 
 def index(request):
@@ -48,10 +49,18 @@ def registerUser(request):
 def registerPlayer(request):
     if request.method == 'POST':
         player_form = PlayerForm(request.POST)
-        if player_form.is_valid():
-            new_player=player_form.save(commit=False)
+        print(request.POST)
+        if player_form.is_valid() and request.user.is_authenticated:
+            code = player_form.cleaned_data.get("code")
+            new_player = Player(
+                user=request.user,
+                team=Team.objects.get(code=code),
+                date_of_birth=player_form.cleaned_data.get("date_of_birth"),
+                telephone=player_form.cleaned_data.get("telephone"),
+                sex=player_form.cleaned_data.get("sex")
+            )
             new_player.save()
-            return render(request,'../templates/playerform_done.html',{'new_player':new_player})
+            return render(request, '../templates/playerform_done.html',{'new_player':new_player})
     else:
         player_form=PlayerForm()
     return render(request, '../templates/playerform.html', {'player_form': player_form})

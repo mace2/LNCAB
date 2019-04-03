@@ -27,8 +27,8 @@ class Scorekeeper(models.Model):
 
 class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
-    code = models.CharField(max_length=100, null=True)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    # code = models.CharField(max_length=100, null=True)
     date_of_birth = models.DateField("Birth date")
     telephone = models.CharField("Telephone", max_length=100)
     sex = models.CharField(max_length=100,

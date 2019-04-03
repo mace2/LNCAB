@@ -96,6 +96,14 @@ class Game(models.Model):
     def get_visitor_fouls(self):
         return Foul.objects.filter(game=self, player__team=self.team_visitor).count()
 
+    def finish(self):
+        if self.get_local_points() > self.get_visitor_points():
+            Win.objects.create(team=self.team_local, tournament=self.day.tournament)
+        else:
+            Win.objects.create(team=self.team_visitor, tournament=self.day.tournament)
+        self.is_finished = True
+        self.save()
+
 
 class Win(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)

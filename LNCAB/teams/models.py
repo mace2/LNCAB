@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 import random
@@ -35,7 +36,7 @@ class Team(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     address = models.CharField("address", max_length=200)
     name = models.CharField("name", max_length=50)
-    code = models.IntegerField(default=random.randint(1000, 9999))
+    code = models.CharField(max_length=5, null=True)
     category = models.CharField(max_length=100,
     choices=(
         ('U-15','U-15'),
@@ -54,4 +55,10 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name + self.category+'-'+self.sex
+
+    def generate_code(self):
+        self.save()
+        self.code = User.objects.make_random_password(length=4, allowed_chars='0123456789') + str(self.id)
+        self.save()
+
 

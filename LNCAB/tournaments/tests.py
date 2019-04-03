@@ -12,14 +12,16 @@ from django.contrib.auth.models import User
 def create_test_db():
     s = State(1, "Prueba", "PRB")
     s.save()
+    t1 = Team(1, state=s, address="addprueba1", name="teamprueba1")
+    t1.save()
+    t1.generate_code()
+    t2 = Team(2, state=s, address="addprueba2", name="teamprueba2")
+    t2.save()
+    t2.generate_code()
     up1 = User.objects.create_user('p1', 'p1@mail', 'pass')
     up2 = User.objects.create_user('p2', 'p2@mail', 'pass')
     uc1 = User.objects.create_user('c1', 'c1@mail', 'pass')
     uc2 = User.objects.create_user('c2', 'c2@mail', 'pass')
-    t1 = Team(1, state=s, address="addprueba1", name="teamprueba1")
-    t1.save()
-    t2 = Team(2, state=s, address="addprueba2", name="teamprueba2")
-    t2.save()
     c1 = Coach(1, user=uc1, telephone="1234567890", start_date=timezone.now(), team=t1)
     c1.save()
     c2 = Coach(1, user=uc2, telephone="1234567890", start_date=timezone.now(), team=t2)
@@ -43,15 +45,11 @@ def create_test_db():
     g2 = Game(2, number=2, date_time=timezone.now() + timezone.timedelta(hours=2), team_local=t1, team_visitor=t2,
               court=2, day=day, venue=place)
     g2.save()
-    g1.is_finished = True
-    g1.save()
     (Point(1, game=g1, player=p1, value=1)).save()
     (Point(2, game=g1, player=p2, value=2)).save()
     (Foul(1, game=g1, player=p1, type='1')).save()
     (Foul(2, game=g1, player=p2, type='1')).save()
-    (Win(1, team=t1, tournament=tour)).save()
-    (Win(2, team=t2, tournament=tour)).save()
-    (Win(3, team=t2, tournament=tour)).save()
+    g1.finish()
 
 
 class StatisticsViewTests(TestCase):
@@ -147,3 +145,8 @@ class GameModelTests(TestCase):
         self.assertEqual(str(g),
                          "Game " + str(num) + " day " + str(day.number) + " of " + day.tournament.name + ": " + t1.name
                          + " vs " + t2.name + " (not played yet)")
+
+    def test_str_finished(self):
+        create_test_db()
+        g = Game.objects.get(id=1)
+        self.assertEqual(str(g), "Game 1 day 1 of tourprueba: teamprueba1 vs teamprueba2 (finished)")

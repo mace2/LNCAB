@@ -20,7 +20,7 @@ class GamesView(generic.ListView):
             self.day = Day.objects.get(number=self.kwargs['day'])
         except Day.DoesNotExist:
             raise Http404()
-        return self.day.game_set.all()
+        return self.day.game_set.all().order_by("date_time")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
