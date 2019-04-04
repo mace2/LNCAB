@@ -155,4 +155,9 @@ class StatisticsView(generic.TemplateView):
 
         context["foul_leaders"] = foul_leaders
 
+        context["teams_by_state"] = Tournament.objects.get(id=1)\
+            .team_set.values('state__name')\
+            .annotate(number=Count('id'))\
+            .order_by('-number')
+
         return context
