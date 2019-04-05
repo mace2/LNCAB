@@ -12,12 +12,17 @@ from django.contrib.auth.models import User
 def create_test_db():
     s = State(1, "Prueba", "PRB")
     s.save()
+    s2 = State(2, "Prueba2", "PRB2")
+    s2.save()
     t1 = Team(1, state=s, address="addprueba1", name="teamprueba1")
     t1.save()
     t1.generate_code()
     t2 = Team(2, state=s, address="addprueba2", name="teamprueba2")
     t2.save()
     t2.generate_code()
+    t3 = Team(3, state=s2, address="addprueba3", name="teamprueba3")
+    t3.save()
+    t3.generate_code()
     up1 = User.objects.create_user('p1', 'p1@mail', 'pass')
     up2 = User.objects.create_user('p2', 'p2@mail', 'pass')
     uc1 = User.objects.create_user('c1', 'c1@mail', 'pass')
@@ -34,6 +39,7 @@ def create_test_db():
     tour.save()
     tour.team_set.add(t1)
     tour.team_set.add(t2)
+    tour.team_set.add(t3)
     tour.save()
     day = Day(1, number=1, is_inter_zone=False, start_date=timezone.now(),
               end_date=timezone.now() + timezone.timedelta(days=1), tournament=tour)
@@ -150,3 +156,53 @@ class GameModelTests(TestCase):
         create_test_db()
         g = Game.objects.get(id=1)
         self.assertEqual(str(g), "Game 1 day 1 of tourprueba: teamprueba1 vs teamprueba2 (finished)")
+
+    def test_str_changed(self):
+        create_test_db()
+        g = Game.objects.get(id=1)
+        g.team_visitor = Team.objects.get(id=3)
+        g.save()
+        g = Game.objects.get(id=1)
+        self.assertEqual(str(g), "Game 1 day 1 of tourprueba: teamprueba1 vs teamprueba3 (finished)")
+
+    def test_str_deleted(self):
+        create_test_db()
+        Game.objects.get(id=1).delete()
+        try:
+            g = Game.objects.get(id=1)
+        except Game.DoesNotExist:
+            self.assertEqual(True, True)
+            return
+        self.assertEqual(True, False)
+
+
+class FoulModelTests(TestCase):
+    def test_str(self):
+        create_test_db()
+        f = Foul.objects.get(id=1)
+        self.assertEqual(str(f), "")
+
+    def test_add(self):
+        create_test_db()
+        g = Game.objects.get(id=1)
+        p = Player.objects.get(id=1)
+        prev = Foul.objects.filter(game=g).count()
+        (Foul(3, game=g, player=p, type='1')).save()
+        curr = Foul.objects.filter(game=g).count()
+        self.assertEqual(prev + 1, curr)
+
+    def test_delete(self):
+        create_test_db()
+        g = Game.objects.get(id=1)
+        p = Player.objects.get(id=1)
+        prev = Foul.objects.filter(game=g).count()
+        Foul.objects.get(id=2).delete()
+        curr = Foul.objects.filter(game=g).count()
+        self.assertEqual(prev, curr + 1)
+
+    def test_edit(self):
+        create_test_db()
+        f = Foul.objects.get(id=1)
+        f.type = "2"
+        f.save()
+        self.assertEqual(Foul.objects.get(id=1).type, "2")
