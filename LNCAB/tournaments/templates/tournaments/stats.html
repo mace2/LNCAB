@@ -1,90 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
+{% extends "tournaments/base.html" %}
+{% block content %}
 
-    {% block css %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="styles.css">
-    {% endblock css %}
-        <title>Base</title>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['State', 'Teams'],
-            {% for entry in teams_by_state %}
-                [ '{{ entry.state__name }}', {{ entry.number }} ],
-            {% endfor %}
-        ]);
-
-        var options = {
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-      }
-    </script>
-
-
-    </head>
-    <body>
-    {% block javascript %}
-        <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
-
-        <script>
-        $(document).ready(function(){
-
-        // Initialize materialize data picker
-        $('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
-        $('select').formSelect();
-
-        });
-
-        </script>
-
-    {% endblock javascript %}
-
-
-    <nav>
-    <div class="nav-wrapper green darken-4">
-        {% load static from staticfiles %}
-      <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Resultados</a></li>
-        <li><a href="badges.html">Calendario</a></li>
-          <li><a href="collapsible.html">Mi Calendario</a></li>
-          <li><a href="collapsible.html">Mi Equipo</a></li>
-        <li><a href="collapsible.html">Tablas de posicion</a></li>
-          <li><a href="collapsible.html">Estadisticas</a></li>
-          <li><a href="collapsible.html">Playoffs</a></li>
-          <li><a href="collapsible.html">Sobre nosotros</a></li>
-
-      </ul>
-         <ul  class="right  hide-on-med-and-down">
-        <li><a href="sass.html">Cuenta</a></li>
-
-
-      </ul>
-    </div>
-  </nav>
-<div class="row">
-<div class="col s4">
-    <ul>
-        <li>a</li>
-        <li>a</li>
-    </ul>
-</div>
-<div class="col s7 pull-s1">
     {% if standings %}
     <div class="row">
         <h4>Standings</h4>
@@ -151,45 +67,11 @@
         This tournament has no played games.
     {% endif %}
 
-<div class="row">
-    <div class="row"></div>
-    <h4>Teams by state</h4>
-    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
-  </div>
-</div>
+    <div class="row">
+        <div class="row"></div>
+        <h4>Teams by state</h4>
+        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    </div>
 
-</div>
+{% endblock %}
 
-
-
-
-    </body>
-    <footer class="page-footer rSed darken-4">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Contacto</h5>
-            <p class="grey-text text-lighten-4">Alex</p>
-              <p class="grey-text text-lighten-4">Telefono</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-        LNCAB
-        <a class="grey-text text-lighten-4 right" >ADEMEBA</a>
-        </div>
-      </div>
-</footer>
-
-</html>
-</html>
