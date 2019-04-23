@@ -8,6 +8,6 @@ urlpatterns = [
     path('userform.html/',views.registerUser, name='registerUser'),
     path('playerform.html/',views.registerPlayer, name='registerPlayer'),
     path('login.html/',views.user_login, name='login'),
-    path('logout/',views.logout, name='logout')
+    path('logout/',views.logoutUser, name='logoutUser')
 ]
 

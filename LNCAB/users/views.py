@@ -9,7 +9,7 @@ from .models import Player
 from django.shortcuts import redirect
 
 from .forms import PlayerForm,UserForm,LoginForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 
 from tournaments.models import Team
@@ -38,9 +38,11 @@ def registerUser(request):
             new_user=user_form.save()
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
-            return redirect('/users/playerform.html')
-    else:
-        user_form = UserForm()
+            user = authenticate(request, username=new_user.username, password=user_form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+                return redirect('/users/playerform.html')
+    user_form = UserForm()
     return render(request, '../templates/userform.html', {'user_form': user_form})
 
 
@@ -91,7 +93,8 @@ def user_login(request):
 
 
 
-def logout(request):
+def logoutUser(request):
+    logout(request)
     return redirect('/users/')
 
 

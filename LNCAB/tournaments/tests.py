@@ -98,6 +98,7 @@ class GamesViewTests(TestCase):
             "/tournaments/day/1/"
         )
         self.assertNotContains(response, "Not played yet")
+        # self.assertNotContains(response, "None")
 
     def test_no_games(self):
         tour = Tournament(1, name="tourprueba", start_date=timezone.now())
