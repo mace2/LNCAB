@@ -11,6 +11,22 @@ from django.template import loader
 from django.db.models import Count, Sum
 
 
+class TournamentsView(generic.ListView):
+    template_name = 'tournaments/tournaments.html'
+    context_object_name = 'active_tournament_list'
+
+    def get_queryset(self):
+        try:
+            self.tournaments = Tournament.objects.filter(is_active=True)
+        except Tournament.DoesNotExist:
+            raise Http404()
+        return self.tournaments.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(TournamentsView, self).get_context_data(**kwargs)
+        return context
+
+
 class GamesView(generic.ListView):
     template_name = 'tournaments/index.html'
     context_object_name = 'game_list'
