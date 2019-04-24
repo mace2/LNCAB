@@ -1,8 +1,11 @@
 from django.db import models
-from teams.models import Team, State
+from teams.models import Team, State,Sex
+
+
 from django.contrib.auth.models import User
 
 # Create your models here.
+
 
 
 class Coach(models.Model):
@@ -31,12 +34,7 @@ class Player(models.Model):
     # code = models.CharField(max_length=100, null=True)
     date_of_birth = models.DateField("Birth date")
     telephone = models.CharField("Telephone", max_length=100)
-    sex = models.CharField(max_length=100,
-                           choices=(
-                               ('M', 'Masculine'),
-                               ('F', 'Feminine')
-
-                           ))
+    sex = models.ForeignKey(Sex,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.user.first_name + " " + self.user.last_name

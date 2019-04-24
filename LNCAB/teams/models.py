@@ -1,10 +1,32 @@
 from django.contrib.auth.models import User
 from django.db import models
+#from users.models import Sex
+
 
 import random
 
 # Create your models here.
+class Sex(models.Model):
+    name = models.CharField("name",max_length=20, choices=(
+                               ('M', 'Masculine'),
+                               ('F', 'Feminine')
 
+                           ))
+
+
+    def __str__(self):
+        return str(self.name)
+
+class Category(models.Model):
+    name = models.CharField("name",max_length=100,choices=(('U-13','U-13'),
+                            ('U-15','U-15'),
+                            ('U-17','U-17'),
+                            ('U-19', 'U-19')
+                            )
+                            )
+
+    def __str__(self):
+        return str(self.name)
 
 class State(models.Model):
     name = models.CharField("name", max_length=50)
@@ -37,24 +59,12 @@ class Team(models.Model):
     address = models.CharField("address", max_length=200)
     name = models.CharField("name", max_length=50)
     code = models.CharField(max_length=5, null=True)
-    category = models.CharField(max_length=100,
-    choices=(
-        ('U-15','U-15'),
-        ('U-16', 'U-16'),
-        ('U-17', 'U-17')
-        )
-    )
-
-    sex = models.CharField(max_length=100,
-                           choices=(
-                               ('M', 'Masculino'),
-                               ('F', 'Femenino')
-
-                           ))
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    sex = models.ForeignKey(Sex,on_delete=models.CASCADE)
 
 
     def __str__(self):
-        return self.name + self.category+'-'+self.sex
+        return self.name +" de "+str(self.state)+" "+ str(self.category)+' - '+str(self.sex)
 
     def generate_code(self):
         self.save()

@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import Scorekeeper, Player
-from teams.models import Team
+from teams.models import Team,Sex,Category
+
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Sum
 
@@ -8,14 +9,18 @@ from django.db.models import Sum
 # Create your models here.
 
 
+
 class Tournament(models.Model):
     name = models.CharField(max_length=50)
     start_date = models.DateField("start_date")
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    sex = models.ForeignKey(Sex,on_delete=models.CASCADE)
     end_date = models.DateField("start_date", null=True, blank=True)
     team_set = models.ManyToManyField('teams.Team')
+    is_active = models.BooleanField()
 
     def __str__(self):
-        return self.name + " (" + str(self.start_date) + ((" - " + str(self.end_date)) if self.end_date else "") + ")"
+        return self.name+" " + "Category: "+str(self.category )+ " "+str(self.sex)
 
 
 class Day(models.Model):

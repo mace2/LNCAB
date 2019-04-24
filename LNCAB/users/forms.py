@@ -1,6 +1,8 @@
 from django import forms
 from users.models import Player
 from tournaments.models import Team
+from teams.models import Sex
+from django.db import models
 
 from django.contrib.auth.models import User
 
@@ -25,10 +27,7 @@ class PlayerForm(forms.Form):
     date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker',
                                                                   'placeholder': 'format: mm/dd/yyyy'}))
     telephone = forms.CharField(max_length=100)
-    sex = forms.MultipleChoiceField(choices=(
-                                        ('M', 'Masculine'),
-                                        ('F', 'Feminine'),
-                                    ))
+    sex = forms.ModelChoiceField(queryset=Sex.objects.all())
 
     def clean(self):
         cleaned_data = super().clean()

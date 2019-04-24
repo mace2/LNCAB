@@ -39,7 +39,7 @@
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="sass.html">Resultados</a></li>
         <li><a href="badges.html">Calendario</a></li>
-          <li><a href="collapsible.html">Mi Calendario</a></li>
+          <li><a href="/tournaments/day/1">Mi Calendario</a></li>
           <li><a href="collapsible.html">Mi Equipo</a></li>
         <li><a href="collapsible.html">Tablas de posicion</a></li>
           <li><a href="collapsible.html">Estadisticas</a></li>
@@ -49,7 +49,7 @@
       </ul>
          <ul  class="right  hide-on-med-and-down">
              Hello {{ request.user.username }}
-             <a href="{% url 'logout' %}">Logout</a>
+             <a href="{% url 'logoutUser' %}">Logout</a>
 
 
 
