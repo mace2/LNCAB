@@ -35,7 +35,7 @@ def create_test_db():
     p1.save()
     p2 = Player(2, user=up2, date_of_birth=timezone.now(), telephone="22345667890", team=t2)
     p2.save()
-    tour = Tournament(1, name="tourprueba", start_date=timezone.now())
+    tour = Tournament(1, name="tourprueba", start_date=timezone.now(),active=True)
     tour.save()
     tour.team_set.add(t1)
     tour.team_set.add(t2)
@@ -89,6 +89,8 @@ class GamesViewTests(TestCase):
         )
         self.assertContains(response, "Not played yet")
 
+
+
     def test_all_played(self):
         create_test_db()
         g2 = Game.objects.get(id=2)
@@ -116,6 +118,16 @@ class GamesViewTests(TestCase):
             "/tournaments/day/1/"
         )
         self.assertEqual(response.status_code, 404)
+
+
+class TournamentViews(TestCase):
+    def test_active_tournament(self):
+        create_test_db()
+        response = self.client.get(
+            "/tournaments/"
+        )
+        self.assertContains(response,"Active")
+
 
 
 class GameModelTests(TestCase):
