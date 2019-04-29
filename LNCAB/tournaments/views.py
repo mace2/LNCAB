@@ -26,6 +26,14 @@ class TournamentsView(generic.ListView):
         context = super(TournamentsView, self).get_context_data(**kwargs)
         return context
 
+class TeamsView(generic.ListView):
+    template_name = "tournaments/teams.html"
+    context_object_name = "teams_list"
+
+    def get_queryset(self):
+         return  Tournament.objects.get(id = self.kwargs['pk']).team_set.all()
+
+
 
 class GamesView(generic.ListView):
     template_name = 'tournaments/index.html'
@@ -74,6 +82,7 @@ class DetailView(generic.DetailView):
             player__team=game.team_visitor,
             quarter__game=game
         )
+
         return context
 
 
@@ -183,13 +192,6 @@ class StatisticsView(generic.TemplateView):
 
         return context
 
-
-class TournamentsView(generic.ListView):
-    template_name = "tournaments/tournamentList.html"
-    context_object_name = 'tournament_list'
-
-    def get_queryset(self):
-        return Tournament.objects.all()
 
 
 class TournamentDetailView(generic.DetailView):

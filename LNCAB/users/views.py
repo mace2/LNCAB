@@ -6,6 +6,9 @@ from django.template import loader
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
 from .models import Player
+from tournaments.models import Tournament
+from teams.models import Team
+from users.models import Player
 from django.shortcuts import redirect
 
 from .forms import PlayerForm,UserForm,LoginForm
@@ -61,7 +64,7 @@ def registerPlayer(request):
                 sex=player_form.cleaned_data.get("sex")
             )
             new_player.save()
-            return render(request, '../templates/playerform_done.html',{'new_player':new_player})
+            return redirect('/users/login.html')
     else:
         player_form=PlayerForm()
     return render(request, '../templates/playerform.html', {'player_form': player_form})
@@ -77,10 +80,14 @@ def user_login(request):
                                 password=cd['password'])
             pk=user.pk
 
+            team_id= Player.objects.get(user=pk).team.id
+            tournament_id= Tournament.objects.get(team_set = team_id).id
+
+
             if user is not None:
                 if user.is_active:
                     login(request,user)
-                    return redirect('/users/'+str(pk))
+                    return redirect('/tournaments/'+str(tournament_id)+'/day/1')
                 else:
                     return HttpResponse('Disabled account')
 
@@ -95,7 +102,7 @@ def user_login(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('/users/')
+    return redirect('/tournaments/')
 
 
 
