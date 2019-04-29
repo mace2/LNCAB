@@ -29,7 +29,6 @@ urlpatterns = [
     path('tournaments/stats/<tournament>/', StatisticsView.as_view()),
     path('tournaments/<pk>/teams',TeamsView.as_view()),
     path('tournaments/bracket/', BracketView.as_view()),
-    path('tournaments/', TournamentsView.as_view()),
     path('tournaments/<pk>/', TournamentDetailView.as_view()),
 
 ]

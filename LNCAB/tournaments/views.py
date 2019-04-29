@@ -117,7 +117,8 @@ class StatisticsView(generic.TemplateView):
         wins = Win.objects.filter(tournament=tournament)\
             .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
 
-        no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id"))
+        no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id"))\
+            .all().values("name")
 
         for entry in wins:
             # if last != entry["wins"]:
@@ -129,17 +130,17 @@ class StatisticsView(generic.TemplateView):
             )
         for entry in no_wins:
             curr += 1
-            standings.append(self.StandingsEntry(place=curr, team=entry, value=0))
+            standings.append(self.StandingsEntry(place=curr, team=entry["name"], value=0))
 
         context["standings"] = standings
 
         # points
 
-        points = Point.objects.filter(game__day__tournament=tournament)\
+        points = Point.objects.filter(quarter__game__day__tournament=tournament)\
             .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
 
         no_points = tournament.team_set.exclude(
-            id__in=Point.objects.filter(game__day__tournament=tournament)
+            id__in=Point.objects.filter(quarter__game__day__tournament=tournament)
         )
 
         # last = -1
@@ -161,11 +162,11 @@ class StatisticsView(generic.TemplateView):
 
         # fouls
 
-        fouls = Foul.objects.filter(game__day__tournament=tournament)\
-            .values('player__team__name').annotate(fouls=Count('game')).order_by('-fouls')[:10]
+        fouls = Foul.objects.filter(quarter__game__day__tournament=tournament)\
+            .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
 
         no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
-            id__in=Foul.objects.filter(game__day__tournament=tournament)
+            id__in=Foul.objects.filter(quarter__game__day__tournament=tournament)
         )
 
         # last = -1
@@ -185,7 +186,7 @@ class StatisticsView(generic.TemplateView):
 
         context["foul_leaders"] = foul_leaders
 
-        context["teams_by_state"] = Tournament.objects.get(id=1)\
+        context["teams_by_state"] = tournament\
             .team_set.values('state__name')\
             .annotate(number=Count('id'))\
             .order_by('-number')
