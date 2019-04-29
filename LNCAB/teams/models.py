@@ -58,13 +58,12 @@ class Team(models.Model):
     state = models.ForeignKey(State, on_delete=models.CASCADE)
     address = models.CharField("address", max_length=200)
     name = models.CharField("name", max_length=50)
-    code = models.CharField(max_length=5, null=True)
+    code = models.TextField(null=True)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
     sex = models.ForeignKey(Sex,on_delete=models.CASCADE)
 
-
     def __str__(self):
-        return self.name +" de "+str(self.state)+" "+ str(self.category)+' - '+str(self.sex)
+        return self.name +" from "+str(self.state)+" "+ str(self.category)+' - '+str(self.sex)
 
     def generate_code(self):
         self.save()
