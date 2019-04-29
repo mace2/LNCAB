@@ -7,6 +7,37 @@
         <p>{{ game.venue }}</p>
         {% if game.is_finished %}
             <div class="row">
+
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Q1</td>
+                            <td>Q2</td>
+                            <td>Q3</td>
+                            <td>Q4</td>
+                            <td>Final</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{game.local_q1}}</td>
+                            <td>{{game.local_q2}}</td>
+                            <td>{{game.local_q3}}</td>
+                            <td>{{game.local_q4}}</td>
+                            <td><b>{{game.local_points}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>{{game.visitor_q1}}</td>
+                            <td>{{game.visitor_q2}}</td>
+                            <td>{{game.visitor_q3}}</td>
+                            <td>{{game.visitor_q4}}</td>
+                            <td><b>{{game.visitor_points}}</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
                 <div class="row">
                     <h4>Points</h4>
                     <div class="col s5">

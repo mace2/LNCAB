@@ -1,6 +1,6 @@
 from teams.models import Team, State
 from users.models import Coach, Player
-from tournaments.models import Tournament, Day, Game, Venue, Point, Foul, Win
+from tournaments.models import Tournament, Day, Game, Venue, Point, Foul, Win, Quarter
 from django.utils import timezone
 from django.contrib.auth.models import User
 State.objects.all().delete()
@@ -54,8 +54,20 @@ p1 = Player(1, user=up1, date_of_birth=timezone.now(), telephone="12345667890", 
 p1.save()
 p2 = Player(2, user=up2, date_of_birth=timezone.now(), telephone="22345667890", team=t2)
 p2.save()
-(Point(1, game=g1, player=p1, value=1)).save()
-(Point(2, game=g1, player=p2, value=2)).save()
-(Foul(1, game=g1, player=p1, type='1')).save()
-(Foul(2, game=g1, player=p2, type='1')).save()
+q = Quarter.objects.create(game=g1, number=1)
+q2 = Quarter.objects.create(game=g1, number=2)
+q3 = Quarter.objects.create(game=g1, number=3)
+q4 = Quarter.objects.create(game=g1, number=4)
+Point.objects.create(quarter=q, player=p1, value=1)
+Point.objects.create(quarter=q, player=p2, value=2)
+Point.objects.create(quarter=q2, player=p1, value=1)
+Point.objects.create(quarter=q2, player=p2, value=1)
+Point.objects.create(quarter=q2, player=p1, value=1)
+Point.objects.create(quarter=q2, player=p2, value=1)
+Point.objects.create(quarter=q4, player=p1, value=1)
+Point.objects.create(quarter=q4, player=p2, value=1)
+Point.objects.create(quarter=q4, player=p1, value=1)
+Point.objects.create(quarter=q4, player=p2, value=1)
+Foul.objects.create(quarter=q, player=p1, type='1')
+Foul.objects.create(quarter=q, player=p2, type='1')
 g1.finish()

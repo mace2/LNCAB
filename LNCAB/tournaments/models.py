@@ -3,6 +3,8 @@ from users.models import Scorekeeper, Player
 from teams.models import Team
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Sum
+from django.db.models.functions import Coalesce
+
 
 
 # Create your models here.
@@ -40,9 +42,17 @@ class Venue(models.Model):
         return self.name + ", " + str(self.state)
 
 
+class Quarter(models.Model):
+    number = models.IntegerField(validators=[
+        MaxValueValidator(4),
+        MinValueValidator(1)
+    ])
+    game = models.ForeignKey('Game', on_delete=models.CASCADE)
+
+
 class Point(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
-    game = models.ForeignKey('Game', on_delete=models.CASCADE)
+    quarter = models.ForeignKey(Quarter, on_delete=models.CASCADE)
     value = models.IntegerField(validators=[
         MaxValueValidator(3),
         MinValueValidator(1)
@@ -54,7 +64,7 @@ class Point(models.Model):
 
 class Foul(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
-    game = models.ForeignKey('Game', on_delete=models.CASCADE)
+    quarter = models.ForeignKey(Quarter, on_delete=models.CASCADE)
     type = models.CharField(
         choices=(
             ('1', '1'),
@@ -84,20 +94,56 @@ class Game(models.Model):
                + ": " + self.team_local.name + " vs " + self.team_visitor.name \
                + (" (finished)" if self.is_finished else " (not played yet)")
 
-    def get_local_points(self):
-        return Point.objects.filter(game=self, player__team=self.team_local).aggregate(Sum('value'))['value__sum']
+    def get_all_points(self, team):
+        return Point.objects.filter(quarter__game=self, player__team=team).aggregate(value__sum=Coalesce(Sum('value'), 0))['value__sum']
 
-    def get_visitor_points(self):
-        return Point.objects.filter(game=self, player__team=self.team_visitor).aggregate(Sum('value'))['value__sum']
+    def get_points_by_quarter(self, team, num):
+        return Point.objects.filter(quarter__game=self, player__team=team, quarter__number=num).aggregate(value__sum=Coalesce(Sum('value'), 0))['value__sum']
 
-    def get_local_fouls(self):
-        return Foul.objects.filter(game=self, player__team=self.team_local).count()
+    def get_all_fouls(self, team):
+        return Foul.objects.filter(quarter__game=self, player__team=team).count()
 
-    def get_visitor_fouls(self):
-        return Foul.objects.filter(game=self, player__team=self.team_visitor).count()
+    def get_fouls_by_quarter(self, team, num):
+        return Foul.objects.filter(quarter__game=self, player__team=team, quarter__number=num).count()
+
+    def local_points(self):
+        return self.get_all_points(self.team_local)
+
+    def visitor_points(self):
+        return self.get_all_points(self.team_visitor)
+
+    def local_fouls(self):
+        return self.get_all_fouls(self.team_local)
+
+    def visitor_fouls(self):
+        return self.get_all_fouls(self.team_visitor)
+
+    def local_q1(self):
+        return self.get_points_by_quarter(self.team_local, 1)
+
+    def local_q2(self):
+        return self.get_points_by_quarter(self.team_local, 2)
+
+    def local_q3(self):
+        return self.get_points_by_quarter(self.team_local, 3)
+
+    def local_q4(self):
+        return self.get_points_by_quarter(self.team_local, 4)
+
+    def visitor_q1(self):
+        return self.get_points_by_quarter(self.team_visitor, 1)
+
+    def visitor_q2(self):
+        return self.get_points_by_quarter(self.team_visitor, 2)
+
+    def visitor_q3(self):
+        return self.get_points_by_quarter(self.team_visitor, 3)
+
+    def visitor_q4(self):
+        return self.get_points_by_quarter(self.team_visitor, 4)
 
     def finish(self):
-        if self.get_local_points() > self.get_visitor_points():
+        if self.get_all_points(self.team_local) > self.get_all_points(self.team_visitor):
             Win.objects.create(team=self.team_local, tournament=self.day.tournament)
         else:
             Win.objects.create(team=self.team_visitor, tournament=self.day.tournament)
@@ -111,3 +157,5 @@ class Win(models.Model):
 
     def __str__(self):
         return self.team.name + " won a match in " + self.tournament.name
+
+

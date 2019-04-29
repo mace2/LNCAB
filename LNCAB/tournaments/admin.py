@@ -28,7 +28,8 @@ admin.site.register(Day, DayAdmin)
 
 
 class GameAdmin(admin.ModelAdmin):
-    inlines = (FoulInline, PointInline)
+    pass
+    # inlines = (FoulInline, PointInline)
 
 
 admin.site.register(Game, GameAdmin)

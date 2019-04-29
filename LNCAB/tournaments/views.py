@@ -38,20 +38,20 @@ class DetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context["local_points"] = Point.objects.filter(
             player__team=game.team_local,
-            game=game
+            quarter__game=game
         )
         context["visitor_points"] = Point.objects.filter(
             player__team=game.team_visitor,
-            game=game
+            quarter__game=game
         )
 
         context["local_fouls"] = Foul.objects.filter(
             player__team=game.team_local,
-            game=game
+            quarter__game=game
         )
         context["visitor_fouls"] = Foul.objects.filter(
             player__team=game.team_visitor,
-            game=game
+            quarter__game=game
         )
         return context
 
@@ -161,3 +161,16 @@ class StatisticsView(generic.TemplateView):
             .order_by('-number')
 
         return context
+
+
+class TournamentsView(generic.ListView):
+    template_name = "tournaments/tournamentList.html"
+    context_object_name = 'tournament_list'
+
+    def get_queryset(self):
+        return Tournament.objects.all()
+
+
+class TournamentDetailView(generic.DetailView):
+    template_name = 'tournaments/tournamentDetail.html'
+    model = Tournament

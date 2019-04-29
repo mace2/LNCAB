@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-import random
 
 # Create your models here.
-
 
 class State(models.Model):
     name = models.CharField("name", max_length=50)

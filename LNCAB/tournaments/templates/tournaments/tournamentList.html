@@ -1,0 +1,18 @@
+{% extends "tournaments/base.html" %}
+{% block content %}
+        <div class="row"></div>
+        <div class="row">
+            {% if tournament_list %}
+                {% for tournament in tournament_list %}
+                    <div class="row card-panel hoverable" href="index.html">
+                        <h4 class="center-align">{{ tournament }}</h4>
+                        <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament.id }}">View details</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No games scheduled.</p>
+            {% endif %}
+        </div>
+{% endblock %}
+
+

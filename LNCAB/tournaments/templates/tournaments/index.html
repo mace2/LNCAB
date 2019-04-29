@@ -19,7 +19,7 @@
                         <div class="col s4 center-align">
                             <div class="row"> {{ game.date_time }} </div>
                             {% if game.is_finished %}
-                                <div class="row"> {{ game.get_local_points }} - {{ game.get_visitor_points }}</div>
+                                <div class="row"> {{ game.local_points }} - {{ game.visitor_points }}</div>
                                 <a class="waves-effect waves-light btn" href="/tournaments/games/{{ game.id }}">View details</a>
                             {% else %}
                                 <div class="row"> Not played yet </div>
