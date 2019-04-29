@@ -33,7 +33,7 @@ class GamesView(generic.ListView):
 
     def get_queryset(self):
         try:
-            self.day = Day.objects.get(number=self.kwargs['day'])
+            self.day = Day.objects.get(tournament=self.kwargs['pk'], number=self.kwargs['day'])
         except Day.DoesNotExist:
             raise Http404()
         return self.day.game_set.all().order_by("date_time")
@@ -42,7 +42,12 @@ class GamesView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["prev_day"] = self.day.number - 1
         context["next_day"] = self.day.number + 1
+        context["tournament"] = self.day.tournament.pk
+
         return context
+
+
+
 
 
 class DetailView(generic.DetailView):

@@ -6,8 +6,8 @@
                 {% for tournaments in active_tournament_list %}
                     <div class="row card-panel hoverable">
                         <div class="col s4 center-align">
-                            <h4 class="center-allign">{{ tournaments.name }}  {{ tournaments.category }} {{ tournaments.sex }}</h4>
-                            <a class="waves-effect waves-light btn " href="/tournaments/{{ tournament.id }}">View details</a>
+                            <h4 class="center-allign">{{ tournaments.name }}  {{ tournaments.category }} {{ tournaments.sex }} {{ tournaments.id }}</h4>
+                            <a class="waves-effect waves-light btn " href="/tournaments/{{ tournaments.id }}/day/1">View details</a>
                         </div>
                     </div>
                 {% endfor %}

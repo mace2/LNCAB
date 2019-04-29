@@ -25,7 +25,7 @@ urlpatterns = [
    # path('teams/', include('teams.urls')),
     path('tournaments/', include('tournaments.urls')),
     path('tournaments/', TournamentsView.as_view()),
-    path('tournaments/day/<day>/', GamesView.as_view()),
+    path('tournaments/<pk>/day/<day>/', GamesView.as_view()),
     path('tournaments/games/<pk>/', DetailView.as_view()),
     path('tournaments/stats/<tournament>/', StatisticsView.as_view()),
     path('tournaments/bracket/', BracketView.as_view()),
