@@ -6,7 +6,7 @@ from django.http import Http404
 from django.views import generic
 from .models import Game, Tournament, Day, Point, Foul, Win
 from users.models import Player
-from teams.models import Team
+from teams.models import Team, Region
 from django.template import loader
 from django.db.models import Count, Sum
 
@@ -98,6 +98,8 @@ class StatisticsView(generic.TemplateView):
             raise Http404()
 
         context = super().get_context_data(**kwargs)
+
+        context["regions"] = Region.objects.all();
         curr = 0
         # last = -1
 
@@ -105,11 +107,52 @@ class StatisticsView(generic.TemplateView):
         point_leaders = []
         foul_leaders = []
 
-        wins = Win.objects.filter(tournament=tournament)\
-            .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
+        region = self.request.GET.get("region")
+        if region is None:
+            region = "general"
+        context["region"] = region
+        if region == "general":
+            wins = Win.objects.filter(tournament=tournament) \
+                       .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
 
-        no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id"))\
-            .all().values("name")
+            no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id")) \
+                .all().values("name")
+
+            points = Point.objects.filter(quarter__game__day__tournament=tournament) \
+                         .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
+
+            no_points = tournament.team_set.exclude(
+                id__in=Point.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
+            )
+
+            fouls = Foul.objects.filter(quarter__game__day__tournament=tournament) \
+                        .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
+
+            no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
+                id__in=Foul.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
+            )
+        else:
+            wins = Win.objects.filter(tournament=tournament, team__state__region__name=region) \
+                       .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
+
+            no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id")) \
+                .filter(state__region__name=region).values("name")
+
+            points = Point.objects.filter(quarter__game__day__tournament=tournament,
+                                          player__team__state__region__name=region) \
+                         .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
+
+            no_points = tournament.team_set.exclude(
+                id__in=Point.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
+            ).filter(state__region__name=region)
+
+            fouls = Foul.objects.filter(quarter__game__day__tournament=tournament,
+                                        player__team__state__region__name=region) \
+                        .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
+
+            no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
+                id__in=Foul.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
+            ).filter(state__region__name=region)
 
         for entry in wins:
             # if last != entry["wins"]:
@@ -124,17 +167,7 @@ class StatisticsView(generic.TemplateView):
             standings.append(self.StandingsEntry(place=curr, team=entry["name"], value=0))
 
         context["standings"] = standings
-
         # points
-
-        points = Point.objects.filter(quarter__game__day__tournament=tournament)\
-            .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
-
-        no_points = tournament.team_set.exclude(
-            id__in=Point.objects.filter(quarter__game__day__tournament=tournament)
-        )
-
-        # last = -1
         curr = 0
 
         for entry in points:
@@ -147,20 +180,11 @@ class StatisticsView(generic.TemplateView):
             )
         for entry in no_points:
             curr += 1
-            point_leaders.append(self.StandingsEntry(place=curr, team=entry, value=0))
+            point_leaders.append(self.StandingsEntry(place=curr, team=entry.name, value=0))
 
         context["point_leaders"] = point_leaders
 
         # fouls
-
-        fouls = Foul.objects.filter(quarter__game__day__tournament=tournament)\
-            .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
-
-        no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
-            id__in=Foul.objects.filter(quarter__game__day__tournament=tournament)
-        )
-
-        # last = -1
         curr = 0
 
         for entry in fouls:
@@ -173,7 +197,7 @@ class StatisticsView(generic.TemplateView):
             )
         for entry in no_fouls:
             curr += 1
-            foul_leaders.append(self.StandingsEntry(place=curr, team=entry, value=0))
+            foul_leaders.append(self.StandingsEntry(place=curr, team=entry.name, value=0))
 
         context["foul_leaders"] = foul_leaders
 
