@@ -1,0 +1,19 @@
+{% extends "tournaments/base.html" %}
+{% block content %}
+        <div class="row"></div>
+        <div class="row">
+            {% if teams_list %}
+                {% for team in teams_list %}
+                    <div class="row card-panel hoverable">
+                        <div class="col s4 center-align">
+                            <h4 class="center-allign">{{ team.name }} </h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No Teams in tournament.</p>
+            {% endif %}
+        </div>
+{% endblock %}
+
+
