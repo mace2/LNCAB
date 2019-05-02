@@ -1,0 +1,13 @@
+{% extends "tournaments/base.html" %}
+{% block content %}
+
+    <div class="row">
+        <p>Name: {{ player.user.first_name }}</p>
+        <p>Last name: {{ player.user.last_name }}</p>
+        <p>Team: {{ player.team }}</p>
+        <p>Sex: {{ player.sex }}</p>
+        <p>Date of birth: {{ player.date_of_birth }}</p>
+        <p>Telephone: {{ player.telephone }}</p>
+    </div>
+
+{% endblock %}

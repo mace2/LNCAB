@@ -1,22 +1,35 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+
 # Create your views here.
 from django.db.models import Q
 
 from django.views import generic
 from .models import Game, Tournament, Day, Point, Foul, Win
 from django.contrib.auth.models import User
-from users.models import Player
+from users.models import Player, Coach
 from teams.models import Team, Region
 from django.template import loader
 
 from django.db.models import Count, Sum
 
 
-def init_context(context, tournament):
+def get_team(user):
+    if not user.is_authenticated:
+        return ""
+    try:
+        model = Coach.objects.get(user=user)
+    except ObjectDoesNotExist:
+        model = Player.objects.get(user=user)
+    return model.team
+
+
+def init_context(context, tournament, team):
     context["day"] = tournament.get_current_day().number
     context["tournament"] = tournament.pk
+    context["team"] = team.pk
 
 
 class TournamentsView(generic.ListView):
@@ -45,7 +58,7 @@ class TeamsView(generic.ListView):
     def get_context_data(self, **kwargs):
         tournament = Tournament.objects.get(id = self.kwargs['pk'])
         context = super().get_context_data(**kwargs)
-        init_context(context, tournament)
+        init_context(context, tournament, get_team(self.request.user))
         return context
 
 
@@ -59,7 +72,7 @@ class myGamesView(generic.ListView):
 
     def get_queryset(self):
         player_pk = self.request.user.pk
-        team_id = Player.objects.get(id=player_pk).team.id
+        team_id = get_team(self.request.user).id
         games = Game.objects.filter(Q(team_local=team_id) | Q(team_visitor=team_id))
         return games
 
@@ -83,7 +96,7 @@ class GamesView(generic.ListView):
         context["prev_day"] = self.day.number - 1
         context["next_day"] = self.day.number + 1
 
-        init_context(context, self.day.tournament)
+        init_context(context, self.day.tournament, get_team(self.request.user))
 
         return context
 
@@ -116,7 +129,7 @@ class DetailView(generic.DetailView):
             quarter__game=game
         )
 
-        init_context(context, game.day.tournament)
+        init_context(context, game.day.tournament, get_team(self.request.user))
 
         return context
 
@@ -142,7 +155,7 @@ class StatisticsView(generic.TemplateView):
 
         context = super().get_context_data(**kwargs)
 
-        init_context(context, tournament)
+        init_context(context, tournament, get_team(self.request.user))
 
         context["regions"] = Region.objects.all()
         curr = 0
@@ -257,3 +270,16 @@ class StatisticsView(generic.TemplateView):
 class TournamentDetailView(generic.DetailView):
     template_name = 'tournaments/tournamentDetail.html'
     model = Tournament
+
+
+class TeamDetailView(generic.DetailView):
+    template_name = "tournaments/team.html"
+    model = Team
+    context_object_name = "t"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        init_context(context, Tournament.objects.get(id=self.kwargs["tournament"]), get_team(self.request.user))
+        team = Team.objects.get(id=self.kwargs["pk"])
+        context["player_list"] = Player.objects.filter(team=team)
+        return context

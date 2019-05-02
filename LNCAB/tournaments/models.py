@@ -7,7 +7,6 @@ from django.db.models import Sum, Count, Q
 from django.db.models.functions import Coalesce
 
 
-
 # Create your models here.
 
 
@@ -21,10 +20,13 @@ class Tournament(models.Model):
     is_active = models.BooleanField()
 
     def get_current_day(self):
-        return Day.objects.filter(tournament=self)\
+        day = Day.objects.filter(tournament=self)\
             .annotate(unfinished=Count("game", filter=Q(game__is_finished=False))) \
             .filter(unfinished__gt=0)\
             .order_by("start_date").first()
+        if day is None:
+            day = Day.objects.filter(tournament=self).order_by("-start_date").first()
+        return day
 
     def __str__(self):
         return self.name+" " + "Category: "+str(self.category )+ " "+str(self.sex)

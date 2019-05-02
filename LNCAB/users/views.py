@@ -8,14 +8,33 @@ from django.contrib.auth.models import User
 from .models import Player
 from tournaments.models import Tournament
 from teams.models import Team
-from users.models import Player
+from users.models import Player, Coach
 from django.shortcuts import redirect
+from django.views import generic
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from .forms import PlayerForm,UserForm,LoginForm
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 
 from tournaments.models import Team
+
+
+def get_team(user):
+    if not user.is_authenticated:
+        return ""
+    try:
+        model = Coach.objects.get(user=user)
+    except ObjectDoesNotExist:
+        model = Player.objects.get(user=user)
+    return model.team
+
+
+def init_context(context, tournament, team):
+    context["day"] = tournament.get_current_day().number
+    context["tournament"] = tournament.pk
+    context["team"] = team.pk
 
 
 def index(request):
@@ -108,7 +127,7 @@ def logoutUser(request):
     return redirect('/tournaments/')
 
 
-
-
-
+class PlayerView(generic.DetailView):
+    template_name = "users/player.html"
+    model = Player
 

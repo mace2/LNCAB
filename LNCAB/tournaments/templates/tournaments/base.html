@@ -45,7 +45,7 @@
           {% endif %}
           <li><a href="/tournaments/{{ tournament }}/teams">Teams</a></li>
           {% if user.is_authenticated and not user.is_superuser %}
-          <li><a href="/tournaments/{{ tournament }}/teams{{ team }}">My team</a></li>
+          <li><a href="/tournaments/{{ tournament }}/teams/{{ team }}">My team</a></li>
           {% endif %}
           <li><a href="/tournaments/{{ tournament }}/stats">Standings</a></li>
           <li><a href="collapsible.html">Playoffs</a></li>
