@@ -11,6 +11,11 @@ from django.template import loader
 from django.db.models import Count, Sum
 
 
+def init_context(context, tournament):
+    context["day"] = tournament.get_current_day().number
+    context["tournament"] = tournament.pk
+
+
 class TournamentsView(generic.ListView):
     template_name = 'tournaments/tournaments.html'
     context_object_name = 'active_tournament_list'
@@ -26,13 +31,19 @@ class TournamentsView(generic.ListView):
         context = super(TournamentsView, self).get_context_data(**kwargs)
         return context
 
+
 class TeamsView(generic.ListView):
     template_name = "tournaments/teams.html"
     context_object_name = "teams_list"
 
     def get_queryset(self):
-         return  Tournament.objects.get(id = self.kwargs['pk']).team_set.all()
+        return Tournament.objects.get(id = self.kwargs['pk']).team_set.all()
 
+    def get_context_data(self, **kwargs):
+        tournament = Tournament.objects.get(id = self.kwargs['pk'])
+        context = super().get_context_data(**kwargs)
+        init_context(context, tournament)
+        return context
 
 
 class GamesView(generic.ListView):
@@ -50,7 +61,8 @@ class GamesView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["prev_day"] = self.day.number - 1
         context["next_day"] = self.day.number + 1
-        context["tournament"] = self.day.tournament.pk
+
+        init_context(context, self.day.tournament)
 
         return context
 
@@ -83,6 +95,8 @@ class DetailView(generic.DetailView):
             quarter__game=game
         )
 
+        init_context(context, game.day.tournament)
+
         return context
 
 
@@ -100,7 +114,6 @@ class StatisticsView(generic.TemplateView):
             self.value = value
 
     def get_context_data(self, **kwargs):
-
         try:
             tournament = Tournament.objects.get(id=self.kwargs['tournament'])
         except Tournament.DoesNotExist:
@@ -108,7 +121,9 @@ class StatisticsView(generic.TemplateView):
 
         context = super().get_context_data(**kwargs)
 
-        context["regions"] = Region.objects.all();
+        init_context(context, tournament)
+
+        context["regions"] = Region.objects.all()
         curr = 0
         # last = -1
 
@@ -216,7 +231,6 @@ class StatisticsView(generic.TemplateView):
             .order_by('-number')
 
         return context
-
 
 
 class TournamentDetailView(generic.DetailView):

@@ -3,13 +3,12 @@ from users.models import Scorekeeper, Player
 from teams.models import Team,Sex,Category
 
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import Sum
+from django.db.models import Sum, Count, Q
 from django.db.models.functions import Coalesce
 
 
 
 # Create your models here.
-
 
 
 class Tournament(models.Model):
@@ -21,6 +20,12 @@ class Tournament(models.Model):
     team_set = models.ManyToManyField('teams.Team')
     is_active = models.BooleanField()
 
+    def get_current_day(self):
+        return Day.objects.filter(tournament=self)\
+            .annotate(unfinished=Count("game", filter=Q(game__is_finished=False))) \
+            .filter(unfinished__gt=0)\
+            .order_by("start_date").first()
+
     def __str__(self):
         return self.name+" " + "Category: "+str(self.category )+ " "+str(self.sex)
 
@@ -31,6 +36,7 @@ class Day(models.Model):
     start_date = models.DateField("Start Date")
     end_date = models.DateField("End Date", null=True, blank=True)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.tournament.name+" Day " + str(self.number) + \

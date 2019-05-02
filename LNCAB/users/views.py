@@ -70,7 +70,6 @@ def registerPlayer(request):
     return render(request, '../templates/playerform.html', {'player_form': player_form})
 
 
-
 def user_login(request):
     if request.method == 'POST':
         login_form=LoginForm(request.POST)
@@ -78,6 +77,10 @@ def user_login(request):
             cd = login_form.cleaned_data
             user = authenticate(request,username=cd['username'],
                                 password=cd['password'])
+
+            if user.is_superuser:
+                return redirect('/admin/')
+
             pk=user.pk
 
             team_id= Player.objects.get(user=pk).team.id
