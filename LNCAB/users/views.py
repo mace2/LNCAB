@@ -81,7 +81,7 @@ def user_login(request):
             pk=user.pk
 
             team_id= Player.objects.get(user=pk).team.id
-            tournament_id= Tournament.objects.get(team_set = team_id).id
+            tournament_id= Tournament.objects.get(team_set = team_id, is_active=True).id
 
 
             if user is not None:
