@@ -5,6 +5,8 @@ from teams.models import Team,Sex,Category
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Sum, Count, Q
 from django.db.models.functions import Coalesce
+from django.core.exceptions import ObjectDoesNotExist
+
 
 
 # Create your models here.
@@ -24,8 +26,6 @@ class Tournament(models.Model):
             .annotate(unfinished=Count("game", filter=Q(game__is_finished=False))) \
             .filter(unfinished__gt=0)\
             .order_by("start_date").first()
-        if day is None:
-            day = Day.objects.filter(tournament=self).order_by("-start_date").first()
         return day
 
     def __str__(self):
