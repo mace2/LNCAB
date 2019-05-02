@@ -1,4 +1,4 @@
-from teams.models import Team, State, Sex, Category
+from teams.models import Team, State, Sex, Category, Region
 from users.models import Coach, Player
 from tournaments.models import Tournament, Day, Game, Venue, Point, Foul, Win, Quarter
 from django.utils import timezone
@@ -23,6 +23,9 @@ s = State.objects.create(name="Prueba", code="PRB")
 s.save()
 s2 = State.objects.create(name="Prueba2", code="PRB2")
 s2.save()
+r = Region.objects.create(name="PruebaR", code="PRBR")
+r.state_set.add(s)
+r.state_set.add(s2)
 t1 = Team.objects.create(sex=f, category=u15, state=s, address="addprueba1", name="teamprueba1")
 t1.save()
 t1.generate_code()

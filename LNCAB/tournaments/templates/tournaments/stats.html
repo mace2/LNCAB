@@ -19,6 +19,28 @@
       }
     </script>
     {% if standings %}
+    <div class="row"></div>
+    <div class="row">
+        <form>
+        <div class="col s4 align-left">
+            Show statistics by region:
+        </div>
+        <div class="col s6">
+            <select name="region">
+                <option value="general">General</option>
+                {% for entry in regions %}
+                    <option value="{{ entry.name }}">{{ entry.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col s2">
+            <button class="waves-effect waves-light btn" type="submit">Show</button>
+        </div>
+        </form>
+    </div>
+    <div class="row">
+        Currently viewing {{ region }} standings and statistics
+    </div>
     <div class="row">
         <h4>Standings</h4>
         <table>
