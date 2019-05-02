@@ -65,9 +65,15 @@ class TeamsView(generic.ListView):
 
 
 class myGamesView(generic.ListView):
+
     template_name = "tournaments/my_games.html"
     context_object_name = "my_games_list"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        init_context(context, Tournament.objects.get(id=self.kwargs['pk']))
+
+        return context
 
 
     def get_queryset(self):
