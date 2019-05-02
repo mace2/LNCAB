@@ -29,6 +29,9 @@ def get_team(user):
 def init_context(context, tournament, team):
     context["day"] = tournament.get_current_day().number
     context["tournament"] = tournament.pk
+    if team is None:
+        context["team"] = ""
+        return
     context["team"] = team.pk
 
 
@@ -71,7 +74,7 @@ class myGamesView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        init_context(context, Tournament.objects.get(id=self.kwargs['pk']))
+        init_context(context, Tournament.objects.get(id=self.kwargs['pk']), get_team(self.request.user))
 
         return context
 
