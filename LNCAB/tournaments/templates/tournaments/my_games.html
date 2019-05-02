@@ -1,14 +1,7 @@
 {% extends "tournaments/base.html" %}
 {% block content %}
         <div class="row"></div>
-        <div class="row">
-            <div class="col s4 center-align">
-                <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament }}/day/{{ prev_day }}">Previous day</a>
-            </div>
-            <div class="col s4 push-s4 center-align">
-                <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament }}/day/{{ next_day }}">Next day</a>
-            </div>
-        </div>
+
         <div class="row">
             {% if my_games_list %}
                 {% for games in my_games_list %}

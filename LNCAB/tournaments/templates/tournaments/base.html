@@ -41,7 +41,7 @@
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="/tournaments/{{ tournament }}/day/{{ day }}">Games</a></li>
           {% if user.is_authenticated and not user.is_superuser %}
-          <li><a href="/tournaments/{{ tournament }}/day/{{ day }}">My games</a></li>
+          <li><a href="/tournaments/{{ tournament }}/mygames">My games</a></li>
           {% endif %}
           <li><a href="/tournaments/{{ tournament }}/teams">Teams</a></li>
           {% if user.is_authenticated and not user.is_superuser %}
