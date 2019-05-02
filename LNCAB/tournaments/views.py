@@ -18,7 +18,7 @@ from django.db.models import Count, Sum
 
 def get_team(user):
     if not user.is_authenticated:
-        return ""
+        return None
     try:
         model = Coach.objects.get(user=user)
     except ObjectDoesNotExist:
