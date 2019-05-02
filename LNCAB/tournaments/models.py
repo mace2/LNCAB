@@ -22,10 +22,15 @@ class Tournament(models.Model):
     is_active = models.BooleanField()
 
     def get_current_day(self):
-        day = Day.objects.filter(tournament=self)\
-            .annotate(unfinished=Count("game", filter=Q(game__is_finished=False))) \
-            .filter(unfinished__gt=0)\
-            .order_by("start_date").first()
+        try:
+            day = Day.objects.filter(tournament=self)\
+                .annotate(unfinished=Count("game", filter=Q(game__is_finished=False))) \
+                .filter(unfinished__gt=0)\
+                .order_by("start_date").first()
+        except Day.DoesNotExist:
+            day = Day.objects.filter(tournament=self).order_by("-start_date").first()
+        if day is None:
+            day = Day.objects.filter(tournament=self).order_by("-start_date").first()
         return day
 
     def __str__(self):
