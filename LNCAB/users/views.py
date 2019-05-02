@@ -78,16 +78,20 @@ def user_login(request):
             user = authenticate(request,username=cd['username'],
                                 password=cd['password'])
 
-            if user.is_superuser:
-                return redirect('/admin/')
 
-            pk=user.pk
 
-            team_id= Player.objects.get(user=pk).team.id
-            tournament_id= Tournament.objects.get(team_set = team_id, is_active=True).id
+
+
+
 
 
             if user is not None:
+                if user.is_superuser:
+                    return redirect('/admin/')
+                pk = user.pk
+
+                team_id = Player.objects.get(user=pk).team.id
+                tournament_id = Tournament.objects.get(team_set=team_id, is_active=True).id
                 if user.is_active:
                     login(request,user)
                     return redirect('/tournaments/'+str(tournament_id)+'/day/1')
