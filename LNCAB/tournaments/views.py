@@ -1,13 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+from django.db.models import Q
 
 from django.views import generic
 from .models import Game, Tournament, Day, Point, Foul, Win
+from django.contrib.auth.models import User
 from users.models import Player
 from teams.models import Team
 from django.template import loader
+
 from django.db.models import Count, Sum
 
 
@@ -26,12 +29,31 @@ class TournamentsView(generic.ListView):
         context = super(TournamentsView, self).get_context_data(**kwargs)
         return context
 
+
 class TeamsView(generic.ListView):
     template_name = "tournaments/teams.html"
     context_object_name = "teams_list"
 
     def get_queryset(self):
          return  Tournament.objects.get(id = self.kwargs['pk']).team_set.all()
+
+
+
+
+
+class myGamesView(generic.ListView):
+    template_name = "tournaments/my_games.html"
+    context_object_name = "my_games_list"
+
+
+
+    def get_queryset(self):
+        player_pk = self.request.user.pk
+        team_id = Player.objects.get(id=player_pk).team.id
+        games = Game.objects.filter(Q(team_local=team_id) | Q(team_visitor=team_id))
+        return games
+
+
 
 
 
