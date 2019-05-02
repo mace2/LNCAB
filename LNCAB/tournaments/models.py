@@ -36,7 +36,6 @@ class Day(models.Model):
     start_date = models.DateField("Start Date")
     end_date = models.DateField("End Date", null=True, blank=True)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
-    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.tournament.name+" Day " + str(self.number) + \
