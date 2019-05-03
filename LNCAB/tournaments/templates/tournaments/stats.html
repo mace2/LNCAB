@@ -41,66 +41,36 @@
     <div class="row">
         Currently viewing {{ region }} standings and statistics
     </div>
+    <table>
     <div class="row">
-        <h4>Standings</h4>
-        <table>
-            <thead>
-                <tr>
-                   <td>Place</td>
-                   <td>Team</td>
-                   <td>Wins</td>
-                </tr>
-            </thead>
+        <tr><h4>Standings</h4>
+                   <th>Place</th>
+                   <th>Team</th>
+                   <th>Wins</th>
+                    <th>Points</th>
+                    <th>Fouls</th>
+        </tr>
+
         {% for entry in standings %}
            <tr>
                <td> {{ entry.place }} </td>
                <td><a href="{{ entry.team }}">{{ entry.team }}</a></td>
                <td>{{ entry.value }}</td>
-           </tr>
-        {% endfor %}
-        </table>
-    </div>
-        <div class="row"></div>
-    <div class="row">
-        <h4>Points</h4>
-        <table>
-            <thead>
-                <tr>
-                   <td>Place</td>
-                   <td>Team</td>
-                   <td>Points</td>
-                </tr>
-            </thead>
-        {% for entry in point_leaders %}
-           <tr>
-               <td> {{ entry.place }} </td>
-               <td><a href="{{ entry.team }}">{{ entry.team }}</a></td>
-               <td>{{ entry.value }}</td>
-           </tr>
-        {% endfor %}
-        </table>
-    </div>
-        <div class="row"></div>
 
-        <div class="row">
-        <h4>Fouls</h4>
-        <table>
-            <thead>
-                <tr>
-                   <td>Place</td>
-                   <td>Team</td>
-                   <td>Fouls</td>
-                </tr>
-            </thead>
+        {% endfor %}
+        {% for entry in point_leaders %}
+               <td>{{ entry.value }}</td>
+
+               {% endfor %}
+
         {% for entry in foul_leaders %}
-           <tr>
-               <td> {{ entry.place }} </td>
-               <td><a href="{{ entry.team }}">{{ entry.team }}</a></td>
                <td>{{ entry.value }}</td>
            </tr>
+
         {% endfor %}
-        </table>
     </div>
+    </table>
+
     {% else %}
         <br>
         This tournament has no played games.
