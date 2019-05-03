@@ -10,6 +10,10 @@
         </div>
         <div class="row">
             {% if player_list %}
+                <form action="/users/player/delete/secure/">
+                {% csrf_token %}
+                <input type="hidden" name="tournament" value="{{ tournament }}">
+                <input type="hidden" name="team" value="{{ team }}">
                 {% for player in player_list %}
                     <div class="row card-panel hoverable">
                         <div class="col s6">
@@ -19,10 +23,11 @@
                             <a class="waves-effect waves-light btn " href="/users/player/{{ player.id }}">View</a>
                         </div>
                         <div class="col s3">
-                            <a class="waves-effect waves-light btn " href="/users/player/delete/{{ player.id }}">Remove</a>
+                            <button type="submit" name="player" value="{{ player.id }}" class="waves-effect waves-light btn ">REMOVE</button>
                         </div>
                     </div>
                 {% endfor %}
+                </form>
             {% else %}
                 <p>There are no players in this team</p>
             {% endif %}

@@ -89,8 +89,6 @@ class GamesViewTests(TestCase):
         )
         self.assertContains(response, "Not played yet")
 
-
-
     def test_all_played(self):
         create_test_db()
         g2 = Game.objects.get(id=2)

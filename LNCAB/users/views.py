@@ -12,6 +12,8 @@ from users.models import Player, Coach
 from django.shortcuts import redirect
 from django.views import generic
 from django.core.exceptions import ObjectDoesNotExist
+from django.views import View
+from django.views.decorators.csrf import csrf_protect
 
 
 from .forms import PlayerForm,UserForm,LoginForm
@@ -97,13 +99,6 @@ def user_login(request):
             user = authenticate(request,username=cd['username'],
                                 password=cd['password'])
 
-
-
-
-
-
-
-
             if user is not None:
                 if user.is_superuser:
                     return redirect('/admin/')
@@ -135,3 +130,9 @@ class PlayerView(generic.DetailView):
     template_name = "users/player.html"
     model = Player
 
+
+def remove_player(request):
+    p = Player.objects.get(id=request.GET.get("player"))
+    p.user.delete()
+    p.delete()
+    return redirect("/tournaments/" + request.GET.get("tournament") + "/teams/" + request.GET.get("team"))
