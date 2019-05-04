@@ -1,6 +1,16 @@
 from django.contrib import admin
-from .models import Game, Tournament,Day,Venue
+from .models import Game, Tournament, Day, Venue, Foul, Point, Win
 # Register your models here.
+
+
+class FoulInline(admin.TabularInline):
+    model = Foul
+    extra = 0
+
+
+class PointInline(admin.TabularInline):
+    model = Point
+    extra = 0
 
 
 class VenueAdmin(admin.ModelAdmin):
@@ -19,6 +29,7 @@ admin.site.register(Day, DayAdmin)
 
 class GameAdmin(admin.ModelAdmin):
     pass
+    # inlines = (FoulInline, PointInline)
 
 
 admin.site.register(Game, GameAdmin)
@@ -30,4 +41,4 @@ class TournamentAdmin(admin.ModelAdmin):
 
 admin.site.register(Tournament, TournamentAdmin)
 
-
+admin.site.register(Win)

@@ -40,30 +40,6 @@
         {% endblock javascript %}
 
 
-    <nav>
-    <div class="nav-wrapper green darken-4">
-        {% load static from staticfiles %}
-      <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Resultados</a></li>
-        <li><a href="badges.html">Calendario</a></li>
-          <li><a href="collapsible.html">Mi Calendario</a></li>
-          <li><a href="collapsible.html">Mi Equipo</a></li>
-        <li><a href="collapsible.html">Tablas de posicion</a></li>
-          <li><a href="collapsible.html">Estadisticas</a></li>
-          <li><a href="collapsible.html">Playoffs</a></li>
-          <li><a href="collapsible.html">Sobre nosotros</a></li>
-
-      </ul>
-         <ul  class="right  hide-on-med-and-down">
-             <li><a href="sass.html">Cuenta</a></li>
-             <li><a href="playerform.html">Login</a></li>
-
-
-      </ul>
-    </div>
-  </nav>
-
     <a href="{% url 'registerPlayer' %}"><span ></span></a>
     {% block content %}
 

@@ -6,12 +6,35 @@ from django.template import loader
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth.models import User
 from .models import Player
+from tournaments.models import Tournament
+from teams.models import Team
+from users.models import Player, Coach
 from django.shortcuts import redirect
+from django.views import generic
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from .forms import PlayerForm,UserForm,LoginForm
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 
+from tournaments.models import Team
+
+
+def get_team(user):
+    if not user.is_authenticated:
+        return ""
+    try:
+        model = Coach.objects.get(user=user)
+    except ObjectDoesNotExist:
+        model = Player.objects.get(user=user)
+    return model.team
+
+
+def init_context(context, tournament, team):
+    context["day"] = tournament.get_current_day().number
+    context["tournament"] = tournament.pk
+    context["team"] = team.pk
 
 
 def index(request):
@@ -37,9 +60,11 @@ def registerUser(request):
             new_user=user_form.save()
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
-            return redirect('/users/playerform.html')
-    else:
-        user_form = UserForm()
+            user = authenticate(request, username=new_user.username, password=user_form.cleaned_data['password'])
+            if user is not None:
+                login(request, user)
+                return redirect('/users/playerform.html')
+    user_form = UserForm()
     return render(request, '../templates/userform.html', {'user_form': user_form})
 
 
@@ -48,14 +73,20 @@ def registerUser(request):
 def registerPlayer(request):
     if request.method == 'POST':
         player_form = PlayerForm(request.POST)
-        if player_form.is_valid():
-            new_player=player_form.save(commit=False)
+        if player_form.is_valid() and request.user.is_authenticated:
+            code = player_form.cleaned_data.get("code")
+            new_player = Player(
+                user=request.user,
+                team=Team.objects.get(code=code),
+                date_of_birth=player_form.cleaned_data.get("date_of_birth"),
+                telephone=player_form.cleaned_data.get("telephone"),
+                sex=player_form.cleaned_data.get("sex")
+            )
             new_player.save()
-            return render(request,'../templates/playerform_done.html',{'new_player':new_player})
+            return redirect('/users/login.html')
     else:
         player_form=PlayerForm()
     return render(request, '../templates/playerform.html', {'player_form': player_form})
-
 
 
 def user_login(request):
@@ -65,12 +96,24 @@ def user_login(request):
             cd = login_form.cleaned_data
             user = authenticate(request,username=cd['username'],
                                 password=cd['password'])
-            pk=user.pk
+
+
+
+
+
+
+
 
             if user is not None:
+                if user.is_superuser:
+                    return redirect('/admin/')
+                pk = user.pk
+
+                team_id = Player.objects.get(user=pk).team.id
+                tournament_id = Tournament.objects.get(team_set=team_id, is_active=True).id
                 if user.is_active:
                     login(request,user)
-                    return redirect('/users/'+str(pk))
+                    return redirect('/tournaments/'+str(tournament_id)+'/day/1')
                 else:
                     return HttpResponse('Disabled account')
 
@@ -83,11 +126,12 @@ def user_login(request):
 
 
 
-def logout(request):
-    return redirect('/users/')
+def logoutUser(request):
+    logout(request)
+    return redirect('/tournaments/')
 
 
-
-
-
+class PlayerView(generic.DetailView):
+    template_name = "users/player.html"
+    model = Player
 

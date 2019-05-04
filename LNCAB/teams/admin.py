@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Region, State
+from .models import Team, Region, State,Sex,Category
 # Register your models here.
 
 
@@ -22,3 +22,6 @@ class StateAdmin(admin.ModelAdmin):
 
 
 admin.site.register(State, StateAdmin)
+
+admin.site.register(Sex)
+admin.site.register(Category)

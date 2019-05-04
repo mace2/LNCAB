@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-03 23:55-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\header.html:41
+msgid "Resultados"
+msgstr "Results"
+
+#: .\templates\header.html:42
+msgid "Calendario"
+msgstr "Calendar"
+
+#: .\templates\header.html:43
+msgid "Mi Calendario"
+msgstr "My Calendar"
+
+#: .\templates\header.html:44
+msgid "Mi Equipo"
+msgstr "My Team"
+
+#: .\templates\header.html:45
+msgid "Tablas De Posicion"
+msgstr "Team Positions"
+
+#: .\templates\header.html:46
+msgid "Estadisticas"
+msgstr "Statistics"
+
+#: .\templates\header.html:47
+msgid "Liguilla"
+msgstr "Playoffs"
+
+#: .\templates\header.html:48
+msgid "Sobre Nosotros"
+msgstr "About Us"
+
+#: .\templates\header.html:53
+msgid "Crea Una Cuenta"
+msgstr "Make An Account"
+
+#: .\templates\header.html:54
+msgid "Inicio De Sesion"
+msgstr "Login"
+
+#: .\templates\header.html:69
+msgid "Contacto"
+msgstr "Contact"
+
+#: .\templates\header.html:71
+msgid "Telefono"
+msgstr "Telephone"
+
+#: .\templates\header.html:74
+msgid "Hipervinculos"
+msgstr "Links"
+
+#: .\templates\header.html:76
+msgid "Hipervinculo 1"
+msgstr "Link 1"
+
+#: .\templates\header.html:77
+msgid "Hipervinculo 2"
+msgstr "Link 2"
+
+#: .\templates\header.html:78
+msgid "Hipervinculo 3"
+msgstr "Link 3"
+
+#: .\templates\header.html:79
+msgid "Hipervinculo 4"
+msgstr "Link 4"

@@ -1,0 +1,29 @@
+{% extends "tournaments/base.html" %}
+{% block content %}
+
+        <div class="row">
+            <h5>{{ t.name }} {{ t.category }} {{ t.sex }} {{ t.state }}</h5>
+
+        </div>
+        <div class="row center">
+            <row class="col s6">
+            {% if player_list %}
+                {% for player in player_list %}
+                    <div class="row card-panel hoverable">
+                        <div class="col s6">
+                            <p class="center-allign">{{ player }} </p>
+                        </div>
+                        <div class="col s3">
+                            <a class="waves-effect waves-light btn red " href="/users/player/{{ player.id }}">View</a>
+                        </div>
+                        <div class="col s3">
+                            <a class="waves-effect waves-light btn red" href="/users/player/delete/{{ player.id }}">Remove</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>There are no players in this team</p>
+            {% endif %}
+            </row>
+        </div>
+{% endblock %}

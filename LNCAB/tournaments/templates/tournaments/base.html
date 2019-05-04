@@ -5,6 +5,7 @@
     {% block css %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="styles.css">
     {% endblock css %}
         <title>Base</title>
 
@@ -28,40 +29,62 @@
         });
 
         </script>
-    <script>
-    $(document).ready(function(){
-    $('.datepicker').datepicker({format: 'mm/dd/yyyy',
-                                changeMonth: true,
-                                 changeYear: true,
-                                yearRange: [1900,2019]});
-  });
 
-      </script>
-        {% endblock javascript %}
+    {% endblock javascript %}
 
 
 
-    <a href="{% url 'registerUser' %}"><span ></span></a>
-    {% block content %}
-         <h5 class="right">1/2 steps to complete</h5>
+    <nav>
+    <div class="nav-wrapper green darken-4">
+        {% load static from staticfiles %}
+      <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/tournaments/{{ tournament }}/day/{{ day }}">Games</a></li>
+          {% if user.is_authenticated and not user.is_superuser %}
+          <li><a href="/tournaments/{{ tournament }}/mygames">My games</a></li>
+          {% endif %}
+          <li><a href="/tournaments/{{ tournament }}/teams">Teams</a></li>
+          {% if user.is_authenticated and not user.is_superuser %}
+          <li><a href="/tournaments/{{ tournament }}/teams/{{ team }}">My team</a></li>
+          {% endif %}
+          <li><a href="/tournaments/{{ tournament }}/stats">Standings by Region </a></li>
+          <li><a href="/tournaments/{{ tournament }}/playoffs">Standings by State</a></li>
+
+      </ul>
+         <ul  class="user right  hide-on-med-and-down">
+             {% if request.user.is_authenticated %}
+             <li>Hello {{ request.user.username }}</li>
+             <li> <a class="btn red hoverable" href="{% url 'logoutUser' %}">Logout</a></li>
+
+             {% else %}
+            <li><a href="/users/userform.html">Make an Account</a></li>
+             <li><a href="/users/login.html">Login</a></li>
+             {% endif %}
+
+      </ul>
+
+    </div>
+  </nav>
 
 
-  <div class="progress">
-      <div class="determinate right" style="width: 50%"></div>
-  </div>
-
-
-    <form method="POST" >
-        {% csrf_token %}
-        {{ user_form.as_p }}
-    <button type="submit" class="save btn btn-default">Continue</button>
-    </form>
-`{% endblock %}
-
-
-
-    </body>
+        {% block content %}
+        {% endblock %}
+        </div>
+    </div>
+ </body>
     <footer class="page-footer red darken-4">
+        <div class="row">
+         {% if request.user.is_authenticated %}
+     <ul  class="right  hide-on-med-and-down">
+
+         {% endif %}
+
+
+
+      </ul>
+
+
+        <div class="col s8 push-s2">
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
