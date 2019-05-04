@@ -98,12 +98,6 @@ def user_login(request):
                                 password=cd['password'])
 
 
-
-
-
-
-
-
             if user is not None:
                 if user.is_superuser:
                     return redirect('/admin/')
@@ -121,7 +115,8 @@ def user_login(request):
             return HttpResponse('Wrong credentials')
     else:
         login_form=LoginForm()
-    return render(request,'../templates/login.html',{'login_form':login_form})
+    return render(request,'../templates/login.html',{'login_form':login_form,'user':user})
+
 
 
 

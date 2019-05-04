@@ -1,11 +1,11 @@
 from django.test import TestCase
 from django.utils import timezone
 
-from teams.models import Team, State
+from teams.models import Team, State,Category,Sex
 from users.models import Coach, Player
 from tournaments.models import Tournament, Day, Game, Venue, Point, Foul, Win
 from django.contrib.auth.models import User
-from .forms import UserForm
+from .forms import UserForm,LoginForm
 from .forms import PlayerForm
 
 
@@ -56,21 +56,20 @@ from .forms import PlayerForm
 
 
 
-#Andres Quiroz Test 1
+#Andres Quiroz Test 1(User Form)
 class UserFormTests(TestCase):
     def test_create(self):
+        u = User.objects.create_user(
+            id=1,
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+        )
 
-       u=User.objects.create_user(
-           username="uname",
-           email="uemail",
-           password="upass",
-           first_name="ufirst",
-           last_name="ulast"
-       )
-
-
-       us = User.objects.get(id=1)
-       self.assertEqual(str(us), u.username)
+        us = User.objects.get(id=1)
+        self.assertEqual(str(us), u.username)
 
     def test_form_valid_password(self):
          data = UserForm({
@@ -96,11 +95,72 @@ class UserFormTests(TestCase):
 
          self.assertFalse(data.is_valid())
 
-#AndresQuirozTest2
+#AndresQuirozTest2(Login_Form)
+class Login_Test(TestCase):
+    def setUp(self):
+        u=User.objects.create_user(
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+        )
+
+
+        c = Category(1,name="U-15")
+        c.save()
+        sex= Sex(1,name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1",category=c ,sex=sex)
+        t1.save()
+        t1.generate_code()
+        p1=Player(user=u ,team=t1, date_of_birth="2001-01-01",telephone="123456",sex=sex)
+        p1.save()
 
 
 
+    def test_secure_page(self):
+        #u = User.objects.get(id=1)
+        #pk = u.id
+        #team_id = Player.objects.get(user=pk).team.id
+        #tournament_id = Tournament.objects.get(team_set=team_id, is_active=True).id
+        loginresponse=self.client.login(username='uname', password='upass')
+        self.assertTrue(loginresponse)
+        #response = self.client.get('/tournaments/',tournament_id)
+        #self.assertEqual(response.status_code, 200)
 
+#AndresQuiroz  Test_Same_Sex_Player_Team 3
+class Check_Same_Sex(TestCase):
+    def setUp(self):
+        u=User.objects.create_user(
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+        )
+
+
+        c = Category(1,name="U-15")
+        c.save()
+        sex= Sex(1,name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1",category=c ,sex=sex)
+        t1.save()
+        t1.generate_code()
+        p1=Player(user=u ,team=t1, date_of_birth="2001-01-01",telephone="123456",sex=sex)
+        p1.save()
+
+    def test_check_sex(self):
+        t1=Team.objects.get(id=1)
+        p1=Player.objects.get(id=1)
+        self.assertEqual(t1.sex,p1.sex)
+
+#AndresQuiroz  Test_Same_Sex_Tournament_Team 4
 
 
 
