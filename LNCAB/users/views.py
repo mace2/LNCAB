@@ -115,7 +115,7 @@ def user_login(request):
             return HttpResponse('Wrong credentials')
     else:
         login_form=LoginForm()
-    return render(request,'../templates/login.html',{'login_form':login_form,'user':user})
+    return render(request,'../templates/login.html',{'login_form':login_form})
 
 
 
