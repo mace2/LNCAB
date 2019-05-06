@@ -228,7 +228,7 @@ class Check_Same_Sex_Category_Team_Tournament(TestCase):
         self.assertEqual(tour1.category, t1.category)
 
 
-#Andres Quiroz Test 7 Create Coach
+#Andres Quiroz Test 7,12 Create Coach
 class CoachModel(TestCase):
     def test_created(self):
         u=User.objects.create_user(

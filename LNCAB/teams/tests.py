@@ -4,7 +4,7 @@ from .models import Team,Category,Sex,State
 # Create your tests here.
 
 
-#Test 6 Andres Quiroz
+#Test 6,14 Andres Quiroz
 class TestCategoryModel(TestCase):
     def test_create_category(self):
         c = Category(id=1, name="U-15")
@@ -24,7 +24,7 @@ class TestCategoryModel(TestCase):
 
 
 
-#Test 5 Andres Quiroz(TeamModel)
+#Test 5,13 Andres Quiroz(TeamModel)
 class CreateTeamTest(TestCase):
     def test_check_created(self):
         c = Category(id=1, name="U-15")
