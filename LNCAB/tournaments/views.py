@@ -234,7 +234,7 @@ class TeamDetailView(generic.DetailView):
 
 
 class StatisticsViewState(generic.TemplateView):
-    template_name = "tournaments/statsState.html"
+    template_name = "tournaments/stats.html"
 
     class StandingsEntry:
         def __init__(self, team_name, wins, points):

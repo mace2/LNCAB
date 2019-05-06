@@ -27,7 +27,11 @@
     <div class="row " >
         <form>
         <div class="col s4 align-left">
+            {% if is_region_filter %}
             <h5>Show statistics by region:</h5>
+            {% else %}
+            <h5>Show statistics by state:</h5>
+            {% endif %}
         </div>
         <div class="col s6">
             <select name="filter">
