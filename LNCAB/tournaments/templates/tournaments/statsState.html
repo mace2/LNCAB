@@ -6,13 +6,9 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            {% if is_region_filter %}
-                ['Region', 'Teams'],
-            {% else %}
-                ['State', 'Teams'],
-            {% endif %}
-            {% for entry in filtered_teams %}
-                [ '{{ entry.name }}', {{ entry.teams }} ],
+          ['State', 'Teams'],
+            {% for entry in teams_by_state %}
+                [ '{{ entry.state__name }}', {{ entry.number }} ],
             {% endfor %}
         ]);
         var options = {
@@ -27,12 +23,12 @@
     <div class="row " >
         <form>
         <div class="col s4 align-left">
-            <h5>Show statistics by region:</h5>
+            <h5>Show statistics by State:</h5>
         </div>
         <div class="col s6">
-            <select name="filter">
+            <select name="region">
                 <option value="general">General</option>
-                {% for entry in filter %}
+                {% for entry in regions %}
                     <option value="{{ entry.name }}">{{ entry.name }}</option>
                 {% endfor %}
             </select>
@@ -43,25 +39,36 @@
         </form>
     </div>
     <div class="row">
-        Currently viewing {{ current_filter }} standings
+        <h8>Currently viewing {{ region }} standings and statistics</h8>
     </div>
     <table>
-        <h4>Standings</h4>
-        <tr>
-            <th>Place</th>
-            <th>Team</th>
-            <th>Wins</th>
-            <th>Points</th>
+    <div class="row">
+        <tr ><h4>Standings</h4>
+                   <th>Place</th>
+                   <th>Team</th>
+                   <th>Wins</th>
+                    <th>Points</th>
+                    <th>Fouls</th>
         </tr>
 
         {% for entry in standings %}
            <tr>
-                <td>{{ forloop.counter }}</td>
-               <td><a href="{{ entry.team_name }}">{{ entry.team_name }}</a></td>
-               <td>{{ entry.wins }}</td>
-               <td>{{ entry.points }}</td>
+               <td> {{ entry.place }} </td>
+               <td><a href="{{ entry.team }}">{{ entry.team }}</a></td>
+               <td>{{ entry.value }}</td>
 
         {% endfor %}
+        {% for entry in point_leaders %}
+               <td>{{ entry.value }}</td>
+
+               {% endfor %}
+
+        {% for entry in foul_leaders %}
+               <td>{{ entry.value }}</td>
+           </tr>
+
+        {% endfor %}
+    </div>
     </table>
 
     {% else %}
@@ -71,11 +78,7 @@
 
     <div class="row">
         <div class="row"></div>
-        {% if is_region_filter %}
-                <h4>Teams by region</h4>
-            {% else %}
-                <h4>Teams by state</h4>
-            {% endif %}
+        <h4>Teams by state</h4>
         <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
     </div>
 

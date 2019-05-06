@@ -98,7 +98,6 @@ def user_login(request):
             cd = login_form.cleaned_data
             user = authenticate(request,username=cd['username'],
                                 password=cd['password'])
-
             if user is not None:
                 if user.is_superuser:
                     return redirect('/admin/')

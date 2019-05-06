@@ -2,13 +2,11 @@
 {% block content %}
 
         <div class="row">
-            <p>{{ t.name }}</p>
-            <p>{{ t.category }}</p>
-            <p>{{ t.sex }}</p>
-            <p>{{ t.state }}</p>
-            <p>{{ t.address }}</p>
+            <h5>{{ t.name }} {{ t.category }} {{ t.sex }} {{ t.state }}</h5>
+
         </div>
-        <div class="row">
+        <div class="row center">
+            <row class="col s6">
             {% if player_list %}
                 <form action="/users/player/delete/secure/">
                 {% csrf_token %}
@@ -35,5 +33,6 @@
             {% else %}
                 <p>There are no players in this team</p>
             {% endif %}
+            </row>
         </div>
 {% endblock %}

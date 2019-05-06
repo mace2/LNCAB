@@ -25,9 +25,7 @@ class TestUrls():
         path = reverse('logout')
         assert resolve(path).view_name == 'logout'
 
-   # def test_Login(self):
-    #    path = reverse('login')
-     #   assert resolve(path).view_name == 'user_login'
+
 
 
 
