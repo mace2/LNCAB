@@ -103,8 +103,11 @@ def user_login(request):
                 if user.is_superuser:
                     return redirect('/admin/')
                 pk = user.pk
-
-                team_id = Player.objects.get(user=pk).team.id
+                try:
+                    model = Player.objects.get(user=pk)
+                except Player.DoesNotExist:
+                    model = Coach.objects.get(user_id=pk)
+                team_id = model.team.id
                 tournament_id = Tournament.objects.get(team_set=team_id, is_active=True).id
                 if user.is_active:
                     login(request,user)
@@ -119,20 +122,19 @@ def user_login(request):
     return render(request,'../templates/login.html',{'login_form':login_form})
 
 
-
-
 def logoutUser(request):
     logout(request)
     return redirect('/tournaments/')
 
 
-class PlayerView(generic.DetailView):
-    template_name = "users/player.html"
-    model = Player
-
-
 def remove_player(request):
-    p = Player.objects.get(id=request.GET.get("player"))
-    p.user.delete()
-    p.delete()
+    if request.user.is_active:
+        try:
+            c = Coach.objects.get(user=request.user,
+                                  team=Player.objects.get(id=int(request.GET.get("player"))).team)
+        except Coach.DoesNotExist:
+            return redirect("/tournaments/" + request.GET.get("tournament") + "/teams/" + request.GET.get("team"))
+        p = Player.objects.get(id=request.GET.get("player"))
+        p.user.delete()
+        p.delete()
     return redirect("/tournaments/" + request.GET.get("tournament") + "/teams/" + request.GET.get("team"))

@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('player/<pk>', views.PlayerView.as_view()),
     path('player/delete/secure/', views.remove_player),
     path('<int:pk>',views.logged_user,name='logged_user'),
     path('<int:pk>/',views.logged_user,name='logged_user'),

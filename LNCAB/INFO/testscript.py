@@ -13,6 +13,7 @@ Game.objects.all().delete()
 User.objects.all().delete()
 User.objects.all().delete()
 Win.objects.all().delete()
+Region.objects.all().delete()
 
 m = Sex.objects.create(name="Masculine")
 f = Sex.objects.create(name="Feminine")

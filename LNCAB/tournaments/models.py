@@ -97,8 +97,8 @@ class Foul(models.Model):
 
 class Game(models.Model):
     date_time = models.DateTimeField("dateTime")
-    team_local = models.ForeignKey('teams.Team',  on_delete=models.CASCADE, related_name='LocalTeam')
-    team_visitor = models.ForeignKey('teams.Team',  on_delete=models.CASCADE,  related_name='VisitanteTeam')
+    team_local = models.ForeignKey('teams.Team',  on_delete=models.CASCADE, related_name='team_local')
+    team_visitor = models.ForeignKey('teams.Team',  on_delete=models.CASCADE,  related_name='team_visitor')
     number = models.IntegerField()
     day = models.ForeignKey(Day, on_delete=models.CASCADE)
     venue = models.ForeignKey(Venue, on_delete=models.CASCADE)

@@ -20,10 +20,14 @@
                             <p class="center-allign">{{ player }} </p>
                         </div>
                         <div class="col s3">
-                            <a class="waves-effect waves-light btn " href="/users/player/{{ player.id }}">View</a>
+                            {% if player_viewable_id == player.id or is_coach %}
+                            <a class="waves-effect waves-light btn " href="/tournaments/{{ tournament }}/teams/{{ team }}/player/{{ player.id }}/">View</a>
+                            {% endif %}
                         </div>
                         <div class="col s3">
+                            {% if is_coach %}
                             <button type="submit" name="player" value="{{ player.id }}" class="waves-effect waves-light btn ">REMOVE</button>
+                            {% endif %}
                         </div>
                     </div>
                 {% endfor %}

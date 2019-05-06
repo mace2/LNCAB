@@ -1,8 +1,10 @@
+from django.db.models.functions import Coalesce
 from django.shortcuts import render, get_object_or_404
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import redirect
 
 # Create your views here.
 from django.db.models import Q
@@ -66,10 +68,7 @@ class TeamsView(generic.ListView):
         return context
 
 
-
-
 class myGamesView(generic.ListView):
-
     template_name = "tournaments/my_games.html"
     context_object_name = "my_games_list"
 
@@ -152,10 +151,10 @@ class StatisticsView(generic.TemplateView):
     template_name = "tournaments/stats.html"
 
     class StandingsEntry:
-        def __init__(self, place, team, value):
-            self.place = place
-            self.team = team
-            self.value = value
+        def __init__(self, team_name, wins, points):
+            self.team_name = team_name
+            self.wins = wins
+            self.points = points
 
     def get_context_data(self, **kwargs):
         try:
@@ -167,112 +166,31 @@ class StatisticsView(generic.TemplateView):
 
         init_context(context, tournament, get_team(self.request.user))
 
-        context["regions"] = Region.objects.all()
-        curr = 0
-        # last = -1
+        context["filter"] = Region.objects.all()
+
+        _filter = self.request.GET.get("filter")
+        if _filter is None:
+            _filter = "general"
+
+        context["current_filter"] = _filter
 
         standings = []
-        point_leaders = []
-        foul_leaders = []
 
-        region = self.request.GET.get("region")
-        if region is None:
-            region = "general"
-        context["region"] = region
-        if region == "general":
-            wins = Win.objects.filter(tournament=tournament) \
-                       .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
-
-            no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id")) \
-                .all().values("name")
-
-            points = Point.objects.filter(quarter__game__day__tournament=tournament) \
-                         .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
-
-            no_points = tournament.team_set.exclude(
-                id__in=Point.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            )
-
-            fouls = Foul.objects.filter(quarter__game__day__tournament=tournament) \
-                        .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
-
-            no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
-                id__in=Foul.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            )
+        if _filter == "general":
+            team_wins = tournament.team_set.annotate(wins=Count("win")).order_by("-wins")
+            points = tournament.team_set.annotate(points=Coalesce(Sum("player__point__value"), 0))
         else:
-            wins = Win.objects.filter(tournament=tournament, team__state__region__name=region) \
-                       .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
+            team_wins = tournament.team_set.filter(state__region__name=_filter).annotate(wins=Count("win")).order_by("-wins")
+            points = tournament.team_set.filter(state__region__name=_filter).annotate(points=Coalesce(Sum("player__point__value"), 0))
 
-            no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id")) \
-                .filter(state__region__name=region).values("name")
-
-            points = Point.objects.filter(quarter__game__day__tournament=tournament,
-                                          player__team__state__region__name=region) \
-                         .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
-
-            no_points = tournament.team_set.exclude(
-                id__in=Point.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            ).filter(state__region__name=region)
-
-            fouls = Foul.objects.filter(quarter__game__day__tournament=tournament,
-                                        player__team__state__region__name=region) \
-                        .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
-
-            no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
-                id__in=Foul.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            ).filter(state__region__name=region)
-
-        for entry in wins:
-            # if last != entry["wins"]:
-            #     curr = curr + 1
-            #     last = entry["wins"]
-            curr += 1
-            standings.append(
-                self.StandingsEntry(place=curr, team=entry["team__name"], value=entry["wins"])
-            )
-        for entry in no_wins:
-            curr += 1
-            standings.append(self.StandingsEntry(place=curr, team=entry["name"], value=0))
+        for entry in team_wins:
+            standings.append(self.StandingsEntry(entry.name, entry.wins, points.get(id=entry.id).points))
 
         context["standings"] = standings
-        # points
-        curr = 0
 
-        for entry in points:
-            # if last != entry["points"]:
-            #     curr = curr + 1
-            #     last = entry["points"]
-            curr += 1
-            point_leaders.append(
-                self.StandingsEntry(place=curr, team=entry["player__team__name"], value=entry["points"])
-            )
-        for entry in no_points:
-            curr += 1
-            point_leaders.append(self.StandingsEntry(place=curr, team=entry.name, value=0))
+        context["filtered_teams"] = Region.objects.annotate(teams=Count("state_set__team")).values("name", "teams")
 
-        context["point_leaders"] = point_leaders
-
-        # fouls
-        curr = 0
-
-        for entry in fouls:
-            # if last != entry["fouls"]:
-            #     curr = curr + 1
-            #     last = entry["fouls"]
-            curr += 1
-            foul_leaders.append(
-                self.StandingsEntry(place=++curr, team=entry["player__team__name"], value=entry["fouls"])
-            )
-        for entry in no_fouls:
-            curr += 1
-            foul_leaders.append(self.StandingsEntry(place=curr, team=entry.name, value=0))
-
-        context["foul_leaders"] = foul_leaders
-
-        context["teams_by_state"] = tournament\
-            .team_set.values('state__name')\
-            .annotate(number=Count('id'))\
-            .order_by('-number')
+        context["is_region_filter"] = True
 
         return context
 
@@ -292,17 +210,37 @@ class TeamDetailView(generic.DetailView):
         init_context(context, Tournament.objects.get(id=self.kwargs["tournament"]), get_team(self.request.user))
         team = Team.objects.get(id=self.kwargs["pk"])
         context["player_list"] = Player.objects.filter(team=team)
+        try:
+            Coach.objects.get(user=self.request.user)
+            context["is_coach"] = True
+        except Coach.DoesNotExist:
+            context["is_coach"] = False
+            context["player_viewable_id"] = Player.objects.get(user=self.request.user).id
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        url = "/tournaments/"
+        if self.request.user.is_active and not self.request.user.is_superuser:
+            try:
+                p = Player.objects.get(user=self.request.user)
+                if p.team != Team.objects.get(id=self.kwargs["pk"]):
+                    return redirect(url)
+            except Player.DoesNotExist:
+                if str(Coach.objects.get(user=self.request.user).team.id) != self.kwargs["pk"]:
+                    return redirect(url)
+        else:
+            return redirect(url)
+        return super(TeamDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class StatisticsViewState(generic.TemplateView):
     template_name = "tournaments/stats.html"
 
     class StandingsEntry:
-        def __init__(self, place, team, value):
-            self.place = place
-            self.team = team
-            self.value = value
+        def __init__(self, team_name, wins, points):
+            self.team_name = team_name
+            self.wins = wins
+            self.points = points
 
     def get_context_data(self, **kwargs):
         try:
@@ -314,112 +252,53 @@ class StatisticsViewState(generic.TemplateView):
 
         init_context(context, tournament, get_team(self.request.user))
 
-        context["regions"] = State.objects.all()
-        curr = 0
-        # last = -1
+        context["filter"] = State.objects.all()
+
+        _filter = self.request.GET.get("filter")
+        if _filter is None:
+            _filter = "general"
+
+        context["current_filter"] = _filter
 
         standings = []
-        point_leaders = []
-        foul_leaders = []
 
-        region = self.request.GET.get("region")
-        if region is None:
-            region = "general"
-        context["region"] = region
-        if region == "general":
-            wins = Win.objects.filter(tournament=tournament) \
-                       .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
-
-            no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id")) \
-                .all().values("name")
-
-            points = Point.objects.filter(quarter__game__day__tournament=tournament) \
-                         .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
-
-            no_points = tournament.team_set.exclude(
-                id__in=Point.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            )
-
-            fouls = Foul.objects.filter(quarter__game__day__tournament=tournament) \
-                        .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
-
-            no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
-                id__in=Foul.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            )
+        if _filter == "general":
+            team_wins = tournament.team_set.annotate(wins=Count("win")).order_by("-wins")
+            points = tournament.team_set.annotate(points=Coalesce(Sum("player__point__value"), 0))
         else:
-            wins = Win.objects.filter(tournament=tournament, team__state__name=region) \
-                       .values('team__name').annotate(wins=Count('team')).order_by('-wins')[:10]
+            team_wins = tournament.team_set.filter(state__name=_filter).annotate(wins=Count("win")).order_by("-wins")
+            points = tournament.team_set.filter(state__name=_filter).annotate(
+                points=Coalesce(Sum("player__point__value"), 0))
 
-            no_wins = tournament.team_set.exclude(id__in=Win.objects.filter(tournament=tournament).values("team__id")) \
-                .filter(state__name=region).values("name")
-
-            points = Point.objects.filter(quarter__game__day__tournament=tournament,
-                                          player__team__state__name=region) \
-                         .values('player__team__name').annotate(points=Sum('value')).order_by('-points')[:10]
-
-            no_points = tournament.team_set.exclude(
-                id__in=Point.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            ).filter(state__name=region)
-
-            fouls = Foul.objects.filter(quarter__game__day__tournament=tournament,
-                                        player__team__state__name=region) \
-                        .values('player__team__name').annotate(fouls=Count('quarter__game')).order_by('-fouls')[:10]
-
-            no_fouls = context["teams_no_fouls"] = tournament.team_set.exclude(
-                id__in=Foul.objects.filter(quarter__game__day__tournament=tournament).values("player__team__id")
-            ).filter(state__name=region)
-
-        for entry in wins:
-            # if last != entry["wins"]:
-            #     curr = curr + 1
-            #     last = entry["wins"]
-            curr += 1
-            standings.append(
-                self.StandingsEntry(place=curr, team=entry["team__name"], value=entry["wins"])
-            )
-        for entry in no_wins:
-            curr += 1
-            standings.append(self.StandingsEntry(place=curr, team=entry["name"], value=0))
+        for entry in team_wins:
+            standings.append(self.StandingsEntry(entry.name, entry.wins, points.get(id=entry.id).points))
 
         context["standings"] = standings
-        # points
-        curr = 0
 
-        for entry in points:
-            # if last != entry["points"]:
-            #     curr = curr + 1
-            #     last = entry["points"]
-            curr += 1
-            point_leaders.append(
-                self.StandingsEntry(place=curr, team=entry["player__team__name"], value=entry["points"])
-            )
-        for entry in no_points:
-            curr += 1
-            point_leaders.append(self.StandingsEntry(place=curr, team=entry.name, value=0))
-
-        context["point_leaders"] = point_leaders
-
-        # fouls
-        curr = 0
-
-        for entry in fouls:
-            # if last != entry["fouls"]:
-            #     curr = curr + 1
-            #     last = entry["fouls"]
-            curr += 1
-            foul_leaders.append(
-                self.StandingsEntry(place=++curr, team=entry["player__team__name"], value=entry["fouls"])
-            )
-        for entry in no_fouls:
-            curr += 1
-            foul_leaders.append(self.StandingsEntry(place=curr, team=entry.name, value=0))
-
-        context["foul_leaders"] = foul_leaders
-
-        context["teams_by_state"] = tournament\
-            .team_set.values('state__name')\
-            .annotate(number=Count('id'))\
-            .order_by('-number')
+        context["filtered_teams"] = State.objects.annotate(teams=Count("team"))
 
         return context
 
+
+class PlayerView(generic.DetailView):
+    template_name = "users/player.html"
+    model = Player
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        init_context(context, Tournament.objects.get(id=self.kwargs["tournament"]), get_team(self.request.user))
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        url = "/tournaments/"
+        if self.request.user.is_active:
+            try:
+                p = Player.objects.get(user=self.request.user)
+                if str(p.id) != self.kwargs["pk"]:
+                    return redirect(url)
+            except Player.DoesNotExist:
+                if Coach.objects.get(user=self.request.user).team != Player.objects.get(id=self.kwargs["pk"]).team:
+                    return redirect(url)
+        else:
+            return redirect(url)
+        return super(PlayerView, self).dispatch(request, *args, **kwargs)

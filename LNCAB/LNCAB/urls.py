@@ -16,14 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from tournaments.views import GamesView, DetailView, BracketView, TeamDetailView, StatisticsView, StatisticsViewState,TournamentsView, TournamentDetailView,TeamsView,myGamesView
+from tournaments.views import GamesView, DetailView, PlayerView, BracketView, TeamDetailView, StatisticsView, StatisticsViewState,TournamentsView, TournamentDetailView,TeamsView,myGamesView
 
 
 urlpatterns = [
-    path('users/', include('users.urls')),
     path('teams/', include('teams.urls')),
     path('admin/', admin.site.urls),
-   # path('teams/', include('teams.urls')),
+    path('users/', include('users.urls')),
     path('tournaments/', TournamentsView.as_view()),
 
     path('tournaments/<pk>/mygames', myGamesView.as_view()),
@@ -33,6 +32,7 @@ urlpatterns = [
     path('tournaments/<tournament>/playoffs/', StatisticsViewState.as_view()),
     path('tournaments/<pk>/teams/',TeamsView.as_view()),
     path('tournaments/<tournament>/teams/<pk>/', TeamDetailView.as_view()),
+    path('tournaments/<tournament>/teams/<team>/player/<pk>/', PlayerView.as_view()),
     path('tournaments/bracket/', BracketView.as_view()),
     path('tournaments/<pk>/', TournamentDetailView.as_view()),
 
