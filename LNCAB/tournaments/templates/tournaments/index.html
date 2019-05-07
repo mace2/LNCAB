@@ -3,10 +3,10 @@
         <div class="row"></div>
         <div class="row">
             <div class="col s4 center-align">
-                <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament }}/day/{{ prev_day }}">Previous day</a>
+                <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/day/{{ prev_day }}">View previous day</a>
             </div>
             <div class="col s4 push-s4 center-align">
-                <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament }}/day/{{ next_day }}">Next day</a>
+                <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/day/{{ next_day }}">View next day</a>
             </div>
         </div>
         <div class="row">
@@ -14,19 +14,29 @@
                 {% for game in game_list %}
                     <div class="row card-panel hoverable">
                         <div class="col s4 center-align">
-                            <a class="team-link" href="index.html">{{ game.team_local.name }}</a>
+                            <div class="row">
+                                Local
+                            </div>
+                            <div class="row">
+                                <h5>{{ game.team_local.name }}</h5>
+                            </div>
                         </div>
                         <div class="col s4 center-align">
                             <div class="row"> {{ game.date_time }} </div>
                             {% if game.is_finished %}
                                 <div class="row"> {{ game.local_points }} - {{ game.visitor_points }}</div>
-                                <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament }}/games/{{ game.id }}">View details</a>
+                                <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/games/{{ game.id }}">View game details</a>
                             {% else %}
                                 <div class="row"> Not played yet </div>
                             {% endif %}
                         </div>
                         <div class="col s4 center-align">
-                            <a class="team-link" href="index.html">{{ game.team_visitor.name }}</a>
+                           <div class="row">
+                                Visitor
+                            </div>
+                            <div class="row">
+                                <h5>{{ game.team_visitor.name }}</h5>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}

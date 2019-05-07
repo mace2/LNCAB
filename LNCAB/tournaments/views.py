@@ -69,8 +69,8 @@ class TeamsView(generic.ListView):
 
 
 class myGamesView(generic.ListView):
-    template_name = "tournaments/my_games.html"
-    context_object_name = "my_games_list"
+    template_name = "tournaments/index.html"
+    context_object_name = "game_list"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -82,7 +82,8 @@ class myGamesView(generic.ListView):
     def get_queryset(self):
         player_pk = self.request.user.pk
         team_id = get_team(self.request.user).id
-        games = Game.objects.filter(Q(team_local=team_id) | Q(team_visitor=team_id))
+        games = Game.objects.filter(day__tournament__id=self.kwargs["pk"])\
+            .filter(Q(team_local=team_id) | Q(team_visitor=team_id))
         return games
 
 
@@ -210,6 +211,8 @@ class TeamDetailView(generic.DetailView):
         init_context(context, Tournament.objects.get(id=self.kwargs["tournament"]), get_team(self.request.user))
         team = Team.objects.get(id=self.kwargs["pk"])
         context["player_list"] = Player.objects.filter(team=team)
+        if team.code is None:
+            team.generate_code()
         try:
             Coach.objects.get(user=self.request.user)
             context["is_coach"] = True
@@ -302,3 +305,8 @@ class PlayerView(generic.DetailView):
         else:
             return redirect(url)
         return super(PlayerView, self).dispatch(request, *args, **kwargs)
+
+
+def regenerate_code(request, *args, **kwargs):
+    Team.objects.get(id=kwargs["pk"]).generate_code()
+    return redirect("/tournaments/" + kwargs["tournament"] + "/teams/" + kwargs["pk"] + "/")

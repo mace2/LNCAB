@@ -17,7 +17,8 @@ from .forms import PlayerForm
 #         # start = timezone.now()
 #         # name = "Juan"
 #         # last_names = "López Pérez"
-#         # telephone = "1234567890"
+#         # telephone = "
+#         1234567890"
 #         # email = "juanlopezperez@mail.com"
 #         # (Coach(name=name, last_names=last_names, start_date=start, telephone=telephone, email_address=email)).save()
 #         # self.assertIs(Coach.objects.filter(

@@ -36,12 +36,15 @@
         {% load static from staticfiles %}
       <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
 
+
          <ul  class="user right  hide-on-med-and-down">
              {% if request.user.is_authenticated %}
-             Hello {{ request.user.username }}
+             <li>Hello {{ request.user.username }}</li>
+             <li> <a class="btn red hoverable" href="{% url 'logoutUser' %}">Logout</a></li>
+
              {% else %}
             <li><a href="/users/userform.html">Make an Account</a></li>
-             <li><a href="/users/login.html">Login</a></li>
+             <li><a class="btn red hoverable" href="/users/login.html">Login</a></li>
              {% endif %}
 
       </ul>
@@ -56,7 +59,7 @@
                     <div class="row card-panel hoverable">
                         <div class="col s4 center-align">
                             <h4 class="center-allign">{{ tournaments.name }}  {{ tournaments.category }} {{ tournaments.sex }} {{ tournaments.id }}</h4>
-                            <a class="waves-effect waves-light btn " href="/tournaments/{{ tournaments.id }}/day/{{ tournaments.get_current_day.number }}">View details</a>
+                            <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournaments.id }}/day/{{ tournaments.get_current_day.number }}">View details</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -67,17 +70,6 @@
     </body>
 {% endblock %}
      <footer class="page-footer red darken-4">
-        <div class="row">
-         {% if request.user.is_authenticated %}
-     <ul  class="right  hide-on-med-and-down">
-         <h5> <a href="{% url 'logoutUser' %}">Logout</a></h5>
-         {% endif %}
-
-
-
-      </ul>
-
-
         <div class="col s8 push-s2">
       <div class="container">
         <div class="row">

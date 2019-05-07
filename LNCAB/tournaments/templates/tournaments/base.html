@@ -38,6 +38,7 @@
         {% load static from staticfiles %}
       <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/tournaments/">Tournaments</a></li>
         <li><a href="/tournaments/{{ tournament }}/day/{{ day }}">Games</a></li>
           {% if user.is_authenticated and not user.is_superuser %}
           <li><a href="/tournaments/{{ tournament }}/mygames">My games</a></li>
@@ -57,7 +58,7 @@
 
              {% else %}
             <li><a href="/users/userform.html">Make an Account</a></li>
-             <li><a href="/users/login.html">Login</a></li>
+             <li><a class="btn red hoverable" href="/users/login.html">Login</a></li>
              {% endif %}
 
       </ul>

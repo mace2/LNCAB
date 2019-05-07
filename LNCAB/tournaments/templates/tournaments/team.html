@@ -5,8 +5,13 @@
             <h5>{{ t.name }} {{ t.category }} {{ t.sex }} {{ t.state }}</h5>
 
         </div>
+        <div class="row">
+            {% if is_coach %}
+                <div class="col s2"> <h5>Code: {{ t.code }}</h5> </div>
+                <div class="col s3"><a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/teams/{{ team }}/regenerate/">Generate new code</a></div>
+            {% endif %}
+        </div>
         <div class="row center">
-            <row class="col s6">
             {% if player_list %}
                 <form action="/users/player/delete/secure/">
                 {% csrf_token %}
@@ -19,12 +24,12 @@
                         </div>
                         <div class="col s3">
                             {% if player_viewable_id == player.id or is_coach %}
-                            <a class="waves-effect waves-light btn " href="/tournaments/{{ tournament }}/teams/{{ team }}/player/{{ player.id }}/">View</a>
+                            <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/teams/{{ team }}/player/{{ player.id }}/">View</a>
                             {% endif %}
                         </div>
                         <div class="col s3">
                             {% if is_coach %}
-                            <button type="submit" name="player" value="{{ player.id }}" class="waves-effect waves-light btn ">REMOVE</button>
+                            <button type="submit" name="player" value="{{ player.id }}" class="waves-effect waves-light btn red">REMOVE</button>
                             {% endif %}
                         </div>
                     </div>
@@ -33,6 +38,5 @@
             {% else %}
                 <p>There are no players in this team</p>
             {% endif %}
-            </row>
         </div>
 {% endblock %}
