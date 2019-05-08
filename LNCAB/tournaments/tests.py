@@ -410,53 +410,101 @@ class testQuarterModel(TestCase):
 
 
 class TeamViewTests(TestCase):
-    # view team code
-    def test_not_logged(self):
+    def setUp(self):
         create_test_db()
-        response = self.client.get("/tournaments/1/teams/1/")
+
+    def test_not_logged(self):
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
+        response = self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/")
         self.assertEqual(response.status_code, 302)
 
+    # view team code
     def test_logged(self):
-        create_test_db()
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
         self.client.login(username="c1", password="pass")
-        response = self.client.get("/tournaments/1/teams/1/")
-        code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
+        response = self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/")
+        code = Team.objects.get(id=team_id).code
         self.assertNotEqual(code, None)
         self.assertEqual(True, response.context["user"].is_authenticated)
         self.assertContains(response, code)
 
     # generate team code
     def test_generate(self):
-        create_test_db()
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
         self.client.login(username="c1", password="pass")
-        self.client.get("/tournaments/1/teams/1/")
-        previous_code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
-        self.client.get("/tournaments/1/teams/1/regenerate/")
-        response = self.client.get("/tournaments/1/teams/1/")
-        current_code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
+
+        previous_code = Team.objects.get(id=team_id).code
+
+        response = self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/")
+
+        self.assertContains(response, previous_code)
+
+        self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/regenerate/")
+
+        current_code = Team.objects.get(id=team_id).code
+
+        response = self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/")
+
         self.assertNotEqual(previous_code, current_code)
         self.assertContains(response, current_code)
 
     # view players
     def test_correct(self):
-        create_test_db()
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
         self.client.login(username="c1", password="pass")
-        response = self.client.get("/tournaments/1/teams/1/")
-        code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
+        response = self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/")
         self.assertEqual(True, response.context["user"].is_authenticated)
-        self.assertContains(response, code)
         self.assertContains(response, "p1first p1last")
 
+    # remove player
     def test_remove(self):
-        create_test_db()
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
+        player_id = Player.objects.get(user__username="p1").id
         self.client.login(username="c1", password="pass")
-        response = self.client.get("/tournaments/1/teams/1/")
+        response = self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/")
         self.assertContains(response, "p1first p1last")
         data = {
-            "tournament": 1,
-            "team": 1,
-            "player": 1
+            "tournament": tour_id,
+            "team": team_id,
+            "player": player_id
         }
         self.client.get("/users/player/delete/secure/", data)
-        response = self.client.get("/tournaments/1/teams/1/")
+        response = self.client.get("/tournaments/"+str(tour_id)+"/teams/"+str(team_id)+"/")
         self.assertNotContains(response, "p1first p1last")
+
+    def test_remove_not_logged(self):
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
+        player_id = Player.objects.get(user__username="p1").id
+        data = {
+            "tournament": tour_id,
+            "team": team_id,
+            "player": player_id
+        }
+        response = self.client.get("/users/player/delete/secure/", data)
+        self.assertEqual(response.status_code, 302)
+
+    # coach views player
+    def test_view_logged(self):
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
+        player_id = Player.objects.get(user__username="p1").id
+        self.client.login(username="c1", password="pass")
+        response = self.client.get("/tournaments/" + str(tour_id) + "/teams/" + str(team_id) + "/")
+        self.assertContains(response, "p1first p1last")
+        response = self.client.get("/tournaments/" + str(tour_id) + "/teams/" + str(team_id) + "/player/"+str(player_id)+"/")
+        self.assertContains(response, "p1first")
+
+    # coach views player
+    def test_view_not_logged(self):
+        tour_id = Tournament.objects.first().id
+        team_id = Team.objects.get(name="teamprueba1").id
+        player_id = Player.objects.get(user__username="p1").id
+        response = self.client.get(
+            "/tournaments/" + str(tour_id) + "/teams/" + str(team_id) + "/player/" + str(player_id) + "/")
+        self.assertEqual(response.status_code, 302)

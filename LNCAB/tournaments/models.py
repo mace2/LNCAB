@@ -222,7 +222,7 @@ class Game(models.Model):
         self.send_mail(alert2, self.get_coach_team_local().user.email)
         self.send_mail(alert2, self.get_coach_team_visitor().user.email)
 
-    def my_model_post_save(sender, instance, created, *args, **kwargs):
+    def game_post_save(sender, instance, created, *args, **kwargs):
         if created:
             instance.notify_coaches()
 
