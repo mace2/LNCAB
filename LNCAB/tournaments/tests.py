@@ -325,6 +325,19 @@ class testModelVenue(TestCase):
         delete=venue.delete()
         self.assertTrue(delete)
 
+#Manuel García Edit test
+    def test_edit(self):
+        s = State(1, "Prueba", "PRB")
+        s.save()
+
+        v = Venue(1, name="prueba", courts=5, address="pruebaadd", state=s)
+        v.save()
+
+        venue = Venue.objects.get(pk=1)
+        venue.name = "pruebaupdate"
+        venue.save()
+        self.assertEquals(venue.name, 'pruebaupdate')
+
 #AndresQuiroz Test 10  SexModel
 class testSexModel(TestCase):
     def test_create(self):
@@ -342,6 +355,14 @@ class testSexModel(TestCase):
         sex = Sex.objects.get(pk=1)
         delete=sex.delete()
         self.assertTrue(delete)
+
+    def test_update(self):
+        s = Sex(1, name="Feminine")
+        s.save()
+        sex = Sex.objects.get(pk=1)
+        sex.name = "M"
+        sex.save()
+        self.assertEquals(sex.name, 'M')
 
 #AndresQuiroz Test 16  QuarterModel
 class testQuarterModel(TestCase):
