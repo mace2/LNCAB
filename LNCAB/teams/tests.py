@@ -67,6 +67,14 @@ class RegionTest(TestCase):
         region = Region.objects.get(id=1)
         self.assertEquals(region.pk, r.pk)
 
+    def test_delete_region(self):
+        r = Region(id=1, name="centro", code="54545")
+        r.save()
+
+        region = Region.objects.get(id=1)
+        delete = region.delete()
+        self.assertTrue(delete)
+
 
 
 
