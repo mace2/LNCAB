@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 <html lang="en">
     <head>
 
@@ -6,7 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
     {% endblock css %}
-        <title>Base</title>
+        <title>{% trans "Base" %}</title>
 
     </head>
     <body>
@@ -32,6 +33,7 @@
     {% endblock javascript %}
 
     <nav>
+
     <div class="nav-wrapper green darken-4">
         {% load static from staticfiles %}
       <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
@@ -40,11 +42,11 @@
          <ul  class="user right  hide-on-med-and-down">
              {% if request.user.is_authenticated %}
              <li>Hello {{ request.user.username }}</li>
-             <li> <a class="btn red hoverable" href="{% url 'logoutUser' %}">Logout</a></li>
+             <li> <a class="btn red hoverable" href="{% url 'logoutUser' %}">{% trans "Logout" %}</a></li>
 
              {% else %}
-            <li><a href="/users/userform.html">Make an Account</a></li>
-             <li><a class="btn red hoverable" href="/users/login.html">Login</a></li>
+            <li><a href="/users/userform.html">{% trans "Create An Account" %}</a></li>
+             <li><a class="btn red hoverable" href="/users/login.html">{% trans "Login" %}</a></li>
              {% endif %}
 
       </ul>
@@ -59,12 +61,12 @@
                     <div class="row card-panel hoverable">
                         <div class="col s4 center-align">
                             <h4 class="center-allign">{{ tournaments.name }}  {{ tournaments.category }} {{ tournaments.sex }} {{ tournaments.id }}</h4>
-                            <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournaments.id }}/day/{{ tournaments.get_current_day.number }}">View details</a>
+                            <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournaments.id }}/day/{{ tournaments.get_current_day.number }}">{% trans "View Details" %}</a>
                         </div>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No tournaments active.</p>
+                <p>{% trans "No Tournaments Active" %}</p>
             {% endif %}
         </div>
     </body>
@@ -74,25 +76,17 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">Contacto</h5>
-            <p class="grey-text text-lighten-4">Alex</p>
-              <p class="grey-text text-lighten-4">Telefono</p>
+            <h5 class="white-text">{% trans "Contact" %}</h5>
+            <p class="grey-text text-lighten-4">{% trans "Alex" %}</p>
+              <p class="grey-text text-lighten-4">{% trans "Telephone" %}</p>
           </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-        LNCAB
-        <a class="grey-text text-lighten-4 right" >ADEMEBA</a>
+        {% trans "LNCAB" %}
+        <a class="grey-text text-lighten-4 right" >{% trans "ADEMEBA" %}</a>
         </div>
       </div>
 </footer>

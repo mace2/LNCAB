@@ -28,9 +28,9 @@
         <form>
         <div class="col s4 align-left">
             {% if is_region_filter %}
-            <h5>Show statistics by region:</h5>
+            <h5>Show Statistics By Region</h5>
             {% else %}
-            <h5>Show statistics by state:</h5>
+            <h5>Show Statistics By State</h5>
             {% endif %}
         </div>
         <div class="col s6">
@@ -47,7 +47,7 @@
         </form>
     </div>
     <div class="row">
-        Currently viewing {{ current_filter }} standings
+        Currently Viewing {{ current_filter }} Standings
     </div>
     <table>
         <h4>Standings</h4>
@@ -70,15 +70,15 @@
 
     {% else %}
         <br>
-        This tournament has no played games.
+        This Tournament Has No Played Games
     {% endif %}
 
     <div class="row">
         <div class="row"></div>
         {% if is_region_filter %}
-                <h4>Teams by region</h4>
+                <h4>Teams By Region</h4>
             {% else %}
-                <h4>Teams by state</h4>
+                <h4>Teams By State</h4>
             {% endif %}
         <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
     </div>

@@ -1,0 +1,347 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-08 07:11-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\header.html:41 .\users\templates\dashboard.html:41
+#: .\users\templates\logged_out.html:41
+#: .\users\templates\playerform_done.html:41
+msgid "Results"
+msgstr "Resultados"
+
+#: .\templates\header.html:42 .\users\templates\dashboard.html:42
+#: .\users\templates\logged_out.html:42
+#: .\users\templates\playerform_done.html:42
+msgid "Calendar"
+msgstr "Calendario"
+
+#: .\templates\header.html:43 .\users\templates\dashboard.html:43
+#: .\users\templates\logged_out.html:43
+#: .\users\templates\playerform_done.html:43
+msgid "My Calendar"
+msgstr "Mi Calendario"
+
+#: .\templates\header.html:44 .\tournaments\templates\tournaments\base.html:50
+#: .\users\templates\dashboard.html:44 .\users\templates\logged_out.html:44
+#: .\users\templates\playerform_done.html:44
+msgid "My Team"
+msgstr "Mi Equipo"
+
+#: .\templates\header.html:45 .\users\templates\dashboard.html:45
+#: .\users\templates\logged_out.html:45
+#: .\users\templates\playerform_done.html:45
+msgid "Standings"
+msgstr "Posiciones"
+
+#: .\templates\header.html:46 .\users\templates\dashboard.html:46
+#: .\users\templates\logged_out.html:46
+#: .\users\templates\playerform_done.html:46
+msgid "Statistics"
+msgstr "Estadisticas"
+
+#: .\templates\header.html:47 .\users\templates\dashboard.html:47
+#: .\users\templates\logged_out.html:47
+#: .\users\templates\playerform_done.html:47
+msgid "Playoffs"
+msgstr "Eliminatorias"
+
+#: .\templates\header.html:48 .\users\templates\dashboard.html:48
+#: .\users\templates\logged_out.html:48
+#: .\users\templates\playerform_done.html:48
+msgid "About Us"
+msgstr "Sobre Nosotros"
+
+#: .\templates\header.html:53 .\tournaments\templates\tournaments\base.html:62
+#: .\tournaments\templates\tournaments\tournaments.html:48
+msgid "Create An Account"
+msgstr "Crear Una Cuenta"
+
+#: .\templates\header.html:54 .\tournaments\templates\tournaments\base.html:63
+#: .\tournaments\templates\tournaments\tournaments.html:49
+#: .\users\templates\dashboard.html:53 .\users\templates\logged_out.html:56
+#: .\users\templates\login.html:45
+msgid "Login"
+msgstr "Iniciar Sesion"
+
+#: .\templates\header.html:69 .\tournaments\templates\tournaments\base.html:93
+#: .\tournaments\templates\tournaments\tournaments.html:79
+#: .\users\templates\dashboard.html:67 .\users\templates\logged_out.html:72
+#: .\users\templates\login.html:57 .\users\templates\playerform.html:65
+#: .\users\templates\playerform_done.html:69 .\users\templates\userform.html:69
+msgid "Contact"
+msgstr "Contacto"
+
+#: .\templates\header.html:70 .\tournaments\templates\tournaments\base.html:94
+#: .\tournaments\templates\tournaments\tournaments.html:80
+#: .\users\templates\dashboard.html:68 .\users\templates\logged_out.html:73
+#: .\users\templates\login.html:58 .\users\templates\playerform.html:66
+#: .\users\templates\playerform_done.html:70 .\users\templates\userform.html:70
+msgid "Alex"
+msgstr "Alex"
+
+#: .\templates\header.html:71 .\tournaments\templates\tournaments\base.html:95
+#: .\tournaments\templates\tournaments\tournaments.html:81
+#: .\users\templates\dashboard.html:69 .\users\templates\logged_out.html:74
+#: .\users\templates\login.html:59 .\users\templates\playerform.html:67
+#: .\users\templates\playerform_done.html:71 .\users\templates\userform.html:71
+#: .\users\templates\users\player.html:11
+msgid "Telephone"
+msgstr "Telefono"
+
+#: .\templates\header.html:75 .\tournaments\templates\tournaments\base.html:99
+#: .\tournaments\templates\tournaments\tournaments.html:85
+#: .\users\templates\dashboard.html:73 .\users\templates\logged_out.html:78
+#: .\users\templates\login.html:63 .\users\templates\playerform.html:71
+#: .\users\templates\playerform_done.html:75 .\users\templates\userform.html:75
+msgid "Link 1"
+msgstr "Link 1"
+
+#: .\templates\header.html:76 .\tournaments\templates\tournaments\base.html:100
+#: .\tournaments\templates\tournaments\tournaments.html:86
+#: .\users\templates\dashboard.html:74 .\users\templates\logged_out.html:79
+#: .\users\templates\login.html:64 .\users\templates\playerform.html:72
+#: .\users\templates\playerform_done.html:76 .\users\templates\userform.html:76
+msgid "Link 2"
+msgstr "Link 2"
+
+#: .\templates\header.html:77 .\tournaments\templates\tournaments\base.html:101
+#: .\tournaments\templates\tournaments\tournaments.html:87
+#: .\users\templates\dashboard.html:75 .\users\templates\logged_out.html:80
+#: .\users\templates\login.html:65 .\users\templates\playerform.html:73
+#: .\users\templates\playerform_done.html:77 .\users\templates\userform.html:77
+msgid "Link 3"
+msgstr "Link 3"
+
+#: .\templates\header.html:84 .\tournaments\templates\tournaments\base.html:108
+#: .\tournaments\templates\tournaments\tournaments.html:95
+#: .\users\templates\dashboard.html:82 .\users\templates\logged_out.html:87
+#: .\users\templates\login.html:72 .\users\templates\playerform.html:80
+#: .\users\templates\playerform_done.html:84 .\users\templates\userform.html:84
+msgid "LNCAB"
+msgstr "LNCAB"
+
+#: .\templates\header.html:85 .\tournaments\templates\tournaments\base.html:109
+#: .\tournaments\templates\tournaments\tournaments.html:96
+#: .\users\templates\dashboard.html:83 .\users\templates\logged_out.html:88
+#: .\users\templates\login.html:73 .\users\templates\playerform.html:81
+#: .\users\templates\playerform_done.html:85 .\users\templates\userform.html:85
+msgid "ADEMEBA"
+msgstr "ADEMEBA"
+
+#: .\tournaments\templates\tournaments\base.html:10
+#: .\tournaments\templates\tournaments\tournaments.html:10
+#: .\users\templates\logged_out.html:10 .\users\templates\login.html:10
+#: .\users\templates\playerform.html:10
+#: .\users\templates\playerform_done.html:10 .\users\templates\userform.html:10
+msgid "Base"
+msgstr "Base"
+
+#: .\tournaments\templates\tournaments\base.html:44
+msgid "Games"
+msgstr "Partidos"
+
+#: .\tournaments\templates\tournaments\base.html:46
+msgid "My Games"
+msgstr "Mis Partidos"
+
+#: .\tournaments\templates\tournaments\base.html:48
+msgid "Teams"
+msgstr "Equipos"
+
+#: .\tournaments\templates\tournaments\base.html:52
+msgid "Standings by Region"
+msgstr "Posiciones Por Region"
+
+#: .\tournaments\templates\tournaments\base.html:53
+msgid "Standings by State"
+msgstr "Posiciones Por Estado"
+
+#: .\tournaments\templates\tournaments\base.html:59
+#: .\tournaments\templates\tournaments\tournaments.html:45
+msgid "Logout"
+msgstr "Cerrar Sesion"
+
+#: .\tournaments\templates\tournaments\detail.html:15
+msgid "Q1"
+msgstr "C1"
+
+#: .\tournaments\templates\tournaments\detail.html:16
+msgid "Q2"
+msgstr "C2"
+
+#: .\tournaments\templates\tournaments\detail.html:17
+msgid "Q3"
+msgstr "C3"
+
+#: .\tournaments\templates\tournaments\detail.html:18
+msgid "Q4"
+msgstr "C4"
+
+#: .\tournaments\templates\tournaments\detail.html:19
+msgid "Final"
+msgstr "Final"
+
+#: .\tournaments\templates\tournaments\detail.html:48
+#: .\tournaments\templates\tournaments\detail.html:65
+#: .\tournaments\templates\tournaments\detail.html:86
+#: .\tournaments\templates\tournaments\detail.html:104
+msgid "Player"
+msgstr "Jugador"
+
+#: .\tournaments\templates\tournaments\detail.html:49
+#: .\tournaments\templates\tournaments\detail.html:66
+msgid "Points"
+msgstr "Puntos"
+
+#: .\tournaments\templates\tournaments\detail.html:80
+msgid "Fouls"
+msgstr "Faltas"
+
+#: .\tournaments\templates\tournaments\detail.html:87
+#: .\tournaments\templates\tournaments\detail.html:105
+msgid "Type"
+msgstr "Tipo"
+
+#: .\tournaments\templates\tournaments\detail.html:120
+msgid "This game has not been played"
+msgstr "Este Encuentro No Se Ha Realizado"
+
+#: .\tournaments\templates\tournaments\index.html:7
+msgid "View Previous Day"
+msgstr "Ver Dia Previo"
+
+#: .\tournaments\templates\tournaments\index.html:10
+msgid "View Next Day"
+msgstr "Ver Dia Siguiente"
+
+#: .\tournaments\templates\tournaments\index.html:19
+msgid "Local"
+msgstr "Local"
+
+#: .\tournaments\templates\tournaments\index.html:29
+msgid "View Game Details"
+msgstr "Ver Detalles De Juego"
+
+#: .\tournaments\templates\tournaments\index.html:31
+msgid "Not Played Yet"
+msgstr "No Jugado Aun"
+
+#: .\tournaments\templates\tournaments\index.html:36
+msgid "Visitor"
+msgstr "Visitante"
+
+#: .\tournaments\templates\tournaments\index.html:45
+#: .\tournaments\templates\tournaments\my_games.html:28
+msgid "No Games Scheduled"
+msgstr "No Hay Juegos Calendarizados"
+
+#: .\tournaments\templates\tournaments\my_games.html:17
+#: .\tournaments\templates\tournaments\tournamentDetail.html:7
+#: .\tournaments\templates\tournaments\tournamentDetail.html:8
+#: .\tournaments\templates\tournaments\tournaments.html:64
+msgid "View Details"
+msgstr "Ver Detalles"
+
+#: .\tournaments\templates\tournaments\my_games.html:19
+msgid "No Played Yet"
+msgstr "No Jugado Aun"
+
+#: .\tournaments\templates\tournaments\team.html:12
+msgid "Generate New Code"
+msgstr "Generar Nuevo Codigo"
+
+#: .\tournaments\templates\tournaments\team.html:28
+msgid "View"
+msgstr "Ver"
+
+#: .\tournaments\templates\tournaments\team.html:33
+msgid "REMOVE"
+msgstr "ELIMINAR"
+
+#: .\tournaments\templates\tournaments\team.html:40
+msgid "There Are No Players In This Team"
+msgstr "No Hay Jugadores En Este Equipo"
+
+#: .\tournaments\templates\tournaments\teams.html:13
+msgid "State"
+msgstr "Estado"
+
+#: .\tournaments\templates\tournaments\teams.html:18
+msgid "No Teams In Tournament"
+msgstr "No Hay Equipos En Este Torneo"
+
+#: .\tournaments\templates\tournaments\tournaments.html:69
+msgid "No Tournaments Active"
+msgstr "No Hay Torneos Activos"
+
+#: .\users\templates\dashboard.html:10
+msgid "Account Dashboard"
+msgstr "Inicio De Sesion"
+
+#: .\users\templates\dashboard.html:52 .\users\templates\logged_out.html:55
+#: .\users\templates\playerform_done.html:52
+msgid "Account"
+msgstr "Cuenta"
+
+#: .\users\templates\logged_out.html:63
+msgid "Logged Out"
+msgstr "Sesion Cerrada"
+
+#: .\users\templates\playerform.html:47
+msgid "2/2 Steps To Complete, Almost Done"
+msgstr "2/2 Pasos Para Completar, Casi Terminas"
+
+#: .\users\templates\playerform.html:54
+msgid "Finish"
+msgstr "Guardar"
+
+#: .\users\templates\playerform_done.html:59
+msgid "Welcome"
+msgstr "Bienvenido"
+
+#: .\users\templates\playerform_done.html:59
+msgid "You Are Now Registered!"
+msgstr "Ahora Estas Registrado!"
+
+#: .\users\templates\userform.html:47
+msgid "1/2 Steps To Complete"
+msgstr "1/2 Pasos Para Completar"
+
+#: .\users\templates\userform.html:58
+msgid "Continue"
+msgstr "Continuar"
+
+#: .\users\templates\users\player.html:6
+msgid "Name:"
+msgstr "Nombre:"
+
+#: .\users\templates\users\player.html:7
+msgid "Last Name:"
+msgstr "Apellido:"
+
+#: .\users\templates\users\player.html:8
+msgid "Team:"
+msgstr "Equipo:"
+
+#: .\users\templates\users\player.html:9
+msgid "Sex:"
+msgstr "Sexo:"
+
+#: .\users\templates\users\player.html:10
+msgid "Date Of Birth"
+msgstr "Dia De Nacimiento:"

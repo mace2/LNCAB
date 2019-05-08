@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 <html lang="en">
     <head>
 
@@ -6,7 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
     {% endblock css %}
-        <title>Base</title>
+        <title>{% trans "Base" %}</title>
 
     </head>
     <body>
@@ -37,25 +38,25 @@
         {% load static from staticfiles %}
       <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">Resultados</a></li>
-        <li><a href="badges.html">Calendario</a></li>
-          <li><a href="collapsible.html">Mi Calendario</a></li>
-          <li><a href="collapsible.html">Mi Equipo</a></li>
-        <li><a href="collapsible.html">Tablas de posicion</a></li>
-          <li><a href="collapsible.html">Estadisticas</a></li>
-          <li><a href="collapsible.html">Playoffs</a></li>
-          <li><a href="collapsible.html">Sobre nosotros</a></li>
+        <li><a href="sass.html">{% trans "Results" %}</a></li>
+        <li><a href="badges.html">{% trans "Calendar" %}</a></li>
+          <li><a href="collapsible.html">{% trans "My Calendar" %}</a></li>
+          <li><a href="collapsible.html">{% trans "My Team" %}o</a></li>
+        <li><a href="collapsible.html">{% trans "Standings" %}</a></li>
+          <li><a href="collapsible.html">{% trans "Statistics" %}</a></li>
+          <li><a href="collapsible.html">{% trans "Playoffs" %}</a></li>
+          <li><a href="collapsible.html">{% trans "About Us" %}</a></li>
 
       </ul>
          <ul  class="right  hide-on-med-and-down">
-        <li><a href="sass.html">Cuenta</a></li>
+        <li><a href="sass.html">{% trans "Account" %}</a></li>
 
 
       </ul>
     </div>
   </nav>
     {% block content %}
-    <h1>Welcome {{new_player}}, you are now registered!</h1>
+    <h1>{% trans "Welcome" %} {{new_player}}, {% trans "You Are Now Registered!" %}</h1>
     {% endblock %}
 
 
@@ -65,25 +66,16 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">Contacto</h5>
-            <p class="grey-text text-lighten-4">Alex</p>
-              <p class="grey-text text-lighten-4">Telefono</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul>
+            <h5 class="white-text">{% trans "Contact" %}</h5>
+            <p class="grey-text text-lighten-4">{% trans "Alex" %}</p>
+              <p class="grey-text text-lighten-4">{% trans "Telephone" %}</p>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-        LNCAB
-        <a class="grey-text text-lighten-4 right" >ADEMEBA</a>
+        {% trans "LNCAB" %}
+        <a class="grey-text text-lighten-4 right" >{% trans "ADEMEBA" %}</a>
         </div>
       </div>
 </footer>

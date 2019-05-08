@@ -38,20 +38,20 @@
         {% load static from staticfiles %}
       <img class="left hide-on-med-and-down" src="{% static 'teams/logo.png' %}" width="70" height="63"/>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="sass.html">{% trans "Resultados" %}</a></li>
-        <li><a href="badges.html">{% trans "Calendario" %}</a></li>
-          <li><a href="collapsible.html">{% trans "Mi Calendario" %}</a></li>
-          <li><a href="collapsible.html">{% trans "Mi Equipo" %}</a></li>
-        <li><a href="collapsible.html">{% trans "Tablas De Posicion" %}</a></li>
-          <li><a href="collapsible.html">{% trans "Estadisticas" %}</a></li>
-          <li><a href="collapsible.html">{% trans "Liguilla" %}</a></li>
-          <li><a href="collapsible.html">{% trans "Sobre Nosotros" %}</a></li>
+        <li><a href="sass.html">{% trans "Results" %}</a></li>
+        <li><a href="badges.html">{% trans "Calendar" %}</a></li>
+          <li><a href="collapsible.html">{% trans "My Calendar" %}</a></li>
+          <li><a href="collapsible.html">{% trans "My Team" %}</a></li>
+        <li><a href="collapsible.html">{% trans "Standings" %}</a></li>
+          <li><a href="collapsible.html">{% trans "Statistics" %}</a></li>
+          <li><a href="collapsible.html">{% trans "Playoffs" %}</a></li>
+          <li><a href="collapsible.html">{% trans "About Us" %}</a></li>
 
       </ul>
          <ul  class="right  hide-on-med-and-down">
 
-            <li><a href="userform.html">{% trans "Crea Una Cuenta" %}</a></li>
-             <li><a href="login.html">{% trans "Inicio De Sesion" %}</a></li>
+            <li><a href="userform.html">{% trans "Create An Account" %}</a></li>
+             <li><a href="login.html">{% trans "Login" %}</a></li>
 
 
 
@@ -66,25 +66,16 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">{% trans "Contacto" %}</h5>
-            <p class="grey-text text-lighten-4">Alex</p>
-              <p class="grey-text text-lighten-4">{% trans "Telefono" %}</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">{% trans "Hipervinculos" %}</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">{% trans "Hipervinculo 1" %}</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">{% trans "Hipervinculo 2" %}</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">{% trans "Hipervinculo 3" %}</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">{% trans "Hipervinculo 4" %}</a></li>
-            </ul>
+            <h5 class="white-text">{% trans "Contact" %}</h5>
+            <p class="grey-text text-lighten-4">{% trans "Alex" %}</p>
+              <p class="grey-text text-lighten-4">{% trans "Telephone" %}</p>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-        LNCAB
-        <a class="grey-text text-lighten-4 right" >ADEMEBA</a>
+        {% trans "LNCAB" %}
+        <a class="grey-text text-lighten-4 right" >{% trans "ADEMEBA" %}</a>
         </div>
       </div>
 </footer>

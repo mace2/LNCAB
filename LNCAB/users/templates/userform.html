@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load i18n %}
 <html lang="en">
     <head>
 
@@ -6,7 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
     {% endblock css %}
-        <title>Base</title>
+        <title>{% trans "Base" %}</title>
 
     </head>
     <body>
@@ -43,7 +44,7 @@
 
     <a href="{% url 'registerUser' %}"><span ></span></a>
     {% block content %}
-         <h5 class="right">1/2 steps to complete</h5>
+         <h5 class="right">{% trans "1/2 Steps To Complete" %}</h5>
 
 
   <div class="progress">
@@ -54,7 +55,7 @@
     <form method="POST" >
         {% csrf_token %}
         {{ user_form.as_p }}
-    <button type="submit" class="save btn btn-default">Continue</button>
+    <button type="submit" class="save btn btn-default">{% trans "Continue" %}</button>
     </form>
 `{% endblock %}
 
@@ -65,25 +66,16 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">Contacto</h5>
-            <p class="grey-text text-lighten-4">Alex</p>
-              <p class="grey-text text-lighten-4">Telefono</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul>
+            <h5 class="white-text">{% trans "Contact" %}</h5>
+            <p class="grey-text text-lighten-4">{% trans "Alex" %}</p>
+              <p class="grey-text text-lighten-4">{% trans "Telephone" %}</p>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
         <div class="container">
-        LNCAB
-        <a class="grey-text text-lighten-4 right" >ADEMEBA</a>
+        {% trans "LNCAB" %}
+        <a class="grey-text text-lighten-4 right" >{% trans "ADEMEBA" %}</a>
         </div>
       </div>
 </footer>

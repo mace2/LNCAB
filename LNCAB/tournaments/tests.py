@@ -281,6 +281,8 @@ class TestModelDay(TestCase):
         delete=day.delete()
         self.assertTrue(delete)
 
+
+
     # def test_all_played(self):
     #     create_test_db()
     #     g2 = Game.objects.get(id=2)
@@ -325,6 +327,7 @@ class testModelVenue(TestCase):
         delete=venue.delete()
         self.assertTrue(delete)
 
+
 #AndresQuiroz Test 10  SexModel
 class testSexModel(TestCase):
     def test_create(self):
@@ -342,6 +345,7 @@ class testSexModel(TestCase):
         sex = Sex.objects.get(pk=1)
         delete=sex.delete()
         self.assertTrue(delete)
+
 
 #AndresQuiroz Test 16  QuarterModel
 class testQuarterModel(TestCase):
@@ -377,11 +381,258 @@ class testQuarterModel(TestCase):
         t2.save()
         g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place,scorekeeper=sc1,is_finished=False)
         g1.save()
-        q = Quarter(number=1,game=g1)
+        q = Quarter(id=1,number= 3,game=g1)
         q.save()
         quarter=Quarter.objects.get(pk=1)
         self.assertEquals(q.pk,quarter.pk)
+        # Cristian 10
 
+    def test_delete_quarter(self):
+        u = User.objects.create_user(
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+        )
+
+        c = Category(1, name="U-15")
+        c.save()
+        sex = Sex(1, name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        v = Venue(1, name="prueba", courts=5, address="pruebaadd", state=s)
+        v.save()
+        place = Venue.objects.get(pk=1)
+        sc1 = Scorekeeper(user=u, telephone='14321', state=s)
+        sc1.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1", category=c, sex=sex)
+        t2 = Team(2, state=s, address="addprueba2", name="teamprueba2", category=c, sex=sex)
+        tour1 = Tournament(id=1, name="TestName", start_date='2001-01-01', category=c, sex=sex, end_date='2001-01-01',
+                           is_active=True)
+        tour1.save()
+        d = Day(1, number=1, is_inter_zone=False, start_date='2001-01-01', end_date='2001-01-01', tournament=tour1)
+        d.save()
+        day = Day.objects.get(pk=1)
+        t1.save()
+        t2.save()
+        g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place,
+                  scorekeeper=sc1, is_finished=False)
+        g1.save()
+        q2 = Quarter(id=1,number=3,game=g1)
+        delete = q2.delete()
+        self.assertTrue(delete)
+#Cristian 11
+    def test_edit_quarter(self):
+        u = User.objects.create_user(
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+        )
+
+        c = Category(1, name="U-15")
+        c.save()
+        sex = Sex(1, name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        v = Venue(1, name="prueba", courts=5, address="pruebaadd", state=s)
+        v.save()
+        place = Venue.objects.get(pk=1)
+        sc1 = Scorekeeper(user=u, telephone='14321', state=s)
+        sc1.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1", category=c, sex=sex)
+        t2 = Team(2, state=s, address="addprueba2", name="teamprueba2", category=c, sex=sex)
+        tour1 = Tournament(id=1, name="TestName", start_date='2001-01-01', category=c, sex=sex, end_date='2001-01-01',
+                           is_active=True)
+        tour1.save()
+        d = Day(1, number=1, is_inter_zone=False, start_date='2001-01-01', end_date='2001-01-01', tournament=tour1)
+        d.save()
+        day = Day.objects.get(pk=1)
+        t1.save()
+        t2.save()
+        g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place,
+                  scorekeeper=sc1, is_finished=False)
+        g1.save()
+        q = Quarter(id=1, number=3, game=g1)
+        q.save()
+        quarter = Quarter.objects.get(pk=1)
+        quarter.number=2
+        quarter.save()
+        self.assertEqual(Quarter.objects.get(pk=1).number, 2)
+
+#Cristian 12
+
+
+class testPointModel(TestCase):
+
+    def test_create_Point(self):
+        u = User.objects.create_user(
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+        )
+
+        c = Category(1, name="U-15")
+        c.save()
+        sex = Sex(1, name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        v = Venue(1, name="prueba", courts=5, address="pruebaadd", state=s)
+        v.save()
+        place = Venue.objects.get(pk=1)
+        sc1=Scorekeeper(user=u,telephone='14321',state=s)
+        sc1.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1", category=c, sex=sex)
+        t2 = Team(2, state=s, address="addprueba2", name="teamprueba2", category=c, sex=sex)
+        tour1 = Tournament(id=1, name="TestName", start_date='2001-01-01', category=c, sex=sex, end_date='2001-01-01',
+                           is_active=True)
+        tour1.save()
+        d = Day(1, number=1, is_inter_zone=False, start_date='2001-01-01', end_date='2001-01-01', tournament=tour1)
+        d.save()
+        day = Day.objects.get(pk=1)
+        t1.save()
+        t2.save()
+        g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place,scorekeeper=sc1,is_finished=False)
+        g1.save()
+        q = Quarter(number=1,game=g1)
+        q.save()
+        p1 = Player(user=u, team=t1, date_of_birth="2001-01-01", telephone="123456", sex=sex)
+        p1.save()
+        point=Point(id=1,player=p1,quarter=q,value=3)
+        point.save()
+        point2 = Point.objects.get(pk=1)
+        self.assertEquals(point.pk, point2.pk)
+#Cristian Test13
+
+    def test_delete_point(self):
+        u = User.objects.create_user(
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+         )
+
+        c = Category(1, name="U-15")
+        c.save()
+        sex = Sex(1, name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        v = Venue(1, name="prueba", courts=5, address="pruebaadd", state=s)
+        v.save()
+        place = Venue.objects.get(pk=1)
+        sc1=Scorekeeper(user=u,telephone='14321',state=s)
+        sc1.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1", category=c, sex=sex)
+        t2 = Team(2, state=s, address="addprueba2", name="teamprueba2", category=c, sex=sex)
+        tour1 = Tournament(id=1, name="TestName", start_date='2001-01-01', category=c, sex=sex, end_date='2001-01-01',
+                           is_active=True)
+        tour1.save()
+        d = Day(1, number=1, is_inter_zone=False, start_date='2001-01-01', end_date='2001-01-01', tournament=tour1)
+        d.save()
+        day = Day.objects.get(pk=1)
+        t1.save()
+        t2.save()
+        g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place,scorekeeper=sc1,is_finished=False)
+        g1.save()
+        q = Quarter(number=1,game=g1)
+        q.save()
+        p1 = Player(user=u, team=t1, date_of_birth="2001-01-01", telephone="123456", sex=sex)
+        p1.save()
+        point=Point(id=1,player=p1,quarter=q,value=3)
+        point.save()
+        point2 = Point.objects.get(pk=1)
+        delete=point2.delete()
+        self.assertTrue(delete)
+#Cristian Test 14
+    def test_edit_point(self):
+        u = User.objects.create_user(
+            username="uname",
+            email="uemail",
+            password="upass",
+            first_name="ufirst",
+            last_name="ulast"
+        )
+
+        c = Category(1, name="U-15")
+        c.save()
+        sex = Sex(1, name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        v = Venue(1, name="prueba", courts=5, address="pruebaadd", state=s)
+        v.save()
+        place = Venue.objects.get(pk=1)
+        sc1=Scorekeeper(user=u,telephone='14321',state=s)
+        sc1.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1", category=c, sex=sex)
+        t2 = Team(2, state=s, address="addprueba2", name="teamprueba2", category=c, sex=sex)
+        tour1 = Tournament(id=1, name="TestName", start_date='2001-01-01', category=c, sex=sex, end_date='2001-01-01',
+                           is_active=True)
+        tour1.save()
+        d = Day(1, number=1, is_inter_zone=False, start_date='2001-01-01', end_date='2001-01-01', tournament=tour1)
+        d.save()
+        day = Day.objects.get(pk=1)
+        t1.save()
+        t2.save()
+        g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place,scorekeeper=sc1,is_finished=False)
+        g1.save()
+        q = Quarter(number=1,game=g1)
+        q.save()
+        p1 = Player(user=u, team=t1, date_of_birth="2001-01-01", telephone="123456", sex=sex)
+        p1.save()
+        point=Point(id=1,player=p1,quarter=q,value=3)
+        point.save()
+        point2 = Point.objects.get(pk=1)
+        point2.value=2
+        point2.save()
+        self.assertEqual(Point.objects.get(pk=1).value, 2)
+
+#Cristian 15
+class testWinModel(TestCase):
+    def test_create_Win(self):
+        c = Category(1, name="U-15")
+        c.save()
+        sex = Sex(1, name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1", category=c, sex=sex)
+        t1.save()
+        tour1 = Tournament(id=1, name="TestName", start_date='2001-01-01', category=c, sex=sex, end_date='2001-01-01',
+                           is_active=True)
+        tour1.save()
+        win=Win(1,team=t1,tournament=tour1)
+        win.save()
+        win2 = Win.objects.get(pk=1)
+        self.assertEquals(win.pk, win2.pk)
+
+    # Cristian 16
+    def test_delete_Win(self):
+        c = Category(1, name="U-15")
+        c.save()
+        sex = Sex(1, name="Feminine")
+        sex.save()
+        s = State(1, "Prueba", "PRB")
+        s.save()
+        t1 = Team(1, state=s, address="addprueba1", name="teamprueba1", category=c, sex=sex)
+        t1.save()
+        tour1 = Tournament(id=1, name="TestName", start_date='2001-01-01', category=c, sex=sex, end_date='2001-01-01',
+                           is_active=True)
+        tour1.save()
+        win=Win(1,team=t1,tournament=tour1)
+        win.save()
+        win2 = Win.objects.get(pk=1)
+        delete=win2.delete()
+        self.assertTrue(delete)
 
 
 

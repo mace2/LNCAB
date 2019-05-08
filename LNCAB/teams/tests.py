@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Team,Category,Sex,State
+from .models import Team,Category,Sex,State, Region
 
 # Create your tests here.
 
@@ -25,6 +25,8 @@ class TestCategoryModel(TestCase):
 
 
 #Test 5,13 Andres Quiroz(TeamModel)
+
+
 class CreateTeamTest(TestCase):
     def test_check_created(self):
         c = Category(id=1, name="U-15")
@@ -56,3 +58,53 @@ class CreateTeamTest(TestCase):
         #b = t1.code
         #self.assertNotEqual(a, b)
 
+ # Cristian Test 1
+class TestStateModel(TestCase):
+    def test_create_state(self):
+        s = State(id=1, name="Aguascalientes", code='esta1')
+        s.save()
+
+        estado1 = State.objects.get(id=1)
+        self.assertEquals(estado1.pk, s.pk)
+        self.assertEquals(estado1.pk, s.pk)
+
+    # Cristian Test 2
+    def test_delete_state(self):
+        s = State(id=1, name="Aguascalientes", code='esta1')
+        s.save()
+
+        estado1 = State.objects.get(id=1)
+        borrar = estado1.delete()
+        self.assertTrue(borrar)
+    # Cristian Test 3
+
+    def test_edit_state(self):
+        s = State(id=1, name="Aguascalientes", code='esta1')
+        s.save()
+
+        estado1 = State.objects.get(id=1)
+        estado1.name="Tepito"
+        estado1.save()
+        self.assertEqual(State.objects.get(pk=1).name, "Tepito")
+
+#Cristian Test 4
+
+
+class RegionTest(TestCase):
+
+    def test_delete_region(self):
+        r1 = Region(id=1, name="Noreste", code="54545")
+        r1.save()
+        region2 = Region.objects.get(id=1)
+        region2.save()
+        delete=region2.delete()
+        self.assertTrue(delete)
+#Cristian Test 5
+
+    def test_edit_region(self):
+        r1 = Region(id=1, name="Noreste", code="54545")
+        r1.save()
+        region2 = Region.objects.get(id=1)
+        region2.name="Norte"
+        region2.save()
+        self.assertEqual(Region.objects.get(pk=1).name, "Norte")

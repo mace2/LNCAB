@@ -1,9 +1,10 @@
 {% extends "tournaments/base.html" %}
 {% block content %}
+{% load i18n %}
     <div class="row"></div>
     <div class="row">
         {{ tournament }}
-        <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament.id }}">View details</a>
-        <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament.id }}">View details</a>
+        <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament.id }}">{% trans "View Details" %}</a>
+        <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament.id }}">{% trans "View Details" %}</a>
     </div>
 {% endblock %}

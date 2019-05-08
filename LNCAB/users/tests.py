@@ -2,11 +2,11 @@ from django.test import TestCase
 from django.utils import timezone
 
 from teams.models import Team, State,Category,Sex
-from users.models import Coach, Player
+from users.models import Coach, Player, Scorekeeper
 from tournaments.models import Tournament, Day, Game, Venue, Point, Foul, Win
 from django.contrib.auth.models import User
-from .forms import UserForm,LoginForm
-from .forms import PlayerForm
+from users.forms import UserForm,LoginForm
+from users.forms import PlayerForm
 
 
 # Create your tests here.
@@ -252,7 +252,6 @@ class CoachModel(TestCase):
         coa = Coach(id=1,user=u,telephone="2345678",start_date='2012-01-01',end_date='2012-10-10',team=t1)
         coa.save()
 
-
         coach = Coach.objects.get(pk=1)
         self.assertEquals(coa.pk,coach.pk)
 
@@ -280,11 +279,89 @@ class CoachModel(TestCase):
         delete=precoach.delete()
         self.assertTrue(delete)
 
+    #Cristian T6
+
+    def test_edit(self):
+        u = User.objects.create_user(
+            username="pedromai",
+            email="perez@gmail.com",
+            password="456789",
+            first_name="Pedro",
+            last_name="ksjd"
+        )
+
+        c1 = Category(1, name="U-15")
+        c1.save()
+        sex1 = Sex(1, name="Masculine")
+        sex1.save()
+        s1 = State(1, "Aguascalientes", "XXX")
+        s1.save()
+        t1 = Team(1, state=s1, address="Equipo1", name="Lagartos", category=c1, sex=sex1)
+        t1.save()
+        t1.generate_code()
+        coach1 = Coach(id=1, user=u, telephone="234567854", start_date='2015-01-01', end_date='2016-10-10', team=t1)
+        coach1.save()
+        coach2 = Coach.objects.get(pk=1)
+        coach2.telephone="34543323"
+        coach2.save()
+        self.assertEqual(Coach.objects.get(pk=1).telephone, "34543323")
+
+      #Cristian T7
 
 
+class ScorekeeperModel(TestCase):
+    def test_created(self):
+        us=User.objects.create_user(
+            username="pedro",
+            email="uemail@gmail",
+            password="password",
+            first_name="pedro",
+            last_name="perez",
+        )
 
+        stt = State(1, "AGS", "XXX")
+        stt.save()
+        sk = Scorekeeper(1,user=us,telephone='234566',state=stt)
+        sk.save()
 
+        sk1 = Scorekeeper.objects.get(pk=1)
+        self.assertEquals(sk.pk,sk1.pk)
+       #Cristian T8
 
+    def test_deleted(self):
+        us = User.objects.create_user(
+            username="pedro",
+            email="uemail@gmail",
+            password="password",
+            first_name="pedro",
+            last_name="perez",
+        )
+        stt = State(1, "AGS", "XXX")
+        stt.save()
+        sk = Scorekeeper(id=1, user=us, telephone= '4561112', state=stt)
+        sk.save()
+
+        sk1 = Scorekeeper.objects.get(pk=1)
+        borrar = sk1.delete()
+        self.assertTrue(borrar)
+
+    # Cristian T9
+    def test_edited(self):
+        us = User.objects.create_user(
+            username="pedro",
+            email="uemail@gmail",
+            password="password",
+            first_name="pedro",
+            last_name="perez",
+        )
+        stt = State(1, "AGS", "XXX")
+        stt.save()
+        sk = Scorekeeper(id=1, user=us, telephone= '4561112', state=stt)
+        sk.save()
+        sk1 = Scorekeeper.objects.get(pk=1)
+        sk1.telephone='4323234'
+        sk1.save()
+        self.assertEqual(Scorekeeper.objects.get(pk=1).telephone, '4323234')
 
 
 

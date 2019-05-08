@@ -1,5 +1,6 @@
 {% extends "tournaments/base.html" %}
 {% block content %}
+{% load i18n %}
 
         <div class="row">
             <h5>{{ t.name }} {{ t.category }} {{ t.sex }} {{ t.state }}</h5>
@@ -8,7 +9,7 @@
         <div class="row">
             {% if is_coach %}
                 <div class="col s2"> <h5>Code: {{ t.code }}</h5> </div>
-                <div class="col s3"><a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/teams/{{ team }}/regenerate/">Generate new code</a></div>
+                <div class="col s3"><a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/teams/{{ team }}/regenerate/">{% trans "Generate New Code" %}</a></div>
             {% endif %}
         </div>
         <div class="row center">
@@ -24,19 +25,19 @@
                         </div>
                         <div class="col s3">
                             {% if player_viewable_id == player.id or is_coach %}
-                            <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/teams/{{ team }}/player/{{ player.id }}/">View</a>
+                            <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/teams/{{ team }}/player/{{ player.id }}/">{% trans "View" %}</a>
                             {% endif %}
                         </div>
                         <div class="col s3">
                             {% if is_coach %}
-                            <button type="submit" name="player" value="{{ player.id }}" class="waves-effect waves-light btn red">REMOVE</button>
+                            <button type="submit" name="player" value="{{ player.id }}" class="waves-effect waves-light btn red">{% trans "REMOVE" %}</button>
                             {% endif %}
                         </div>
                     </div>
                 {% endfor %}
                 </form>
             {% else %}
-                <p>There are no players in this team</p>
+                <p>{% trans "There Are No Players In This Team" %}</p>
             {% endif %}
         </div>
 {% endblock %}

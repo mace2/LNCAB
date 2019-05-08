@@ -1,5 +1,6 @@
 {% extends "tournaments/base.html" %}
 {% block content %}
+{% load i18n %}
         <div class="row"></div>
 
         <div class="row">
@@ -13,9 +14,9 @@
                             <div class="row"> {{ games.date_time }} </div>
                             {% if games.is_finished %}
                                 <div class="row"> {{ games.local_points }} - {{ games.visitor_points }}</div>
-                                <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament }}/games/{{ game_local.id }}">View details</a>
+                                <a class="waves-effect waves-light btn" href="/tournaments/{{ tournament }}/games/{{ game_local.id }}">{% trans "View Details" %}</a>
                             {% else %}
-                                <div class="row"> Not played yet </div>
+                                <div class="row">{% trans "No Played Yet" %}</div>
                             {% endif %}
                         </div>
                         <div class="col s4 center-align">
@@ -24,7 +25,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No games scheduled.</p>
+                <p>{% trans "No Games Scheduled" %}</p>
             {% endif %}
         </div>
 {% endblock %}

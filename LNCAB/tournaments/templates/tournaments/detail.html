@@ -1,6 +1,6 @@
 {% extends "tournaments/base.html" %}
 {% block content %}
-
+{% load i18n %}
     <div class="row">
         <p>{{ game }}</p>
         <p>{{ game.date_time }}</p>
@@ -12,11 +12,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Q1</td>
-                            <td>Q2</td>
-                            <td>Q3</td>
-                            <td>Q4</td>
-                            <td>Final</td>
+                            <td>{% trans "Q1" %}</td>
+                            <td>{% trans "Q2" %}</td>
+                            <td>{% trans "Q3" %}</td>
+                            <td>{% trans "Q4" %}</td>
+                            <td>{% trans "Final" %}</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,8 +45,8 @@
                         <table>
                             <thead>
                                 <tr>
-                                   <td>Player</td>
-                                   <td>Points</td>
+                                   <td>{% trans "Player" %}</td>
+                                   <td>{% trans "Points" %}</td>
                                 </tr>
                             </thead>
                         {% for point in local_points %}
@@ -62,8 +62,8 @@
                         <table>
                             <thead>
                                 <tr>
-                                   <td>Player</td>
-                                   <td>Points</td>
+                                   <td>{% trans "Player" %}</td>
+                                   <td>{% trans "Points" %}</td>
                                 </tr>
                             </thead>
                         {% for point in visitor_points %}
@@ -77,14 +77,14 @@
                 </div>
                 <div class="row"></div>
                 <div class="row">
-                        <h4>Fouls</h4>
+                        <h4>{% trans "Fouls" %}</h4>
                         <div class="col s5">
                         <a class="team-link" href="index.html">{{ game.team_local.name }}</a>
                             <table>
                                 <thead>
                                     <tr>
-                                       <td>Player</td>
-                                       <td>Type</td>
+                                       <td>{% trans "Player" %}</td>
+                                       <td>{% trans "Type" %}</td>
                                     </tr>
                                 </thead>
                             {% for foul in local_fouls %}
@@ -101,8 +101,8 @@
                             <table>
                                 <thead>
                                     <tr>
-                                       <td>Player</td>
-                                       <td>Type</td>
+                                       <td>{% trans "Player" %}</td>
+                                       <td>{% trans "Type" %}</td>
                                     </tr>
                                 </thead>
                             {% for foul in visitor_fouls %}
@@ -117,7 +117,7 @@
             </div>
         {% else %}
             <div>
-                This game has not been played
+               {% trans "This game has not been played" %}
             </div>
         {% endif %}
     </div>

@@ -1,5 +1,6 @@
 {% extends "tournaments/base.html" %}
 {% block content %}
+{% load i18n %}
         <div class="row"></div>
         <div class="row">
             {% if teams_list %}
@@ -9,12 +10,12 @@
                             <h4 class="center-allign">{{ team.name }} </h4>
                         </div>
                         <div class="col s8 center-align">
-                            <p>State: {{ team.state.name }}</p>
+                            <p>{% trans "State" %} {{ team.state.name }}</p>
                         </div>
                     </div>
                 {% endfor %}
             {% else %}
-                <p>No Teams in tournament.</p>
+                <p>{% trans "No Teams In Tournament" %}</p>
             {% endif %}
         </div>
 {% endblock %}
