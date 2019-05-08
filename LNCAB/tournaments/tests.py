@@ -2,61 +2,87 @@ from django.test import TestCase
 
 # Create your tests here.
 
-from teams.models import Team, State,Category,Sex
+from teams.models import Team, State,Category,Sex, Region
 from users.models import Coach, Player,Scorekeeper
 from tournaments.models import Tournament, Day, Game, Venue, Point, Foul, Win, Quarter
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib import auth
+
+def create_test_db():
+    m = Sex.objects.create(name="Masculine")
+    f = Sex.objects.create(name="Feminine")
+    u15 = Category.objects.create(name='U-15')
+    u17 = Category.objects.create(name='U-17')
+    u19 = Category.objects.create(name='U-19')
+    s = State.objects.create(name="Prueba", code="PRB")
+    s.save()
+    s2 = State.objects.create(name="Prueba2", code="PRB2")
+    s2.save()
+    r = Region.objects.create(name="PruebaR", code="PRBR")
+    r.state_set.add(s)
+    r.state_set.add(s2)
+    t1 = Team.objects.create(sex=f, category=u15, state=s, address="addprueba1", name="teamprueba1")
+    t1.save()
+    t1.generate_code()
+    t2 = Team.objects.create(sex=f, category=u15, state=s, address="addprueba2", name="teamprueba2")
+    t2.save()
+    t2.generate_code()
+    t3 = Team.objects.create(sex=f, category=u15, state=s2, address="addprueba3", name="teamprueba3")
+    t3.save()
+    t3.generate_code()
+    tour = Tournament.objects.create(is_active=True, sex=f, category=u15, name="tourprueba", start_date=timezone.now())
+    tour.save()
+    tour.team_set.add(t1)
+    tour.team_set.add(t2)
+    tour.team_set.add(t3)
+    tour.save()
+    day = Day.objects.create(number=1, is_inter_zone=False, start_date=timezone.now(),
+                             end_date=timezone.now() + timezone.timedelta(days=1), tournament=tour)
+    day.save()
+    place = Venue.objects.create(name="venueprueba", courts=3, address="addressvenueprueba", state=s)
+    place.save()
+    g1 = Game.objects.create(number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day,
+                             venue=place)
+    g1.save()
+    g2 = Game.objects.create(number=2, date_time=timezone.now() + timezone.timedelta(hours=2), team_local=t1,
+                             team_visitor=t2, court=2, day=day, venue=place)
+    g2.save()
+    up1 = User.objects.create_user(username='p1', email='p1@mail', password='pass', first_name="p1first",
+                                   last_name="p1last")
+    up2 = User.objects.create_user(username='p2', email='p2@mail', password='pass', first_name="p2first",
+                                   last_name="p2last")
+    uc1 = User.objects.create_user(username='c1', email='c1@mail', password='pass', first_name="c1first",
+                                   last_name="c1last")
+    uc2 = User.objects.create_user(username='c2', email='c2@mail', password='pass', first_name="c2first",
+                                   last_name="c2last")
+    c1 = Coach.objects.create(user=uc1, telephone="1234567890", start_date=timezone.now(), team=t1)
+    c1.save()
+    c2 = Coach.objects.create(user=uc2, telephone="1234567890", start_date=timezone.now(), team=t2)
+    c2.save()
+    p1 = Player.objects.create(sex=f, user=up1, date_of_birth=timezone.now(), telephone="12345667890", team=t1)
+    p1.save()
+    p2 = Player.objects.create(sex=f, user=up2, date_of_birth=timezone.now(), telephone="22345667890", team=t2)
+    p2.save()
+    q = Quarter.objects.create(game=g1, number=1)
+    q2 = Quarter.objects.create(game=g1, number=2)
+    q3 = Quarter.objects.create(game=g1, number=3)
+    q4 = Quarter.objects.create(game=g1, number=4)
+    Point.objects.create(quarter=q, player=p1, value=1)
+    Point.objects.create(quarter=q, player=p2, value=2)
+    Point.objects.create(quarter=q2, player=p1, value=1)
+    Point.objects.create(quarter=q2, player=p2, value=1)
+    Point.objects.create(quarter=q2, player=p1, value=1)
+    Point.objects.create(quarter=q2, player=p2, value=1)
+    Point.objects.create(quarter=q4, player=p1, value=1)
+    Point.objects.create(quarter=q4, player=p2, value=1)
+    Point.objects.create(quarter=q4, player=p1, value=1)
+    Point.objects.create(quarter=q4, player=p2, value=1)
+    Foul.objects.create(quarter=q, player=p1, type='1')
+    Foul.objects.create(quarter=q, player=p2, type='1')
+    g1.finish()
 
 
-# def create_test_db():
-#     s = State(1, "Prueba", "PRB")
-#     s.save()
-#     s2 = State(2, "Prueba2", "PRB2")
-#     s2.save()
-#     t1 = Team(1, state=s, address="addprueba1", name="teamprueba1")
-#     t1.save()
-#     t1.generate_code()
-#     t2 = Team(2, state=s, address="addprueba2", name="teamprueba2")
-#     t2.save()
-#     t2.generate_code()
-#     t3 = Team(3, state=s2, address="addprueba3", name="teamprueba3")
-#     t3.save()
-#     t3.generate_code()
-#     up1 = User.objects.create_user('p1', 'p1@mail', 'pass')
-#     up2 = User.objects.create_user('p2', 'p2@mail', 'pass')
-#     uc1 = User.objects.create_user('c1', 'c1@mail', 'pass')
-#     uc2 = User.objects.create_user('c2', 'c2@mail', 'pass')
-#     c1 = Coach(1, user=uc1, telephone="1234567890", start_date=timezone.now(), team=t1)
-#     c1.save()
-#     c2 = Coach(1, user=uc2, telephone="1234567890", start_date=timezone.now(), team=t2)
-#     c2.save()
-#     p1 = Player(1, user=up1, date_of_birth=timezone.now(), telephone="12345667890", team=t1)
-#     p1.save()
-#     p2 = Player(2, user=up2, date_of_birth=timezone.now(), telephone="22345667890", team=t2)
-#     p2.save()
-#     tour = Tournament(1, name="tourprueba", start_date=timezone.now(),active=True)
-#     tour.save()
-#     tour.team_set.add(t1)
-#     tour.team_set.add(t2)
-#     tour.team_set.add(t3)
-#     tour.save()
-#     day = Day(1, number=1, is_inter_zone=False, start_date=timezone.now(),
-#               end_date=timezone.now() + timezone.timedelta(days=1), tournament=tour)
-#     day.save()
-#     place = Venue(1, name="venueprueba", courts=3, address="addressvenueprueba", state=s)
-#     place.save()
-#     g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place)
-#     g1.save()
-#     g2 = Game(2, number=2, date_time=timezone.now() + timezone.timedelta(hours=2), team_local=t1, team_visitor=t2,
-#               court=2, day=day, venue=place)
-#     g2.save()
-#     (Point(1, game=g1, player=p1, value=1)).save()
-#     (Point(2, game=g1, player=p2, value=2)).save()
-#     (Foul(1, game=g1, player=p1, type='1')).save()
-#     (Foul(2, game=g1, player=p2, type='1')).save()
-#     g1.finish()
-#
 #
 # class StatisticsViewTests(TestCase):
 #     def test_non_existing(self):
@@ -377,14 +403,60 @@ class testQuarterModel(TestCase):
         t2.save()
         g1 = Game(1, number=1, date_time=timezone.now(), team_local=t1, team_visitor=t2, court=1, day=day, venue=place,scorekeeper=sc1,is_finished=False)
         g1.save()
-        q = Quarter(number=1,game=g1)
+        q = Quarter(id=1, number=1,game=g1)
         q.save()
-        quarter=Quarter.objects.get(pk=1)
+        quarter=Quarter.objects.get(id=1)
         self.assertEquals(q.pk,quarter.pk)
 
 
+class TeamViewTests(TestCase):
+    # view team code
+    def test_not_logged(self):
+        create_test_db()
+        response = self.client.get("/tournaments/1/teams/1/")
+        self.assertEqual(response.status_code, 302)
 
+    def test_logged(self):
+        create_test_db()
+        self.client.login(username="c1", password="pass")
+        response = self.client.get("/tournaments/1/teams/1/")
+        code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
+        self.assertNotEqual(code, None)
+        self.assertEqual(True, response.context["user"].is_authenticated)
+        self.assertContains(response, code)
 
+    # generate team code
+    def test_generate(self):
+        create_test_db()
+        self.client.login(username="c1", password="pass")
+        self.client.get("/tournaments/1/teams/1/")
+        previous_code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
+        self.client.get("/tournaments/1/teams/1/regenerate/")
+        response = self.client.get("/tournaments/1/teams/1/")
+        current_code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
+        self.assertNotEqual(previous_code, current_code)
+        self.assertContains(response, current_code)
 
+    # view players
+    def test_correct(self):
+        create_test_db()
+        self.client.login(username="c1", password="pass")
+        response = self.client.get("/tournaments/1/teams/1/")
+        code = Tournament.objects.get(id=1).team_set.get(coach__user__username="c1").code
+        self.assertEqual(True, response.context["user"].is_authenticated)
+        self.assertContains(response, code)
+        self.assertContains(response, "p1first p1last")
 
-
+    def test_remove(self):
+        create_test_db()
+        self.client.login(username="c1", password="pass")
+        response = self.client.get("/tournaments/1/teams/1/")
+        self.assertContains(response, "p1first p1last")
+        data = {
+            "tournament": 1,
+            "team": 1,
+            "player": 1
+        }
+        self.client.get("/users/player/delete/secure/", data)
+        response = self.client.get("/tournaments/1/teams/1/")
+        self.assertNotContains(response, "p1first p1last")
