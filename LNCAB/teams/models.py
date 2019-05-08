@@ -67,8 +67,6 @@ class Team(models.Model):
 
     def generate_code(self):
         self.save()
-        passed = False
-        while not passed:
-            self.code = User.objects.make_random_password(length=4, allowed_chars='0123456789') + str(self.id)
-            self.save()
-            passed = Team.objects.filter(code=self.code).count() == 1
+        self.code = User.objects.make_random_password(length=4, allowed_chars='0123456789') + str(self.id)
+        self.save()
+

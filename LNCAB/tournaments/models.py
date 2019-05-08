@@ -1,12 +1,16 @@
 from django.db import models
-from users.models import Scorekeeper, Player
+from users.models import Scorekeeper, Player, Coach
 from teams.models import Team,Sex,Category
 
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import Sum, Count, Q
 from django.db.models.functions import Coalesce
 from django.core.exceptions import ObjectDoesNotExist
-
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import time
+from datetime import date, datetime, timedelta
 
 
 # Create your models here.
@@ -166,6 +170,61 @@ class Game(models.Model):
             Win.objects.create(team=self.team_visitor, tournament=self.day.tournament)
         self.is_finished = True
         self.save()
+
+    def get_coach_team_local(self):
+        return Coach.objects.filter(team=self.team_local).order_by("-start_date").first()
+
+    def get_coach_team_visitor(self):
+        return Coach.objects.filter(team=self.team_visitor).order_by("-start_date").first()
+
+    def send_mail(self, timestamp, email):
+        message = {
+            'personalizations': [
+                {
+                    'to': [
+                        {
+                            'email': 'eduardocuestacordova@gmail.com'
+                        }
+                    ],
+                    'subject': 'Sending with Twilio SendGrid is Fun'
+                }
+            ],
+            'from': {
+                'email': 'donotreplyademeba@outlook.com'
+            },
+            'content': [
+                {
+                    'type': 'text/plain',
+                    'value': 'You have a game the ' + str(self.date_time.date()) + ' at ' + str(
+                        self.date_time.hour) + ':' + str(self.date_time.minute)
+                }
+            ],
+            "send_at": timestamp
+        }
+        try:
+            sg = SendGridAPIClient()
+            response = sg.send(message)
+            # print(response.status_code)
+            # print(response.body)
+            # print(response.headers)
+        except Exception as e:
+            # print(e)
+            pass
+
+    def notify_coaches(self):
+        prev = self.date_time - timedelta(1)
+        alert1 = datetime(prev.year, prev.month, prev.day).timestamp()
+        alert2 = int(self.date_time.timestamp()) - 3600
+        print(datetime.fromtimestamp(alert1))
+        print(datetime.fromtimestamp(alert2))
+        self.send_mail(alert1, self.get_coach_team_local().user.email)
+        self.send_mail(alert1, self.get_coach_team_visitor().user.email)
+        self.send_mail(alert2, self.get_coach_team_local().user.email)
+        self.send_mail(alert2, self.get_coach_team_visitor().user.email)
+
+    def game_post_save(sender, instance, created, *args, **kwargs):
+        if created:
+            instance.notify_coaches()
 
 
 class Win(models.Model):
