@@ -26,7 +26,7 @@
     <div class="row"></div>
     <div class="row " >
         <form>
-        <div class="col s4 align-left">
+        <div class="col s4 right-align">
             {% if is_region_filter %}
             <h5>Show statistics by region:</h5>
             {% else %}
@@ -46,8 +46,10 @@
         </div>
         </form>
     </div>
-    <div class="row">
-        Currently viewing {{ current_filter }} standings
+        <div class = "row">
+        </div>
+    <div class="row center-align">
+        <h5>Currently viewing {{ current_filter }} standings</h5>
     </div>
     <table>
         <h4>Standings</h4>
@@ -61,7 +63,7 @@
         {% for entry in standings %}
            <tr>
                 <td>{{ forloop.counter }}</td>
-               <td><a href="{{ entry.team_name }}">{{ entry.team_name }}</a></td>
+               <td>{{ entry.team_name }}</td>
                <td>{{ entry.wins }}</td>
                <td>{{ entry.points }}</td>
 

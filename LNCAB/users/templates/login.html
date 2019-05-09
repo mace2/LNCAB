@@ -44,6 +44,7 @@
             {% csrf_token %}
             <input type ='hidden' name="next" value="{{ next }}"/>
             <button type="submit"  class="save btn btn-default">Log in </button>
+        <a class="btn red" href="/tournaments/">Back to site</a>
         </form>
     {% endblock %}
 
@@ -57,17 +58,13 @@
       <div class="container">
         <div class="row">
           <div class="col l6 s12">
-            <h5 class="white-text">Contacto</h5>
-            <p class="grey-text text-lighten-4">Alex</p>
-              <p class="grey-text text-lighten-4">Telefono</p>
+            <h5 class="white-text">Contact:</h5>
+                    <p class="grey-text text-lighten-4">Alejandro Gama</p>
+                      <p class="grey-text text-lighten-4">Telephone: 442 765 4321</p>
           </div>
           <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
             <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+
             </ul>
           </div>
         </div>

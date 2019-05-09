@@ -2,12 +2,14 @@
 {% block content %}
         <div class="row"></div>
         <div class="row">
+        {% if is_general %}
             <div class="col s4 center-align">
                 <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/day/{{ prev_day }}">View previous day</a>
             </div>
             <div class="col s4 push-s4 center-align">
                 <a class="waves-effect waves-light btn red" href="/tournaments/{{ tournament }}/day/{{ next_day }}">View next day</a>
             </div>
+        {% endif %}
         </div>
         <div class="row">
             {% if game_list %}

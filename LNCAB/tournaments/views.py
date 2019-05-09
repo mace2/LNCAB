@@ -89,9 +89,6 @@ class myGamesView(generic.ListView):
         return games
 
 
-
-
-
 class GamesView(generic.ListView):
     template_name = 'tournaments/index.html'
     context_object_name = 'game_list'
@@ -107,6 +104,8 @@ class GamesView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["prev_day"] = self.day.number - 1
         context["next_day"] = self.day.number + 1
+
+        context["is_general"] = True
 
         init_context(context, self.day.tournament, get_team(self.request.user))
 
