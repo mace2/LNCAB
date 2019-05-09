@@ -500,7 +500,7 @@ class TeamViewTests(TestCase):
         response = self.client.get("/tournaments/" + str(tour_id) + "/teams/" + str(team_id) + "/player/"+str(player_id)+"/")
         self.assertContains(response, "p1first")
 
-    # coach views player
+    # not logged views player
     def test_view_not_logged(self):
         tour_id = Tournament.objects.first().id
         team_id = Team.objects.get(name="teamprueba1").id

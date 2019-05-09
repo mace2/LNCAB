@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from tournaments.views import GamesView,  regenerate_code, DetailView, PlayerView, BracketView, TeamDetailView, StatisticsView, StatisticsViewState,TournamentsView, TournamentDetailView,TeamsView,myGamesView
+from tournaments.views import GamesView, GamesViewAPI, regenerate_code, DetailView, PlayerView, BracketView, TeamDetailView, StatisticsView, StatisticsViewState,TournamentsView, TournamentDetailView,TeamsView,myGamesView
+from rest_framework import routers
 
+router = routers.DefaultRouter()
+router.register(r'api',GamesViewAPI)
 
 urlpatterns = [
     path('teams/', include('teams.urls')),
@@ -36,6 +39,6 @@ urlpatterns = [
     path('tournaments/<tournament>/teams/<team>/player/<pk>/', PlayerView.as_view()),
     path('tournaments/bracket/', BracketView.as_view()),
     path('tournaments/<pk>/', TournamentDetailView.as_view()),
-
+    path('api/', include(router.urls)),
 ]
 urlpatterns+=staticfiles_urlpatterns()
