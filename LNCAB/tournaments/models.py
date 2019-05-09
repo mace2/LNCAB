@@ -202,7 +202,7 @@ class Game(models.Model):
             "send_at": timestamp
         }
         try:
-            sg = SendGridAPIClient()
+            sg = SendGridAPIClient("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")
             response = sg.send(message)
             # print(response.status_code)
             # print(response.body)

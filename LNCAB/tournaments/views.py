@@ -14,7 +14,9 @@ from .models import Game, Tournament, Day, Point, Foul, Win
 from django.contrib.auth.models import User
 from users.models import Player, Coach
 from teams.models import Team, Region,State
-from django.template import loader
+
+from .serializers import GameSerializer
+from rest_framework import viewsets
 
 from django.db.models import Count, Sum
 
@@ -310,3 +312,8 @@ class PlayerView(generic.DetailView):
 def regenerate_code(request, *args, **kwargs):
     Team.objects.get(id=kwargs["pk"]).generate_code()
     return redirect("/tournaments/" + kwargs["tournament"] + "/teams/" + kwargs["pk"] + "/")
+
+
+class GamesViewAPI(viewsets.ModelViewSet):
+    serializer_class = GameSerializer
+    queryset = Game.objects.all()

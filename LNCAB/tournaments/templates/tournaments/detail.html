@@ -2,9 +2,12 @@
 {% block content %}
 
     <div class="row">
-        <p>{{ game }}</p>
-        <p>{{ game.date_time }}</p>
-        <p>{{ game.venue }}</p>
+        <h4>{{ game }}</h4>
+        <br/>
+        <h5>{{ game.date_time }}</h5>
+        <br/>
+        <h5>{{ game.venue }}</h5>
+        <br/>
         {% if game.is_finished %}
             <div class="row">
 
@@ -12,11 +15,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <td>Q1</td>
-                            <td>Q2</td>
-                            <td>Q3</td>
-                            <td>Q4</td>
-                            <td>Final</td>
+                            <td><b>Q1</b></td>
+                            <td><b>Q2</b></td>
+                            <td><b>Q3</b></td>
+                            <td><b>Q4</b></td>
+                            <td><b>Final</b></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,9 +42,10 @@
             </div>
             <div class="row">
                 <div class="row">
+                    <br/>
                     <h4>Points</h4>
                     <div class="col s5">
-                        <a class="team-link" href="index.html">{{ game.team_local.name }}</a>
+                        <h4>{{ game.team_local.name }}</h4>
                         <table>
                             <thead>
                                 <tr>
@@ -58,7 +62,7 @@
                         </table>
                     </div>
                     <div class="col s5 push-s1">
-                        <a class="team-link" href="index.html">{{ game.team_visitor.name }}</a>
+                        <h4>{{ game.team_visitor.name }}</h4>
                         <table>
                             <thead>
                                 <tr>
@@ -77,9 +81,10 @@
                 </div>
                 <div class="row"></div>
                 <div class="row">
+                    <br/>
                         <h4>Fouls</h4>
                         <div class="col s5">
-                        <a class="team-link" href="index.html">{{ game.team_local.name }}</a>
+                        <h4>{{ game.team_local.name }}</h4>
                             <table>
                                 <thead>
                                     <tr>
@@ -97,7 +102,7 @@
                         </div>
                         <div class="col s5 push-s1">
 
-                        <a class="team-link" href="index.html">{{ game.team_visitor.name }}</a>
+                        <h4>{{ game.team_visitor.name }}</h4>
                             <table>
                                 <thead>
                                     <tr>
